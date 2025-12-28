@@ -1,1 +1,16 @@
 @import 'tailwindcss';
+
+@theme {
+  /* colors */
+  --color-primary: #70508f; /* deep purple */
+  --color-accent: #f67f77; /* coral */
+  --color-secondary: #b99ef1; /* lavender */
+
+  /* backgrounds*/
+  --color-background-muted: #fefeff; /* almost white*/
+  --color-background: #fbf5ff; /* light lavender */
+
+  /* text */
+  --color-black: #000000;
+  --color-white: #ffffff;
+}
