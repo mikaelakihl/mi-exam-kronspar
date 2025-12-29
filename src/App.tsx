@@ -1,14 +1,40 @@
+import { useState } from 'react';
 import './index.css';
+import { GiHamburgerMenu } from 'react-icons/gi';
+import { AiOutlineClose } from 'react-icons/ai';
 
 const Header = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+  };
+
   return (
     <header className="bg-primary h-[20%]">
       {/* Desktop menu */}
-      <div className="flex gap-2">
+      <div className="flex gap-2 hidden md:block">
         <button className="bg-accent text-p-white">Registrera</button>
         <button className="bg-accent text-p-white">Logga in</button>
       </div>
-
+      {/* Mobile menu*/}
+      <div className="md:hidden">
+        <button onClick={toggleMenu}>
+          {isOpen ? (
+            <AiOutlineClose size={50} />
+          ) : (
+            <GiHamburgerMenu size={50} />
+          )}
+        </button>
+      </div>
+      {isOpen && (
+        <nav>
+          <ul>
+            <li>Logga in</li>
+            <li>Registrera</li>
+          </ul>
+        </nav>
+      )}
       <h1>Kronspar</h1>
     </header>
   );
