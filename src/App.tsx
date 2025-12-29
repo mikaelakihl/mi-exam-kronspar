@@ -34,6 +34,10 @@ const Header = () => {
 
           {/* Mobile menu*/}
           <div className="md:hidden">
+            {' '}
+            <SignedIn>
+              <UserButton />
+            </SignedIn>
             <button onClick={() => setIsOpen(!isOpen)}>
               {isOpen ? (
                 <AiOutlineClose size={30} className="text-accent" />
@@ -53,9 +57,6 @@ const Header = () => {
               </button>
             </SignInButton>
           </SignedOut>
-          <SignedIn>
-            <UserButton />
-          </SignedIn>
         </nav>
       )}
     </>
