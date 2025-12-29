@@ -11,32 +11,41 @@ const Header = () => {
   };
 
   return (
-    <header className="bg-primary h-[20%]">
-      {/* Desktop menu */}
-      <div className="flex gap-2 hidden md:block">
-        <button className="bg-accent text-p-white">Registrera</button>
-        <button className="bg-accent text-p-white">Logga in</button>
-      </div>
-      {/* Mobile menu*/}
-      <div className="md:hidden">
-        <button onClick={toggleMenu}>
-          {isOpen ? (
-            <AiOutlineClose size={50} />
-          ) : (
-            <GiHamburgerMenu size={50} />
-          )}
-        </button>
-      </div>
+    <>
+      <header className="bg-primary  flex justify-between items-center">
+        <h1>Kronspar</h1>
+        {/* Desktop menu */}
+        <div className="flex gap-2 hidden md:block">
+          <button className="bg-accent text-p-white">Registrera</button>
+          <button className="bg-accent text-p-white">Logga in</button>
+        </div>
+        {/* Mobile menu*/}
+        <div>
+          <div className="md:hidden">
+            <button onClick={toggleMenu}>
+              {isOpen ? (
+                <div>
+                  <AiOutlineClose size={50} className="text-accent" />
+                </div>
+              ) : (
+                <div className=" flex flex-col">
+                  <p className="text-p-white mb-[-10px]">Menu</p>
+                  <GiHamburgerMenu size={50} className="text-accent" />
+                </div>
+              )}
+            </button>
+          </div>
+        </div>
+      </header>
       {isOpen && (
-        <nav>
+        <nav className=" w-full bg-primary text-center">
           <ul>
             <li>Logga in</li>
             <li>Registrera</li>
           </ul>
         </nav>
       )}
-      <h1>Kronspar</h1>
-    </header>
+    </>
   );
 };
 
