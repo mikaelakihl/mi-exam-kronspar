@@ -12,28 +12,30 @@ const Header = () => {
 
   return (
     <>
-      <header className="bg-primary  flex justify-between items-center">
+      <header className="bg-primary flex justify-between items-center">
         <h1>Kronspar</h1>
-        {/* Desktop menu */}
-        <div className="flex gap-2 hidden md:block">
-          <button className="bg-accent text-p-white">Registrera</button>
-          <button className="bg-accent text-p-white">Logga in</button>
-        </div>
-        {/* Mobile menu*/}
         <div>
-          <div className="md:hidden">
-            <button onClick={toggleMenu}>
-              {isOpen ? (
-                <div>
-                  <AiOutlineClose size={50} className="text-accent" />
-                </div>
-              ) : (
-                <div className=" flex flex-col">
-                  <p className="text-p-white mb-[-10px]">Menu</p>
-                  <GiHamburgerMenu size={50} className="text-accent" />
-                </div>
-              )}
-            </button>
+          {/* Desktop menu */}
+          <div className="flex gap-2 hidden md:block">
+            <button className="bg-accent text-p-white">Registrera</button>
+            <button className="bg-accent text-p-white">Logga in</button>
+          </div>
+          {/* Mobile menu*/}
+          <div>
+            <div className="md:hidden">
+              <button onClick={toggleMenu}>
+                {isOpen ? (
+                  <div>
+                    <AiOutlineClose size={50} className="text-accent" />
+                  </div>
+                ) : (
+                  <div className=" flex flex-col">
+                    <p className="text-p-white mb-[-10px]">Menu</p>
+                    <GiHamburgerMenu size={50} className="text-accent" />
+                  </div>
+                )}
+              </button>
+            </div>
           </div>
         </div>
       </header>
