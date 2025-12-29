@@ -2,6 +2,7 @@ import { useState } from 'react';
 import './index.css';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { AiOutlineClose } from 'react-icons/ai';
+import { BrowserRouter, Outlet, Route, Routes } from 'react-router';
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -51,17 +52,33 @@ const Header = () => {
   );
 };
 
-const App = () => {
+const Layout = () => {
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
       <main className="flex-1 bg-background">
-        <h2>Welcome to Kronspar</h2>
+        <Outlet />
       </main>
       <footer className="bg-primary h-[20%]">
         <p>Copyright 2025 Kronspar</p>
       </footer>
     </div>
+  );
+};
+
+const Login = () => {
+  return <div>Login</div>;
+};
+
+const App = () => {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route path="/login" element={<Login />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 };
 
