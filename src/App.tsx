@@ -165,6 +165,69 @@ const Home = () => {
   );
 };
 
+const Settings = () => {
+  return (
+    <section>
+      <div className="bg-secondary">
+        <h2>Info om hur det går till</h2>
+      </div>
+      <div className="bg-primary">
+        <div className="flex flex-col gap-4">
+          <div>
+            <h2>Betalningsuppgifter</h2>
+            <button>Ändra betalningsuppgifter</button>
+          </div>
+          <form className="flex flex-col gap-2">
+            <label className="flex flex-col gap-2">
+              Namn på kortet
+              <input className="bg-background-muted" />
+            </label>
+            <label className="flex flex-col gap-2">
+              Kortnummer
+              <input className="bg-background-muted" />
+            </label>
+            <div>
+              <label className="flex flex-col gap-2">
+                MM/YY
+                <input
+                  type="month"
+                  className="bg-background-muted"
+                  min={new Date().toISOString().slice(0, 7)}
+                />
+              </label>
+            </div>
+
+            <button className="bg-accent">Spara</button>
+          </form>
+        </div>
+        <div className="bg-background-muted">
+          <div>
+            <h2>Din sparningsplan</h2>
+            <p>Ändra din sparningsplan</p>
+          </div>
+          <form className="flex flex-col gap-2">
+            <label className="flex flex-col gap-2">
+              {' '}
+              Examensdag
+              <input className="bg-primary" />
+            </label>
+            <label className="flex flex-col gap-2">
+              Vilket datum planeras inköpet av mössan?
+              <input className="bg-primary" />
+            </label>
+            <label className="flex flex-col gap-2">
+              Pris på studentmössan
+              <input className="bg-primary" />
+            </label>
+            <button>Spara</button>
+            <button>Ta ut sparande</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  );
+};
+
 const App = () => {
   return (
     <BrowserRouter>
@@ -174,7 +237,6 @@ const App = () => {
             index
             element={
               <div>
-                <h2>Startsida</h2>
                 <SignedIn>
                   <Dashboard />
                 </SignedIn>
@@ -184,6 +246,7 @@ const App = () => {
               </div>
             }
           />
+          <Route path="/settings" element={<Settings />} />
         </Route>
       </Routes>
     </BrowserRouter>
