@@ -287,6 +287,7 @@ const Statistics = () => {
 
   if (isLoading) return <div>Laddar statistik...</div>;
   if (error) return <div>Kunde inte ladda statistik.</div>;
+  if (!data) return <div>Ingen data tillgänglig.</div>;
 
   return (
     <section>
