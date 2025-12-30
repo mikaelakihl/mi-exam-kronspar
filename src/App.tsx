@@ -2,7 +2,7 @@ import { useState } from 'react';
 import './index.css';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { AiOutlineClose } from 'react-icons/ai';
-import { BrowserRouter, Outlet, Route, Routes } from 'react-router';
+import { BrowserRouter, NavLink, Outlet, Route, Routes } from 'react-router';
 import {
   SignedIn,
   SignedOut,
@@ -59,6 +59,13 @@ const Header = () => {
               </button>
             </SignInButton>
           </SignedOut>
+          <SignedIn>
+            <div className="flex flex-col gap-4">
+              <NavLink to="/">Hem</NavLink>
+              <NavLink to="/settings">Inställningar</NavLink>
+              <NavLink to="/statistics">Statistik</NavLink>
+            </div>
+          </SignedIn>
         </nav>
       )}
     </>
@@ -271,9 +278,7 @@ const App = () => {
             index
             element={
               <div>
-                <SignedIn>
-                  <Dashboard />
-                </SignedIn>
+                <SignedIn>{/* <Dashboard /> */}</SignedIn>
                 <SignedOut>
                   <Home />
                 </SignedOut>
@@ -281,6 +286,7 @@ const App = () => {
             }
           />
           <Route path="/settings" element={<Settings />} />
+          <Route path="/statistics" element={<Statistics />} />
         </Route>
       </Routes>
     </BrowserRouter>
