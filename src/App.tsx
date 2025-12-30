@@ -247,6 +247,23 @@ const Settings = () => {
     </section>
   );
 };
+
+const getDaysUntilGraduation = (graduationDateString: string) => {
+  const today = new Date();
+  const graduationDay = new Date(graduationDateString);
+
+  const timeDifference = graduationDay.getTime() - today.getTime();
+
+  if (timeDifference < 0) {
+    return 0;
+  }
+
+  const oneDayToMilliseconds = 1000 * 60 * 60 * 24;
+
+  const dayLeftUntilGraduation = timeDifference / oneDayToMilliseconds;
+
+  return Math.ceil(dayLeftUntilGraduation);
+};
 const Statistics = () => {
   const { user } = useUser();
 
@@ -267,6 +284,18 @@ const Statistics = () => {
   if (error) return <div>Kunde inte ladda statistik.</div>;
 
   return (
+    <section>
+      <h2>Statistik</h2>
+      <div>
+        <div>
+          <p>Sparmål: {data.graduation?.priceOnHat} kr</p>
+          <p>
+            Dagar kvar till studenten:
+            {getDaysUntilGraduation(data.graduation?.graduationDay)}
+          </p>
+        </div>
+      </div>
+    </section>
   );
 };
 const App = () => {
