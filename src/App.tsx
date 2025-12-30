@@ -170,6 +170,18 @@ const Settings = () => {
     <section>
       <div className="bg-secondary">
         <h2>Info om hur det går till</h2>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam,
+          quos.
+        </p>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam,
+          quos.
+        </p>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam,
+          quos.
+        </p>
       </div>
       <div className="bg-primary">
         <div className="flex flex-col gap-4">
