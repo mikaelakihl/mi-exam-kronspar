@@ -86,19 +86,6 @@ const Layout = () => {
   );
 };
 
-const Dashboard = () => {
-  const { user } = useUser();
-
-  if (!user) return <div>Logga in för att se detta.</div>;
-
-  return (
-    <div>
-      <h2>Välkommen {user.firstName}!</h2>
-      <p>Här kommer din data synas senare.</p>
-    </div>
-  );
-};
-
 const CommentSection = () => {
   const comments = [
     {
@@ -264,6 +251,24 @@ const getDaysUntilGraduation = (graduationDateString: string) => {
 
   return Math.ceil(dayLeftUntilGraduation);
 };
+
+const getDaysUntilPurchaseHat = (dateForPurchasingHatString: string) => {
+  const today = new Date();
+  const purchaseHatDate = new Date(dateForPurchasingHatString);
+
+  const timeDifference = purchaseHatDate.getTime() - today.getTime();
+
+  if (timeDifference < 0) {
+    return 0;
+  }
+
+  const oneDayToMilliseconds = 1000 * 60 * 60 * 24;
+
+  const dayLeftUntilPurchaseHat = timeDifference / oneDayToMilliseconds;
+
+  return Math.ceil(dayLeftUntilPurchaseHat);
+};
+
 const Statistics = () => {
   const { user } = useUser();
 
@@ -292,6 +297,10 @@ const Statistics = () => {
           <p>
             Dagar kvar till studenten:
             {getDaysUntilGraduation(data.graduation?.graduationDay)}
+          </p>
+          <p>
+            Dags att köpa mössa om:{' '}
+            {getDaysUntilPurchaseHat(data.graduation?.dateForPurchaseHat)}
           </p>
         </div>
       </div>
