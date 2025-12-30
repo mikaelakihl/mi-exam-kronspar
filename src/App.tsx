@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import './index.css';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { AiOutlineClose } from 'react-icons/ai';
@@ -11,6 +11,7 @@ import {
   UserButton,
   useUser,
 } from '@clerk/clerk-react';
+import { useQuery } from '@tanstack/react-query';
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -239,7 +240,28 @@ const Settings = () => {
     </section>
   );
 };
+const Statistics = () => {
+  const { user } = useUser();
 
+  const { data, isLoading, error } = useQuery({
+    queryKey: ['userData', user?.id],
+    queryFn: async () => {
+      if (!user?.id) return null;
+      const response = await fetch(`/api/data?userId=${user.id}`);
+      if (!response.ok) {
+        throw new Error('Kunde inte hämta data');
+      }
+      return response.json();
+    },
+    enabled: !!user?.id,
+  });
+
+  if (isLoading) return <div>Laddar statistik...</div>;
+  if (error) return <div>Kunde inte ladda statistik.</div>;
+
+  return (
+  );
+};
 const App = () => {
   return (
     <BrowserRouter>
