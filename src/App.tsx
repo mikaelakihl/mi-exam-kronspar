@@ -267,6 +267,8 @@ const Home = () => {
 const Settings = () => {
   const [nameOnCard, setNameOnCard] = useState('');
   const [cardNumber, setCardNumber] = useState('');
+  const [cardMonth, setCardMonth] = useState('');
+  const [cardYear, setCardYear] = useState('');
   const [cvv, setCvv] = useState('');
 
   const { user } = useUser();
@@ -296,6 +298,12 @@ const Settings = () => {
     if (userData?.payment?.cardCVV) {
       setCvv(userData.payment.cardCVV);
     }
+    if (userData?.payment?.cardMonth) {
+      setCardMonth(userData.payment.cardMonth);
+    }
+    if (userData?.payment?.cardYear) {
+      setCardYear(userData.payment.cardYear);
+    }
   }, [userData]);
 
   if (!data) return <>No data</>;
@@ -307,7 +315,13 @@ const Settings = () => {
 
     const currentData = userData || {
       personal: { fname: '', lname: '', email: '' },
-      payment: { nameOnCard: '', cardNumber: '', cardMonth: '', cardCVV: '' },
+      payment: {
+        nameOnCard: '',
+        cardNumber: '',
+        cardMonth: '',
+        cardYear: '',
+        cardCVV: '',
+      },
       graduation: { graduationDay: '', dateForPurchaseHat: '', priceOnHat: 0 },
     };
 
@@ -318,6 +332,8 @@ const Settings = () => {
         nameOnCard: nameOnCard,
         cardNumber: cardNumber,
         cardCVV: cvv,
+        cardMonth: cardMonth,
+        cardYear: cardYear,
       },
     };
 
@@ -381,24 +397,37 @@ const Settings = () => {
                 className="bg-background-muted"
               />
             </label>
+
             <div>
-              <label className="flex flex-col gap-2">
-                MM/YY
+              <h3>MM/YY</h3>
+              <div className="flex gap-2">
                 <input
-                  type="month"
-                  className="bg-background-muted"
-                  min={new Date().toISOString().slice(0, 7)}
-                />
-              </label>
-              <label className="flex flex-col gap-2">
-                CVV
-                <input
-                  value={cvv}
-                  onChange={(e) => setCvv(e.target.value)}
+                  aria-label="Månad kortet går ut"
                   type="number"
                   className="bg-background-muted"
+                  value={cardMonth}
+                  onChange={(e) => setCardMonth(e.target.value)}
                 />
-              </label>
+                <span>/</span>
+                <input
+                  aria-label="År kortet går ut"
+                  type="number"
+                  className="bg-background-muted"
+                  value={cardYear}
+                  onChange={(e) => setCardYear(e.target.value)}
+                />
+              </div>
+              <div>
+                <label className="flex flex-col gap-2">
+                  CVV
+                  <input
+                    value={cvv}
+                    onChange={(e) => setCvv(e.target.value)}
+                    type="number"
+                    className="bg-background-muted"
+                  />
+                </label>
+              </div>
             </div>
 
             <button type="submit" className="bg-accent">
