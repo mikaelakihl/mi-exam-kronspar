@@ -422,7 +422,7 @@ const Settings = () => {
 
     const updatedSavingPlanData = {
       ...currentSavingPlanData,
-      payment: {
+      graduation: {
         ...currentSavingPlanData.graduation,
         graduationDay: graduationDay,
         dateForPurchaseHat: dateForPurchaseHat,
@@ -436,7 +436,10 @@ const Settings = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(updatedSavingPlanData),
+        body: JSON.stringify({
+          userId: user.id,
+          data: updatedSavingPlanData,
+        }),
       });
 
       if (!response.ok) {
@@ -444,6 +447,10 @@ const Settings = () => {
       }
 
       const data = await response.json();
+      console.log(data);
+      queryClient.invalidateQueries({
+        queryKey: ['userData', user?.id],
+      });
       console.log(data);
     } catch (error) {
       console.error('Error saving data:', error);
@@ -584,7 +591,10 @@ const Settings = () => {
                 : 'Ändra din sparningsplan'}
             </button>
           </div>
-          <form className="flex flex-col gap-2">
+          <form
+            onSubmit={handleSaveForSavingPlan}
+            className="flex flex-col gap-2"
+          >
             <label className="flex flex-col gap-2">
               {' '}
               Examensdag
