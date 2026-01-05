@@ -1,8 +1,15 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './index.css';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { AiOutlineClose } from 'react-icons/ai';
-import { BrowserRouter, NavLink, Outlet, Route, Routes } from 'react-router';
+import {
+  BrowserRouter,
+  data,
+  NavLink,
+  Outlet,
+  Route,
+  Routes,
+} from 'react-router';
 import {
   SignedIn,
   SignedOut,
@@ -260,6 +267,7 @@ const Home = () => {
 const Settings = () => {
   const [nameOnCard, setNameOnCard] = useState('');
   const [cardNumber, setCardNumber] = useState('');
+  const [cvv, setCvv] = useState('');
 
   const { user } = useUser();
 
@@ -285,6 +293,9 @@ const Settings = () => {
     if (userData?.payment?.cardNumber) {
       setCardNumber(userData.payment.cardNumber);
     }
+    if (userData?.payment?.cardCVV) {
+      setCvv(userData.payment.cardCVV);
+    }
   }, [userData]);
 
   if (!data) return <>No data</>;
@@ -306,6 +317,7 @@ const Settings = () => {
         ...currentData.payment,
         nameOnCard: nameOnCard,
         cardNumber: cardNumber,
+        cardCVV: cvv,
       },
     };
 
@@ -376,6 +388,15 @@ const Settings = () => {
                   type="month"
                   className="bg-background-muted"
                   min={new Date().toISOString().slice(0, 7)}
+                />
+              </label>
+              <label className="flex flex-col gap-2">
+                CVV
+                <input
+                  value={cvv}
+                  onChange={(e) => setCvv(e.target.value)}
+                  type="number"
+                  className="bg-background-muted"
                 />
               </label>
             </div>
