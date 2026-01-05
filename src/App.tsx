@@ -310,6 +310,18 @@ const Settings = () => {
     }
   }, [userData]);
 
+  useEffect(() => {
+    if (userData?.graduation?.graduationDay) {
+      setGraduationDay(userData.graduation.graduationDay);
+    }
+    if (userData?.graduation?.dateForPurchaseHat) {
+      setDateForPurchaseHat(userData.graduation.dateForPurchaseHat);
+    }
+    if (userData?.graduation?.priceOnHat) {
+      setPriceOnHat(userData.graduation.priceOnHat);
+    }
+  }, [userData]);
+
   if (!data) return <>No data</>;
   // Spara data
   const handleSave = async (e: React.FormEvent) => {
