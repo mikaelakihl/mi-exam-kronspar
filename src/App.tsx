@@ -18,7 +18,7 @@ import {
   UserButton,
   useUser,
 } from '@clerk/clerk-react';
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -280,6 +280,7 @@ const Settings = () => {
     useState(false);
 
   const { user } = useUser();
+  const queryClient = useQueryClient();
 
   const { data: userData } = useQuery({
     queryKey: ['userData', user?.id],
@@ -363,7 +364,7 @@ const Settings = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(updatedData),
+        body: JSON.stringify({ userId: user.id, data: updatedData }),
       });
 
       if (!response.ok) {
@@ -371,23 +372,18 @@ const Settings = () => {
       }
 
       const data = await response.json();
-      console.log(data);
+
+      console.log('Sparad:', data);
+
+      queryClient.invalidateQueries({
+        queryKey: ['userData', user?.id],
+      });
+
+      setIsCardDetailsEditing(false);
     } catch (error) {
       console.error('Error saving data:', error);
     }
   };
-
-  useEffect(() => {
-    if (userData?.graduation?.graduationDay) {
-      setGraduationDay(userData.graduation.graduationDay);
-    }
-    if (userData?.graduation?.dateForPurchaseHat) {
-      setDateForPurchaseHat(userData.graduation.dateForPurchaseHat);
-    }
-    if (userData?.graduation?.priceOnHat) {
-      setPriceOnHat(userData.graduation.priceOnHat);
-    }
-  }, [userData]);
 
   if (!data) return <>No data</>;
   // Spara data
