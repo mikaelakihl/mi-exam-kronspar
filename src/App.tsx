@@ -49,9 +49,30 @@ const Header = () => {
           </SignedOut>
           <SignedIn>
             <nav className="flex gap-6 text-p-white">
-              <NavLink to="/">Hem</NavLink>
-              <NavLink to="/settings">Inställningar</NavLink>
-              <NavLink to="/statistics">Statistik</NavLink>
+              <NavLink
+                className={({ isActive }) =>
+                  isActive ? 'border-b-2 border-accent' : 'text-p-white'
+                }
+                to="/"
+              >
+                Hem
+              </NavLink>
+              <NavLink
+                className={({ isActive }) =>
+                  isActive ? 'border-b-2 border-accent' : 'text-p-white'
+                }
+                to="/settings"
+              >
+                Inställningar
+              </NavLink>
+              <NavLink
+                className={({ isActive }) =>
+                  isActive ? 'border-b-2 border-accent' : 'text-p-white'
+                }
+                to="/statistics"
+              >
+                Statistik
+              </NavLink>
             </nav>
             <div className="flex items-center">
               <div className="text-p-white bg-secondary h-[60px] p-4 mb-1">
@@ -96,7 +117,7 @@ const Header = () => {
         </div>
       </header>
       {isOpen && (
-        <nav className="w-full bg-primary/70 border-y-2 border-primary/90 text-p-white text-center p-4 ">
+        <nav className=" bg-primary/70 border-y-2 border-primary/90 text-p-white text-center p-4 ">
           <SignedOut>
             <SignInButton mode="modal">
               <button className="bg-accent text-p-white px-4 py-2 rounded w-full mb-2">
@@ -106,9 +127,30 @@ const Header = () => {
           </SignedOut>
           <SignedIn>
             <div className="flex flex-col gap-4">
-              <NavLink to="/">Hem</NavLink>
-              <NavLink to="/settings">Inställningar</NavLink>
-              <NavLink to="/statistics">Statistik</NavLink>
+              <NavLink
+                className={({ isActive }) =>
+                  isActive ? 'text-accent' : 'text-p-white'
+                }
+                to="/"
+              >
+                Hem
+              </NavLink>
+              <NavLink
+                className={({ isActive }) =>
+                  isActive ? 'text-accent ' : 'text-p-white'
+                }
+                to="/settings"
+              >
+                Inställningar
+              </NavLink>
+              <NavLink
+                className={({ isActive }) =>
+                  isActive ? 'text-accent' : 'text-p-white'
+                }
+                to="/statistics"
+              >
+                Statistik
+              </NavLink>
             </div>
           </SignedIn>
         </nav>
