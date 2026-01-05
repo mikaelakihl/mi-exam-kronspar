@@ -23,7 +23,7 @@ async function enableMocking() {
   });
 }
 
-enableMocking().then(() => {
+const mountApp = () => {
   createRoot(document.getElementById('root')!).render(
     <StrictMode>
       <ClerkProvider publishableKey={PUBLISHABLE_KEY}>
@@ -33,4 +33,13 @@ enableMocking().then(() => {
       </ClerkProvider>
     </StrictMode>
   );
-});
+};
+
+enableMocking()
+  .then(() => {
+    mountApp();
+  })
+  .catch((err) => {
+    console.error('MSW failed to start:', err);
+    mountApp();
+  });
