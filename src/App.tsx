@@ -259,6 +259,8 @@ const Home = () => {
 
 const Settings = () => {
   const [nameOnCard, setNameOnCard] = useState('');
+  const [cardNumber, setCardNumber] = useState('');
+
   const { user } = useUser();
 
   const { data: userData } = useQuery({
@@ -280,6 +282,9 @@ const Settings = () => {
     if (userData?.payment?.nameOnCard) {
       setNameOnCard(userData.payment.nameOnCard);
     }
+    if (userData?.payment?.cardNumber) {
+      setCardNumber(userData.payment.cardNumber);
+    }
   }, [userData]);
 
   if (!data) return <>No data</>;
@@ -300,6 +305,7 @@ const Settings = () => {
       payment: {
         ...currentData.payment,
         nameOnCard: nameOnCard,
+        cardNumber: cardNumber,
       },
     };
 
@@ -357,7 +363,11 @@ const Settings = () => {
             </label>
             <label className="flex flex-col gap-2">
               Kortnummer
-              <input className="bg-background-muted" />
+              <input
+                value={cardNumber}
+                onChange={(e) => setCardNumber(e.target.value)}
+                className="bg-background-muted"
+              />
             </label>
             <div>
               <label className="flex flex-col gap-2">
