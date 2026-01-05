@@ -16,38 +16,55 @@ import { useQuery } from '@tanstack/react-query';
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
 
+  const { user } = useUser();
+
+  const { data } = useQuery({
+    queryKey: ['userData', user?.id],
+    queryFn: async () => {
+      if (!user?.id) return null;
+      const response = await fetch(`/api/data?userId=${user.id}`);
+      if (!response.ok) {
+        throw new Error('Kunde inte hämta data');
+      }
+      return response.json();
+    },
+    enabled: !!user?.id,
+  });
+
+  // if (isLoading) return <div>Laddar statistik...</div>;
+  // if (error) return <div>Kunde inte ladda statistik.</div>;
+  // if (!data) return <div>Ingen data tillgänglig.</div>;
+
   return (
     <>
       <header className="bg-primary flex justify-between items-center p-4">
         <h1>Kronspar</h1>
-        <div>
-          <div className="flex gap-4 hidden md:flex items-center">
-            <SignedOut>
-              <SignInButton mode="modal">
-                <button className="bg-accent text-p-white px-4 py-2 rounded">
-                  Logga in
-                </button>
-              </SignInButton>
-            </SignedOut>
-            <SignedIn>
-              <UserButton />
-            </SignedIn>
-          </div>
+            <div className="flex items-center">
+              <div className="text-p-white bg-secondary h-[60px] p-4 mb-1">
+                {data?.graduation ? (
+                  <p>
+                    Studenten är om:{' '}
+                    {getDaysUntilGraduation(data.graduation?.graduationDay)}{' '}
+                    dagar
+                  </p>
+                ) : null}
+              </div>
+              <div className="flex items-center bg-accent p-4 mb-1">
+                <UserButton />
+              </div>
+            </div>
 
-          {/* Mobile menu*/}
-          <div className="md:hidden">
-            {' '}
-            <SignedIn>
-              <UserButton />
-            </SignedIn>
-            <button onClick={() => setIsOpen(!isOpen)}>
-              {isOpen ? (
-                <AiOutlineClose size={30} className="text-accent" />
-              ) : (
-                <GiHamburgerMenu size={30} className="text-accent" />
-              )}
-            </button>
-          </div>
+            <div className="text-p-white bg-secondary h-full p-2">
+              {data?.graduation ? (
+                <p>
+                  <p>Studenten är om: </p>
+                  {getDaysUntilGraduation(data.graduation?.graduationDay)} dagar
+                </p>
+              ) : null}
+            </div>
+            <div className="flex items-center bg-accent p-2">
+              <UserButton userProfileMode="modal" />
+            </div>
         </div>
       </header>
       {isOpen && (
