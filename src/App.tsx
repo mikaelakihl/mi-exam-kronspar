@@ -289,6 +289,16 @@ const Settings = () => {
     setShowErrorMessageForSavedCardDetails,
   ] = useState(false);
 
+  const [
+    showSuccessMessageForSavedSavingPlan,
+    setShowSuccessMessageForSavedSavingPlan,
+  ] = useState(false);
+
+  const [
+    showErrorMessageForSavedSavingPlan,
+    setShowErrorMessageForSavedSavingPlan,
+  ] = useState(false);
+
   const { user } = useUser();
   const queryClient = useQueryClient();
 
@@ -406,6 +416,9 @@ const Settings = () => {
   const handleSaveForSavingPlan = async (e: React.FormEvent) => {
     e.preventDefault();
 
+    setShowErrorMessageForSavedSavingPlan(false); // nollställer så det inte blir lagg
+    setShowSuccessMessageForSavedSavingPlan(false);
+
     if (!user?.id) return;
 
     const currentSavingPlanData = userData || {
@@ -447,13 +460,18 @@ const Settings = () => {
       }
 
       const data = await response.json();
+
       console.log(data);
+      setShowSuccessMessageForSavedSavingPlan(true);
       queryClient.invalidateQueries({
         queryKey: ['userData', user?.id],
       });
+      setIsSavingPlanDetailsEditing(false);
       console.log(data);
     } catch (error) {
       console.error('Error saving data:', error);
+      setShowSuccessMessageForSavedSavingPlan(false);
+      setShowErrorMessageForSavedSavingPlan(true);
     }
   };
 
@@ -480,6 +498,31 @@ const Settings = () => {
               )}
 
               {showErrorMessageForSavedCardDetails && (
+                <p>Det gick inte att spara</p>
+              )}
+            </div>
+          </div>
+        </>
+      )}
+      {(showSuccessMessageForSavedSavingPlan ||
+        showErrorMessageForSavedSavingPlan) && (
+        <>
+          <div className="w-full h-full z-10 fixed flex justify-center items-center">
+            <div className="bg-secondary h-[30%] w-[50%] flex justify-center items-center relative">
+              <button
+                className="top-0 right-0 absolute"
+                onClick={() => {
+                  setShowSuccessMessageForSavedSavingPlan(false);
+                  setShowErrorMessageForSavedSavingPlan(false);
+                }}
+              >
+                X
+              </button>
+              {showSuccessMessageForSavedSavingPlan && (
+                <p>Dina ändringar har sparats</p>
+              )}
+
+              {showErrorMessageForSavedSavingPlan && (
                 <p>Det gick inte att spara</p>
               )}
             </div>
