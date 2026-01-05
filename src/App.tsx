@@ -122,7 +122,7 @@ const Header = () => {
         </div>
       </header>
       {isOpen && (
-        <nav className=" bg-primary/70 border-y-2 border-primary/90 text-p-white text-center p-4 ">
+        <nav className=" bg-primary/70 border-y-2 border-primary/90 text-p-white text-center p-4 md:hidden">
           <SignedOut>
             <SignInButton mode="modal">
               <button className="bg-accent text-p-white px-4 py-2 rounded w-full mb-2">
