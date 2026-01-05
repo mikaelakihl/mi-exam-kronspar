@@ -284,6 +284,11 @@ const Settings = () => {
     setShowSuccessMessageForSavedCardDetails,
   ] = useState(false);
 
+  const [
+    showErrorMessageForSavedCardDetails,
+    setShowErrorMessageForSavedCardDetails,
+  ] = useState(false);
+
   const { user } = useUser();
   const queryClient = useQueryClient();
 
@@ -337,6 +342,9 @@ const Settings = () => {
   const handleSave = async (e: React.FormEvent) => {
     e.preventDefault();
 
+    setShowErrorMessageForSavedCardDetails(false); // nollställer så det inte blir lagg
+    setShowSuccessMessageForSavedCardDetails(false); // nollställer så det inte blir lagg
+
     if (!user?.id) return;
 
     const currentData = userData || {
@@ -369,7 +377,7 @@ const Settings = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ userId: user.id, data: updatedData }),
+        body: JSON.stringify({ userId: user.id, data: updatedData }), // Ändra för att testa felkod 404;
       });
 
       if (!response.ok) {
@@ -379,6 +387,7 @@ const Settings = () => {
       const data = await response.json();
 
       console.log('Sparad:', data);
+      setShowSuccessMessageForSavedCardDetails(true);
 
       queryClient.invalidateQueries({
         queryKey: ['userData', user?.id],
@@ -387,6 +396,8 @@ const Settings = () => {
       setIsCardDetailsEditing(false);
     } catch (error) {
       console.error('Error saving data:', error);
+      setShowSuccessMessageForSavedCardDetails(false);
+      setShowErrorMessageForSavedCardDetails(true);
     }
   };
 
@@ -443,17 +454,27 @@ const Settings = () => {
 
   return (
     <section>
-      {showSuccessMessageForSavedCardDetails && (
+      {(showSuccessMessageForSavedCardDetails ||
+        showErrorMessageForSavedCardDetails) && (
         <>
           <div className="w-full h-full z-10 fixed flex justify-center items-center">
             <div className="bg-secondary h-[30%] w-[50%] flex justify-center items-center relative">
               <button
                 className="top-0 right-0 absolute"
-                onClick={() => setShowSuccessMessageForSavedCardDetails(false)}
+                onClick={() => {
+                  setShowSuccessMessageForSavedCardDetails(false);
+                  setShowErrorMessageForSavedCardDetails(false);
+                }}
               >
                 X
               </button>
-              <p>Dina ändringar har sparats</p>
+              {showSuccessMessageForSavedCardDetails && (
+                <p>Dina ändringar har sparats</p>
+              )}
+
+              {showErrorMessageForSavedCardDetails && (
+                <p>Det gick inte att spara</p>
+              )}
             </div>
           </div>
         </>
