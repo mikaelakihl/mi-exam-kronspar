@@ -12,6 +12,7 @@ interface PaymentInfo {
   nameOnCard: string;
   cardNumber: string;
   cardMonth: string;
+  cardYear: string;
   cardCVV: string;
 }
 
@@ -44,7 +45,8 @@ const initialUsers: UserData[] = [
     payment: {
       nameOnCard: 'Anna Andersson',
       cardNumber: '4532123456789012',
-      cardMonth: '06/25',
+      cardMonth: '06',
+      cardYear: '28',
       cardCVV: '123',
     },
     graduation: {
@@ -64,7 +66,8 @@ const initialUsers: UserData[] = [
     payment: {
       nameOnCard: 'Erik Eriksson',
       cardNumber: '5432987654321098',
-      cardMonth: '12/26',
+      cardMonth: '12',
+      cardYear: '26',
       cardCVV: '456',
     },
     graduation: {
@@ -84,7 +87,8 @@ const initialUsers: UserData[] = [
     payment: {
       nameOnCard: 'Maria Lind',
       cardNumber: '4929111122223333',
-      cardMonth: '09/25',
+      cardMonth: '09',
+      cardYear: '25',
       cardCVV: '789',
     },
     graduation: {
@@ -104,7 +108,8 @@ const initialUsers: UserData[] = [
     payment: {
       nameOnCard: 'Lars Larsson',
       cardNumber: '1234567812345678',
-      cardMonth: '01/27',
+      cardMonth: '01',
+      cardYear: '27',
       cardCVV: '321',
     },
     graduation: {
@@ -124,7 +129,8 @@ const initialUsers: UserData[] = [
     payment: {
       nameOnCard: 'Karin Nilsson',
       cardNumber: '8765432187654321',
-      cardMonth: '03/26',
+      cardMonth: '03',
+      cardYear: '26',
       cardCVV: '654',
     },
     graduation: {
