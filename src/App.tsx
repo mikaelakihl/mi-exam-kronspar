@@ -279,6 +279,11 @@ const Settings = () => {
   const [isSavingPlanDetailsEditing, setIsSavingPlanDetailsEditing] =
     useState(false);
 
+  const [
+    showSuccessMessageForSavedCardDetails,
+    setShowSuccessMessageForSavedCardDetails,
+  ] = useState(false);
+
   const { user } = useUser();
   const queryClient = useQueryClient();
 
@@ -434,8 +439,25 @@ const Settings = () => {
     }
   };
 
+  console.log(cardMonth);
+
   return (
     <section>
+      {showSuccessMessageForSavedCardDetails && (
+        <>
+          <div className="w-full h-full z-10 fixed flex justify-center items-center">
+            <div className="bg-secondary h-[30%] w-[50%] flex justify-center items-center relative">
+              <button
+                className="top-0 right-0 absolute"
+                onClick={() => setShowSuccessMessageForSavedCardDetails(false)}
+              >
+                X
+              </button>
+              <p>Dina ändringar har sparats</p>
+            </div>
+          </div>
+        </>
+      )}
       <div className="bg-secondary">
         <h2>Info om hur det går till</h2>
         <p>
@@ -518,7 +540,11 @@ const Settings = () => {
               </div>
             </div>
 
-            <button type="submit" className="bg-accent">
+            <button
+              onClick={() => setShowSuccessMessageForSavedCardDetails(true)}
+              type="submit"
+              className="bg-accent"
+            >
               Spara
             </button>
           </form>
