@@ -258,6 +258,71 @@ const Home = () => {
 };
 
 const Settings = () => {
+  const [nameOnCard, setNameOnCard] = useState('');
+  const { user } = useUser();
+
+  const { data: userData } = useQuery({
+    queryKey: ['userData', user?.id],
+    queryFn: async () => {
+      if (!user?.id) return null;
+      const response = await fetch(`/api/data?userId=${user.id}`);
+      if (!response.ok) {
+        throw new Error('Kunde inte hämta data');
+      }
+      return response.json();
+    },
+    enabled: !!user?.id,
+  });
+
+  // När vi får data, fyll i formuläret
+
+  useEffect(() => {
+    if (userData?.payment?.nameOnCard) {
+      setNameOnCard(userData.payment.nameOnCard);
+    }
+  }, [userData]);
+
+  if (!data) return <>No data</>;
+  // Spara data
+  const handleSave = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (!user?.id) return;
+
+    const currentData = userData || {
+      personal: { fname: '', lname: '', email: '' },
+      payment: { nameOnCard: '', cardNumber: '', cardMonth: '', cardCVV: '' },
+      graduation: { graduationDay: '', dateForPurchaseHat: '', priceOnHat: 0 },
+    };
+
+    const updatedData = {
+      ...currentData,
+      payment: {
+        ...currentData.payment,
+        nameOnCard: nameOnCard,
+      },
+    };
+
+    try {
+      const response = await fetch(`/api/data?userId=${user.id}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(updatedData),
+      });
+
+      if (!response.ok) {
+        throw new Error('Kunde inte spara data');
+      }
+
+      const data = await response.json();
+      console.log(data);
+    } catch (error) {
+      console.error('Error saving data:', error);
+    }
+  };
+
   return (
     <section>
       <div className="bg-secondary">
@@ -281,10 +346,14 @@ const Settings = () => {
             <h2>Betalningsuppgifter</h2>
             <button>Ändra betalningsuppgifter</button>
           </div>
-          <form className="flex flex-col gap-2">
+          <form onSubmit={handleSave} className="flex flex-col gap-2">
             <label className="flex flex-col gap-2">
               Namn på kortet
-              <input className="bg-background-muted" />
+              <input
+                value={nameOnCard}
+                onChange={(e) => setNameOnCard(e.target.value)}
+                className="bg-background-muted"
+              />
             </label>
             <label className="flex flex-col gap-2">
               Kortnummer
@@ -301,7 +370,9 @@ const Settings = () => {
               </label>
             </div>
 
-            <button className="bg-accent">Spara</button>
+            <button type="submit" className="bg-accent">
+              Spara
+            </button>
           </form>
         </div>
         <div className="bg-background-muted">
