@@ -46,6 +46,11 @@ const Header = () => {
                 Logga in
               </button>
             </SignInButton>
+            <SignUpButton mode="modal">
+              <button className="bg-accent text-p-white px-4 py-2 rounded">
+                Registrera dig
+              </button>
+            </SignUpButton>
           </SignedOut>
           <SignedIn>
             <nav className="flex gap-6 text-p-white">
@@ -124,6 +129,11 @@ const Header = () => {
                 Logga in
               </button>
             </SignInButton>
+            <SignUpButton mode="modal">
+              <button className="bg-accent text-p-white px-4 py-2 rounded w-full mb-2">
+                Registrera dig
+              </button>
+            </SignUpButton>
           </SignedOut>
           <SignedIn>
             <div className="flex flex-col gap-4">
