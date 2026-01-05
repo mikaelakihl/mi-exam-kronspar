@@ -37,8 +37,22 @@ const Header = () => {
 
   return (
     <>
-      <header className="bg-primary flex justify-between items-center p-4">
+      <header className="bg-primary flex justify-between items-center">
         <h1>Kronspar</h1>
+        <div className="flex hidden md:flex items-center gap-4">
+          <SignedOut>
+            <SignInButton mode="modal">
+              <button className="bg-accent text-p-white px-4 py-2 rounded">
+                Logga in
+              </button>
+            </SignInButton>
+          </SignedOut>
+          <SignedIn>
+            <nav className="flex gap-6 text-p-white">
+              <NavLink to="/">Hem</NavLink>
+              <NavLink to="/settings">Inställningar</NavLink>
+              <NavLink to="/statistics">Statistik</NavLink>
+            </nav>
             <div className="flex items-center">
               <div className="text-p-white bg-secondary h-[60px] p-4 mb-1">
                 {data?.graduation ? (
@@ -53,7 +67,13 @@ const Header = () => {
                 <UserButton />
               </div>
             </div>
+          </SignedIn>
+        </div>
 
+        {/* Mobile menu*/}
+        <div className="md:hidden flex">
+          {' '}
+          <SignedIn>
             <div className="text-p-white bg-secondary h-full p-2">
               {data?.graduation ? (
                 <p>
@@ -65,10 +85,18 @@ const Header = () => {
             <div className="flex items-center bg-accent p-2">
               <UserButton userProfileMode="modal" />
             </div>
+          </SignedIn>
+          <button onClick={() => setIsOpen(!isOpen)} className="p-2">
+            {isOpen ? (
+              <AiOutlineClose size={30} className="text-accent" />
+            ) : (
+              <GiHamburgerMenu size={30} className="text-accent" />
+            )}
+          </button>
         </div>
       </header>
       {isOpen && (
-        <nav className="w-full bg-primary text-center p-4">
+        <nav className="w-full bg-primary/70 border-y-2 border-primary/90 text-p-white text-center p-4 ">
           <SignedOut>
             <SignInButton mode="modal">
               <button className="bg-accent text-p-white px-4 py-2 rounded w-full mb-2">
