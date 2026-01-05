@@ -271,6 +271,10 @@ const Settings = () => {
   const [cardYear, setCardYear] = useState('');
   const [cvv, setCvv] = useState('');
 
+  const [graduationDay, setGraduationDay] = useState('');
+  const [dateForPurchaseHat, setDateForPurchaseHat] = useState('');
+  const [priceOnHat, setPriceOnHat] = useState('');
+
   const { user } = useUser();
 
   const { data: userData } = useQuery({
@@ -344,6 +348,67 @@ const Settings = () => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(updatedData),
+      });
+
+      if (!response.ok) {
+        throw new Error('Kunde inte spara data');
+      }
+
+      const data = await response.json();
+      console.log(data);
+    } catch (error) {
+      console.error('Error saving data:', error);
+    }
+  };
+
+  useEffect(() => {
+    if (userData?.graduation?.graduationDay) {
+      setGraduationDay(userData.graduation.graduationDay);
+    }
+    if (userData?.graduation?.dateForPurchaseHat) {
+      setDateForPurchaseHat(userData.graduation.dateForPurchaseHat);
+    }
+    if (userData?.graduation?.priceOnHat) {
+      setPriceOnHat(userData.graduation.priceOnHat);
+    }
+  }, [userData]);
+
+  if (!data) return <>No data</>;
+  // Spara data
+  const handleSaveForSavingPlan = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (!user?.id) return;
+
+    const currentSavingPlanData = userData || {
+      personal: { fname: '', lname: '', email: '' },
+      payment: {
+        nameOnCard: '',
+        cardNumber: '',
+        cardMonth: '',
+        cardYear: '',
+        cardCVV: '',
+      },
+      graduation: { graduationDay: '', dateForPurchaseHat: '', priceOnHat: 0 },
+    };
+
+    const updatedSavingPlanData = {
+      ...currentSavingPlanData,
+      payment: {
+        ...currentSavingPlanData.graduation,
+        graduationDay: graduationDay,
+        dateForPurchaseHat: dateForPurchaseHat,
+        priceOnHat: priceOnHat,
+      },
+    };
+
+    try {
+      const response = await fetch(`/api/data?userId=${user.id}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(updatedSavingPlanData),
       });
 
       if (!response.ok) {
@@ -444,15 +509,27 @@ const Settings = () => {
             <label className="flex flex-col gap-2">
               {' '}
               Examensdag
-              <input className="bg-primary" />
+              <input
+                value={graduationDay}
+                onChange={(e) => setGraduationDay(e.target.value)}
+                className="bg-primary"
+              />
             </label>
             <label className="flex flex-col gap-2">
               Vilket datum planeras inköpet av mössan?
-              <input className="bg-primary" />
+              <input
+                value={dateForPurchaseHat}
+                onChange={(e) => setDateForPurchaseHat(e.target.value)}
+                className="bg-primary"
+              />
             </label>
             <label className="flex flex-col gap-2">
               Pris på studentmössan
-              <input className="bg-primary" />
+              <input
+                value={priceOnHat}
+                onChange={(e) => setPriceOnHat(e.target.value)}
+                className="bg-primary"
+              />
             </label>
             <button>Spara</button>
             <button>Ta ut sparande</button>
