@@ -276,6 +276,9 @@ const Settings = () => {
   const [priceOnHat, setPriceOnHat] = useState('');
 
   const [isCardDetailsEditing, setIsCardDetailsEditing] = useState(false);
+  const [isSavingPlanDetailsEditing, setIsSavingPlanDetailsEditing] =
+    useState(false);
+
   const { user } = useUser();
 
   const { data: userData } = useQuery({
@@ -527,7 +530,16 @@ const Settings = () => {
         <div className="bg-background-muted">
           <div>
             <h2>Din sparningsplan</h2>
-            <p>Ändra din sparningsplan</p>
+            <button
+              onSubmit={handleSaveForSavingPlan}
+              onClick={() =>
+                setIsSavingPlanDetailsEditing(!isSavingPlanDetailsEditing)
+              }
+            >
+              {isSavingPlanDetailsEditing
+                ? 'Avbryt ändringar'
+                : 'Ändra din sparningsplan'}
+            </button>
           </div>
           <form className="flex flex-col gap-2">
             <label className="flex flex-col gap-2">
@@ -536,7 +548,8 @@ const Settings = () => {
               <input
                 value={graduationDay}
                 onChange={(e) => setGraduationDay(e.target.value)}
-                className="bg-primary"
+                className="bg-primary  disabled:text-gray-300 disabled:cursor-not-allowed"
+                disabled={!isSavingPlanDetailsEditing}
               />
             </label>
             <label className="flex flex-col gap-2">
@@ -544,7 +557,8 @@ const Settings = () => {
               <input
                 value={dateForPurchaseHat}
                 onChange={(e) => setDateForPurchaseHat(e.target.value)}
-                className="bg-primary"
+                className="bg-primary disabled:text-gray-300 disabled:cursor-not-allowed"
+                disabled={!isSavingPlanDetailsEditing}
               />
             </label>
             <label className="flex flex-col gap-2">
@@ -552,10 +566,11 @@ const Settings = () => {
               <input
                 value={priceOnHat}
                 onChange={(e) => setPriceOnHat(e.target.value)}
-                className="bg-primary"
+                className="bg-primary disabled:text-gray-300 disabled:cursor-not-allowed"
+                disabled={!isSavingPlanDetailsEditing}
               />
             </label>
-            <button>Spara</button>
+            <button type="submit">Spara</button>
             <button>Ta ut sparande</button>
           </form>
         </div>
