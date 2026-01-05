@@ -275,6 +275,7 @@ const Settings = () => {
   const [dateForPurchaseHat, setDateForPurchaseHat] = useState('');
   const [priceOnHat, setPriceOnHat] = useState('');
 
+  const [isCardDetailsEditing, setIsCardDetailsEditing] = useState(false);
   const { user } = useUser();
 
   const { data: userData } = useQuery({
@@ -455,7 +456,13 @@ const Settings = () => {
         <div className="flex flex-col gap-4">
           <div>
             <h2>Betalningsuppgifter</h2>
-            <button>Ändra betalningsuppgifter</button>
+            <button
+              onClick={() => setIsCardDetailsEditing(!isCardDetailsEditing)}
+            >
+              {isCardDetailsEditing
+                ? 'Avbryt ändringar'
+                : 'Redigera Betalningsuppgifter'}
+            </button>
           </div>
           <form onSubmit={handleSave} className="flex flex-col gap-2">
             <label className="flex flex-col gap-2">
@@ -463,7 +470,8 @@ const Settings = () => {
               <input
                 value={nameOnCard}
                 onChange={(e) => setNameOnCard(e.target.value)}
-                className="bg-background-muted"
+                disabled={!isCardDetailsEditing}
+                className="bg-background-muted disabled:bg-gray-100 disabled:text-gray-500 disabled:cursor-not-allowed"
               />
             </label>
             <label className="flex flex-col gap-2">
@@ -471,7 +479,8 @@ const Settings = () => {
               <input
                 value={cardNumber}
                 onChange={(e) => setCardNumber(e.target.value)}
-                className="bg-background-muted"
+                className="bg-background-muted disabled:bg-gray-100 disabled:text-gray-500 disabled:cursor-not-allowed"
+                disabled={!isCardDetailsEditing}
               />
             </label>
 
@@ -481,17 +490,19 @@ const Settings = () => {
                 <input
                   aria-label="Månad kortet går ut"
                   type="number"
-                  className="bg-background-muted"
+                  className="bg-background-muted disabled:bg-gray-100 disabled:text-gray-500 disabled:cursor-not-allowed"
                   value={cardMonth}
                   onChange={(e) => setCardMonth(e.target.value)}
+                  disabled={!isCardDetailsEditing}
                 />
                 <span>/</span>
                 <input
                   aria-label="År kortet går ut"
                   type="number"
-                  className="bg-background-muted"
+                  className="bg-background-muted disabled:bg-gray-100 disabled:text-gray-500 disabled:cursor-not-allowed"
                   value={cardYear}
                   onChange={(e) => setCardYear(e.target.value)}
+                  disabled={!isCardDetailsEditing}
                 />
               </div>
               <div>
@@ -501,7 +512,8 @@ const Settings = () => {
                     value={cvv}
                     onChange={(e) => setCvv(e.target.value)}
                     type="number"
-                    className="bg-background-muted"
+                    className="bg-background-muted disabled:bg-gray-100 disabled:text-gray-500 disabled:cursor-not-allowed"
+                    disabled={!isCardDetailsEditing}
                   />
                 </label>
               </div>
