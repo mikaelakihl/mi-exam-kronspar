@@ -732,17 +732,32 @@ const Statistics = () => {
   return (
     <section>
       <h2>Statistik</h2>
-      <div>
-        <div>
-          <p>Sparmål: {data.graduation?.priceOnHat} kr</p>
+      <div className="grid gap-2 md:grid md:grid-cols-6">
+        <div className="bg-background-muted md:col-span-4">
+          <p>Du sparar just nu x kr i månaden </p>
           <p>
-            Dagar kvar till studenten:
-            {getDaysUntilGraduation(data.graduation?.graduationDay)}
+            Du beräknas ha {data.graduation?.priceOnHat} kr den{' '}
+            {data.graduation?.graduationDay}
           </p>
+          <button>Klicka här om du vill ändra din spar-plan</button>
+        </div>
+        <div className="bg-background-muted md:col-span-2">
+          <p>Nästa inbetalning sker datum</p>
+        </div>
+        <div className="bg-background-muted md:col-span-2">
+          <p>
+            Studenten är om{' '}
+            {getDaysUntilGraduation(data.graduation?.graduationDay)} dagar
+          </p>
+        </div>
+        <div className="bg-background-muted md:col-span-2">
           <p>
             Dags att köpa mössa om:{' '}
             {getDaysUntilPurchaseHat(data.graduation?.dateForPurchaseHat)}
           </p>
+        </div>
+        <div className="bg-background-muted md:col-span-2">
+          <p>Du har sparat: x antal kr</p>
         </div>
       </div>
     </section>
