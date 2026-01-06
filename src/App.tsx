@@ -802,7 +802,7 @@ const Statistics = () => {
       <h2>Statistik</h2>
       <div className="grid gap-2 md:grid md:grid-cols-6">
         <div className="bg-background-muted md:col-span-4">
-          <p>Du sparar just nu x kr i månaden </p>
+          <p>Du sparar just nu {data.savings?.monthlyAmount} kr i månaden </p>
           <p>
             Du beräknas ha {data.graduation?.priceOnHat} kr den{' '}
             {data.graduation?.graduationDay}
