@@ -274,6 +274,8 @@ const Settings = () => {
   const [graduationDay, setGraduationDay] = useState('');
   const [dateForPurchaseHat, setDateForPurchaseHat] = useState('');
   const [priceOnHat, setPriceOnHat] = useState('');
+  const [savingsMode, setSavingsMode] = useState('manual');
+  const [monthlyAmount, setMonthlyAmount] = useState('');
 
   const [isCardDetailsEditing, setIsCardDetailsEditing] = useState(false);
   const [isSavingPlanDetailsEditing, setIsSavingPlanDetailsEditing] =
@@ -345,6 +347,12 @@ const Settings = () => {
     if (userData?.graduation?.priceOnHat) {
       setPriceOnHat(userData.graduation.priceOnHat);
     }
+    if (userData?.savings?.savingsMode) {
+      setSavingsMode(userData.savings.savingsMode);
+    }
+    if (userData?.savings?.monthlyAmount) {
+      setMonthlyAmount(userData.savings.monthlyAmount);
+    }
   }, [userData]);
 
   if (!data) return <>No data</>;
@@ -367,6 +375,7 @@ const Settings = () => {
         cardCVV: '',
       },
       graduation: { graduationDay: '', dateForPurchaseHat: '', priceOnHat: 0 },
+      savings: { savedAmount: 0, savingsMode: 'manual', monthlyAmount: 0 },
     };
 
     const updatedData = {
@@ -378,6 +387,11 @@ const Settings = () => {
         cardCVV: cvv,
         cardMonth: cardMonth,
         cardYear: cardYear,
+      },
+      savings: {
+        ...currentData.savings,
+        savingsMode: savingsMode,
+        monthlyAmount: monthlyAmount,
       },
     };
 
@@ -431,6 +445,7 @@ const Settings = () => {
         cardCVV: '',
       },
       graduation: { graduationDay: '', dateForPurchaseHat: '', priceOnHat: 0 },
+      savings: { savedAmount: 0, savingsMode: 'manual', monthlyAmount: 0 },
     };
 
     const updatedSavingPlanData = {
@@ -440,6 +455,11 @@ const Settings = () => {
         graduationDay: graduationDay,
         dateForPurchaseHat: dateForPurchaseHat,
         priceOnHat: priceOnHat,
+      },
+      savings: {
+        ...currentSavingPlanData.savings,
+        savingsMode: savingsMode,
+        monthlyAmount: monthlyAmount,
       },
     };
 
@@ -666,6 +686,42 @@ const Settings = () => {
                 disabled={!isSavingPlanDetailsEditing}
               />
             </label>
+            <label className="flex flex-col gap-2">
+              Vill du välja summa att spara per månad? eller vill du spara
+              automatiskt den summa som behövs för att köpa mössan?
+              <div className="flex gap-2">
+                <button
+                  type="button"
+                  className="bg-primary text-p-white disabled:text-gray-300 disabled:cursor-not-allowed"
+                  disabled={!isSavingPlanDetailsEditing}
+                  onClick={() => setSavingsMode('manual')}
+                >
+                  Manuellt
+                </button>
+                <button
+                  type="button"
+                  className="bg-primary text-p-white disabled:text-gray-300 disabled:cursor-not-allowed"
+                  disabled={!isSavingPlanDetailsEditing}
+                  onClick={() => setSavingsMode('auto')}
+                >
+                  Automatiskt
+                </button>
+              </div>
+            </label>
+            {savingsMode === 'manual' && (
+              <label className="flex flex-col gap-2">
+                Summa du vill spara per månad
+                <input
+                  value={monthlyAmount}
+                  onChange={(e) => setMonthlyAmount(e.target.value)}
+                  className="bg-primary disabled:text-gray-300 disabled:cursor-not-allowed"
+                  disabled={!isSavingPlanDetailsEditing}
+                />
+              </label>
+            )}
+            {savingsMode === 'auto' && (
+              <p>Du kommer att spara {monthlyAmount} kr i månaden</p>
+            )}
             <button type="submit">Spara</button>
             <button>Ta ut sparande</button>
           </form>

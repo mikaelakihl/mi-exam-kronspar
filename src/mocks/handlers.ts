@@ -22,6 +22,12 @@ interface GraduationInfo {
   priceOnHat: number;
 }
 
+interface SavingsInfo {
+  savedAmount: number;
+  savingsMode: 'manual' | 'auto';
+  monthlyAmount: number;
+}
+
 // Huvudobjektet för en användare
 interface UserData {
   id: number;
@@ -29,6 +35,7 @@ interface UserData {
   personal: PersonalInfo;
   payment: PaymentInfo;
   graduation: GraduationInfo;
+  savings: SavingsInfo;
 }
 
 // --- MOCKDATA (5 st exempelanvändare) ---
@@ -54,6 +61,11 @@ const initialUsers: UserData[] = [
       dateForPurchaseHat: '2027-04-25',
       priceOnHat: 899,
     },
+    savings: {
+      savedAmount: 0,
+      savingsMode: 'manual',
+      monthlyAmount: 100, // Hon planerar att spara 100 kr/mån
+    },
   },
   {
     id: 2,
@@ -74,6 +86,11 @@ const initialUsers: UserData[] = [
       graduationDay: '2026-06-10',
       dateForPurchaseHat: '2026-05-01',
       priceOnHat: 1200,
+    },
+    savings: {
+      savedAmount: 400,
+      savingsMode: 'auto',
+      monthlyAmount: 0,
     },
   },
   {
@@ -96,6 +113,11 @@ const initialUsers: UserData[] = [
       dateForPurchaseHat: '2025-03-15',
       priceOnHat: 650,
     },
+    savings: {
+      savedAmount: 330,
+      savingsMode: 'auto',
+      monthlyAmount: 0,
+    },
   },
   {
     id: 4,
@@ -117,6 +139,11 @@ const initialUsers: UserData[] = [
       dateForPurchaseHat: '2027-05-20',
       priceOnHat: 950,
     },
+    savings: {
+      savedAmount: 0,
+      savingsMode: 'auto',
+      monthlyAmount: 0,
+    },
   },
   {
     id: 5,
@@ -137,6 +164,11 @@ const initialUsers: UserData[] = [
       graduationDay: '2026-06-08',
       dateForPurchaseHat: '2026-04-10',
       priceOnHat: 1500,
+    },
+    savings: {
+      savedAmount: 1500,
+      savingsMode: 'manual',
+      monthlyAmount: 100,
     },
   },
 ];
