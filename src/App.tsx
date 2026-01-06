@@ -355,6 +355,18 @@ const Settings = () => {
     }
   }, [userData]);
 
+  useEffect(() => {
+    if (savingsMode === 'auto' && priceOnHat && dateForPurchaseHat) {
+      const daysLeft = getDaysUntilPurchaseHat(dateForPurchaseHat);
+      const monthsLeft = Math.max(1, Math.ceil(daysLeft / 30));
+      const price = parseFloat(priceOnHat);
+      if (!isNaN(price)) {
+        const calculatedAmount = Math.ceil(price / monthsLeft);
+        setMonthlyAmount(calculatedAmount.toString());
+      }
+    }
+  }, [savingsMode, priceOnHat, dateForPurchaseHat]);
+
   if (!data) return <>No data</>;
   // Spara data
   const handleSave = async (e: React.FormEvent) => {
