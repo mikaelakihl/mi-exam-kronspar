@@ -777,6 +777,17 @@ const getDaysUntilPurchaseHat = (dateForPurchasingHatString: string) => {
   return Math.ceil(dayLeftUntilPurchaseHat);
 };
 
+const calculateSumOfSavingsInManualSavingsMode = (
+  monthlyAmount: number,
+  dateForPurchaseHat: string
+) => {
+  const dayLeft = getDaysUntilPurchaseHat(dateForPurchaseHat);
+
+  const monthsLeft = Math.max(0, Math.ceil(dayLeft / 30));
+
+  return monthsLeft * monthlyAmount;
+};
+
 const Statistics = () => {
   const { user } = useUser();
 
@@ -803,10 +814,22 @@ const Statistics = () => {
       <div className="grid gap-2 md:grid md:grid-cols-6">
         <div className="bg-background-muted md:col-span-4">
           <p>Du sparar just nu {data.savings?.monthlyAmount} kr i månaden </p>
-          <p>
-            Du beräknas ha {data.graduation?.priceOnHat} kr den{' '}
-            {data.graduation?.graduationDay}
-          </p>
+          {data.savings?.savingsMode === 'auto' && (
+            <p>
+              Du beräknas ha {data.graduation?.priceOnHat} kr den{' '}
+              {data.graduation?.dateForPurchaseHat}
+            </p>
+          )}
+          {data.savings?.savingsMode === 'manual' && (
+            <p>
+              Du beräknas ha{' '}
+              {calculateSumOfSavingsInManualSavingsMode(
+                Number(data.savings?.monthlyAmount),
+                data.graduation?.dateForPurchaseHat
+              )}{' '}
+              kr den {data.graduation?.dateForPurchaseHat}
+            </p>
+          )}
           <button>Klicka här om du vill ändra din spar-plan</button>
         </div>
         <div className="bg-background-muted md:col-span-2">
