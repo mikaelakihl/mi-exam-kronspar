@@ -26,10 +26,11 @@ interface SavingsInfo {
   savedAmount: number;
   savingsMode: 'manual' | 'auto';
   monthlyAmount: number;
+  lastTransactionDate?: string;
 }
 
 // Huvudobjektet för en användare
-interface UserData {
+export interface UserData {
   id: number;
   userId: string; // Koppling till inloggad användare
   personal: PersonalInfo;
@@ -65,6 +66,7 @@ const initialUsers: UserData[] = [
       savedAmount: 0,
       savingsMode: 'manual',
       monthlyAmount: 100, // Hon planerar att spara 100 kr/mån
+      lastTransactionDate: '2026-01-01',
     },
   },
   {
@@ -91,6 +93,7 @@ const initialUsers: UserData[] = [
       savedAmount: 400,
       savingsMode: 'auto',
       monthlyAmount: 0,
+      lastTransactionDate: '2026-01-01',
     },
   },
   {
@@ -117,6 +120,7 @@ const initialUsers: UserData[] = [
       savedAmount: 330,
       savingsMode: 'auto',
       monthlyAmount: 0,
+      lastTransactionDate: '2026-01-01',
     },
   },
   {
@@ -143,6 +147,7 @@ const initialUsers: UserData[] = [
       savedAmount: 0,
       savingsMode: 'auto',
       monthlyAmount: 0,
+      lastTransactionDate: '2026-01-01',
     },
   },
   {
@@ -169,6 +174,7 @@ const initialUsers: UserData[] = [
       savedAmount: 1500,
       savingsMode: 'manual',
       monthlyAmount: 100,
+      lastTransactionDate: '2026-01-01',
     },
   },
 ];
@@ -187,20 +193,72 @@ export const handlers = [
       return new HttpResponse(null, { status: 400 });
     }
 
+    let userData: UserData | null = null;
+
     // 1. Kolla om vi har sparat (uppdaterad) data i localStorage
     const storedData = localStorage.getItem(`data_${userId}`);
     if (storedData) {
-      return HttpResponse.json(JSON.parse(storedData));
+      userData = JSON.parse(storedData);
+    } else {
+      // 2. Annars, kolla om det är en av våra mock-användare
+      const mockUser = initialUsers.find((u) => u.userId === userId);
+      if (mockUser) {
+        // Vi klonar objektet så vi inte ändrar i "initialUsers" direkt
+        userData = JSON.parse(JSON.stringify(mockUser));
+      }
     }
 
-    // 2. Annars, kolla om det är en av våra mock-användare
-    const mockUser = initialUsers.find((u) => u.userId === userId);
-    if (mockUser) {
-      return HttpResponse.json(mockUser);
+    // Om vi inte hittade någon användare alls
+    if (!userData) {
+      return HttpResponse.json(null);
     }
 
-    // 3. Annars returnera tomt (ny användare)
-    return HttpResponse.json(null);
+    // --- NY LOGIK: Räkna ut månadsparande ---
+    const today = new Date();
+
+    // Om vi inte har ett datum sen tidigare, sätt det till idag (startdatum)
+    if (!userData.savings.lastTransactionDate) {
+      userData.savings.lastTransactionDate = today.toISOString().split('T')[0];
+      // Vi sparar direkt för att "stämpla in" startdatumet
+      localStorage.setItem(`data_${userId}`, JSON.stringify(userData));
+    } else {
+      // Vi har ett datum! Låt oss se om det gått någon månad.
+      const lastTx = new Date(userData.savings.lastTransactionDate);
+
+      // Räkna ut skillnad i månader
+      // Formel: (År * 12 + Månad) - (FörraÅr * 12 + FörraMånad)
+      let monthsPassed =
+        (today.getFullYear() - lastTx.getFullYear()) * 12 +
+        (today.getMonth() - lastTx.getMonth());
+
+      // Finjustering: Om dagens datum (t.ex. den 5:e) är mindre än transaktionsdagen (t.ex. den 25:e),
+      // så har det inte gått en "hel" månad än denna månad.
+      if (today.getDate() < lastTx.getDate()) {
+        monthsPassed--;
+      }
+
+      // Om det har gått tid OCH vi har ett månadsbelopp att spara
+      if (monthsPassed > 0 && userData.savings.monthlyAmount > 0) {
+        const moneyToAdd = monthsPassed * userData.savings.monthlyAmount;
+
+        // Uppdatera kontot
+        userData.savings.savedAmount += moneyToAdd;
+
+        // Uppdatera datumet till idag (så vi inte drar pengar igen förrän nästa månad)
+        userData.savings.lastTransactionDate = today
+          .toISOString()
+          .split('T')[0];
+
+        // VIKTIGT: Spara ändringarna till "databasen" (localStorage)
+        localStorage.setItem(`data_${userId}`, JSON.stringify(userData));
+
+        console.log(
+          `Sparat automatiskt: ${moneyToAdd} kr (${monthsPassed} månader)`
+        );
+      }
+    }
+
+    return HttpResponse.json(userData);
   }),
 
   // --- UPDATE DATA ---
