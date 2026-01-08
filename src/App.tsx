@@ -382,7 +382,8 @@ const Settings = () => {
   const [showWithdrawalSuccessMessage, setShowWithdrawalSuccessMessage] =
     useState(false);
 
-  const [withdrawalMessage, setWithdrawalMessage] = useState('');
+  const [showWithdrawalErrorMessage, setShowWithdrawalErrorMessage] =
+    useState(false);
 
   const { user } = useUser();
   const queryClient = useQueryClient();
@@ -668,6 +669,23 @@ const Settings = () => {
           </div>
         </>
       )}
+      {showWithdrawalErrorMessage && (
+        <>
+          <div className="w-full h-full z-10 fixed flex justify-center items-center">
+            <div className="bg-secondary h-[30%] w-[50%] flex justify-center items-center relative">
+              <button
+                className="top-0 right-0 absolute"
+                onClick={() => {
+                  setShowWithdrawalSuccessMessage(false);
+                }}
+              >
+                X
+              </button>
+              <p>Något gick fel, försök igen senare</p>
+            </div>
+          </div>
+        </>
+      )}
       <div className="bg-secondary">
         <h2>Info om hur det går till</h2>
         <p>
@@ -853,7 +871,11 @@ const Settings = () => {
                       queryKey: ['userData', user.id],
                     });
                     setShowWithdrawalSuccessMessage(true);
+                  } else {
+                    setShowWithdrawalErrorMessage(true);
                   }
+                } else {
+                  setShowWithdrawalErrorMessage(true);
                 }
               }}
             >
