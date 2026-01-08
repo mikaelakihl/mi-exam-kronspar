@@ -379,6 +379,11 @@ const Settings = () => {
     setShowErrorMessageForSavedSavingPlan,
   ] = useState(false);
 
+  const [showWithdrawalSuccessMessage, setShowWithdrawalSuccessMessage] =
+    useState(false);
+
+  const [withdrawalMessage, setWithdrawalMessage] = useState('');
+
   const { user } = useUser();
   const queryClient = useQueryClient();
 
@@ -643,6 +648,26 @@ const Settings = () => {
           </div>
         </>
       )}
+      {showWithdrawalSuccessMessage && (
+        <>
+          <div className="w-full h-full z-10 fixed flex justify-center items-center">
+            <div className="bg-secondary h-[30%] w-[50%] flex justify-center items-center relative">
+              <button
+                className="top-0 right-0 absolute"
+                onClick={() => {
+                  setShowWithdrawalSuccessMessage(false);
+                }}
+              >
+                X
+              </button>
+              <p>
+                Ditt uttag lyckades, pengarna når ditt konto inom 1-3
+                arbetsdagar
+              </p>
+            </div>
+          </div>
+        </>
+      )}
       <div className="bg-secondary">
         <h2>Info om hur det går till</h2>
         <p>
@@ -817,12 +842,41 @@ const Settings = () => {
               <p>Du kommer att spara {monthlyAmount} kr i månaden</p>
             )}
             <button type="submit">Spara</button>
-            <button>Ta ut sparande</button>
+
+            <button
+              type="button"
+              onClick={() => {
+                if (userData && user?.id) {
+                  const updatedData = withdrawSavings(userData, user.id);
+                  if (updatedData) {
+                    queryClient.invalidateQueries({
+                      queryKey: ['userData', user.id],
+                    });
+                    setShowWithdrawalSuccessMessage(true);
+                  }
+                }
+              }}
+            >
+              Ta ut sparande
+            </button>
           </form>
         </div>
       </div>
     </section>
   );
+};
+
+const withdrawSavings = (data: UserData, userId: string) => {
+  if (!userId || !data?.savings) {
+    return null;
+  }
+
+  const newData = JSON.parse(JSON.stringify(data));
+  newData.savings.savedAmount = 0;
+
+  localStorage.setItem(`data_${userId}`, JSON.stringify(newData));
+
+  return newData;
 };
 
 const getDaysUntilGraduation = (
