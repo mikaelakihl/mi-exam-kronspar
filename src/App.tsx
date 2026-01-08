@@ -13,6 +13,7 @@ import {
 } from '@clerk/clerk-react';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import type { UserData } from './mocks/handlers';
+import { CiTimer } from 'react-icons/ci';
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -69,8 +70,11 @@ const Header = () => {
     <>
       <header className="bg-primary flex justify-between items-center">
         <h1>Kronspar</h1>
-        <button onClick={() => setIsTimeTravelOpen(!isTimeTravelOpen)}>
-          Timetravel
+        <button
+          className="bg-primary text-primary hover:bg-primary/80 transition-all duration-300 hover:text-primary hover:border-secondary hover:text-white hover:border-2 p-2 rounded uppercase tracking-wider "
+          onClick={() => setIsTimeTravelOpen(!isTimeTravelOpen)}
+        >
+          Time-travel
         </button>
 
         <div className="flex hidden md:flex items-center gap-4">
@@ -164,24 +168,40 @@ const Header = () => {
       </header>
       {isTimeTravelOpen && (
         <div className=" z-index-20 fixed  w-full h-full flex justify-center items-center">
-          <div className="flex gap-4 justify-center items-center bg-primary h-[30%] w-[50%] relative">
+          <div className="flex gap-4 justify-center items-center bg-primary h-[30%] w-[50%] relative border-2 border-secondary rounded">
             <button
-              className="top-5 right-5 absolute"
+              className="top-5 right-5 absolute text-p-white mb-5"
               onClick={() => setIsTimeTravelOpen(false)}
             >
               X
             </button>
             {!hasTimeBackup ? (
               <div className="flex gap-4">
-                <button onClick={handleFastForwardToPurchaseHatDay}>
+                <button
+                  className="bg-secondary text-p-white rounded py-2 px-4 border border-background-muted"
+                  onClick={handleFastForwardToPurchaseHatDay}
+                >
                   Mössa
                 </button>
-                <button onClick={handleFastForwardToGraduationDay}>
+                <button
+                  className="bg-secondary text-p-white rounded py-2 px-4 border border-background-muted"
+                  onClick={handleFastForwardToGraduationDay}
+                >
                   Graduation
                 </button>
               </div>
             ) : (
-              <button onClick={handleResetToCurrentTime}>Återställ</button>
+              <div className="flex flex-col  justify-center items-center">
+                <p className="text-p-white mt-10">
+                  Du befinner dig i time-travel-läge
+                </p>
+                <button
+                  className="bg-accent text-p-white rounded py-2 px-4 border border-background-muted"
+                  onClick={handleResetToCurrentTime}
+                >
+                  Återställ
+                </button>
+              </div>
             )}
           </div>
         </div>
