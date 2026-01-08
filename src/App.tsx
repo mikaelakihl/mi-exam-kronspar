@@ -2,14 +2,7 @@ import { useEffect, useState } from 'react';
 import './index.css';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { AiOutlineClose } from 'react-icons/ai';
-import {
-  BrowserRouter,
-  data,
-  NavLink,
-  Outlet,
-  Route,
-  Routes,
-} from 'react-router';
+import { BrowserRouter, NavLink, Outlet, Route, Routes } from 'react-router';
 import {
   SignedIn,
   SignedOut,
@@ -305,7 +298,11 @@ const Settings = () => {
   const { user } = useUser();
   const queryClient = useQueryClient();
 
-  const { data: userData } = useQuery({
+  const {
+    data: userData,
+    isLoading,
+    error,
+  } = useQuery({
     queryKey: ['userData', user?.id],
     queryFn: async () => {
       if (!user?.id) return null;
@@ -368,7 +365,8 @@ const Settings = () => {
     }
   }, [savingsMode, priceOnHat, dateForPurchaseHat]);
 
-  if (!data) return <>No data</>;
+  if (isLoading) return <div>Laddar inställningar...</div>;
+  if (error) return <div>Kunde inte ladda inställningar.</div>;
   // Spara data
   const handleSave = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -438,7 +436,6 @@ const Settings = () => {
     }
   };
 
-  if (!data) return <>No data</>;
   // Spara data
   const handleSaveForSavingPlan = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -790,35 +787,35 @@ const calculateSumOfSavingsInManualSavingsMode = (
   return monthsLeft * monthlyAmount;
 };
 
-const fastFowardToPurchaseHatDay = (
-  data: UserData,
-  userId: string | undefined
-) => {
-  // 1. Extra säkerhetskoll
-  if (!userId || !data?.graduation?.dateForPurchaseHat) return;
+// const fastFowardToPurchaseHatDay = (
+//   data: UserData,
+//   userId: string | undefined
+// ) => {
+//   // 1. Extra säkerhetskoll
+//   if (!userId || !data?.graduation?.dateForPurchaseHat) return;
 
-  const daysLeft = getDaysUntilPurchaseHat(data.graduation.dateForPurchaseHat);
+//   const daysLeft = getDaysUntilPurchaseHat(data.graduation.dateForPurchaseHat);
 
-  if (daysLeft <= 0) {
-    alert('Datumet har passerat');
-    return;
-  }
+//   if (daysLeft <= 0) {
+//     alert('Datumet har passerat');
+//     return;
+//   }
 
-  const monthDifference = Math.max(0, Math.ceil(daysLeft / 30));
+//   const monthDifference = Math.max(0, Math.ceil(daysLeft / 30));
 
-  const pastDate = new Date();
-  pastDate.setMonth(pastDate.getMonth() - monthDifference);
+//   const pastDate = new Date();
+//   pastDate.setMonth(pastDate.getMonth() - monthDifference);
 
-  // 2. Djupkopiering med JSON.parse/JSON.stringify
-  // Detta garanterar att vi har ett helt nytt, fristående objekt att leka med.
-  const newData = JSON.parse(JSON.stringify(data));
+//   // 2. Djupkopiering med JSON.parse/JSON.stringify
+//   // Detta garanterar att vi har ett helt nytt, fristående objekt att leka med.
+//   const newData = JSON.parse(JSON.stringify(data));
 
-  // 3. Nu kan vi säkert ändra i det
-  newData.savings.lastTransactionDate = pastDate.toISOString().split('T')[0];
+//   // 3. Nu kan vi säkert ändra i det
+//   newData.savings.lastTransactionDate = pastDate.toISOString().split('T')[0];
 
-  localStorage.setItem(`data_${userId}`, JSON.stringify(newData));
-  window.location.reload();
-};
+//   localStorage.setItem(`data_${userId}`, JSON.stringify(newData));
+//   window.location.reload();
+// };
 
 const Statistics = () => {
   const { user } = useUser();
