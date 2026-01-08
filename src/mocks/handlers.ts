@@ -222,8 +222,20 @@ export const handlers = [
       // Vi sparar direkt för att "stämpla in" startdatumet
       localStorage.setItem(`data_${userId}`, JSON.stringify(userData));
     } else {
-      // Vi har ett datum! Låt oss se om det gått någon månad.
+      // VIKTIGT: Om lastTransactionDate är i framtiden, är vi i "time travel"-läge
+      // och ska INTE räkna om sparandet
       const lastTx = new Date(userData.savings.lastTransactionDate);
+      lastTx.setHours(0, 0, 0, 0);
+      const todayNormalized = new Date(today);
+      todayNormalized.setHours(0, 0, 0, 0);
+
+      // Om datumet är i framtiden, hoppa över automatiskt sparande
+      if (lastTx > todayNormalized) {
+        // Vi är i time travel-läge, returnera data som den är
+        return HttpResponse.json(userData);
+      }
+
+      // Vi har ett datum! Låt oss se om det gått någon månad.
 
       // Räkna ut skillnad i månader
       // Formel: (År * 12 + Månad) - (FörraÅr * 12 + FörraMånad)

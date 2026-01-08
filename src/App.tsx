@@ -16,6 +16,8 @@ import type { UserData } from './mocks/handlers';
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isTimeTravelOpen, setIsTimeTravelOpen] = useState(false);
+  const queryClient = useQueryClient();
 
   const { user } = useUser();
 
@@ -32,6 +34,33 @@ const Header = () => {
     enabled: !!user?.id,
   });
 
+  const hasTimeBackup =
+    user?.id && localStorage.getItem(`data_${user.id}_timeBackup`);
+
+  const handleFastForwardToPurchaseHatDay = async () => {
+    if (!data || !user?.id) return;
+
+    await fastForwardToPurchaseHatDay(data, user.id);
+
+    await queryClient.refetchQueries({ queryKey: ['userData', user?.id] });
+  };
+
+  const handleFastForwardToGraduationDay = async () => {
+    if (!data || !user?.id) return;
+
+    await fastForwardToGraduationDay(data, user.id);
+
+    await queryClient.refetchQueries({ queryKey: ['userData', user.id] });
+  };
+
+  const handleResetToCurrentTime = async () => {
+    if (!data || !user?.id) return;
+
+    await resetToCurrentTime(data, user.id);
+
+    await queryClient.refetchQueries({ queryKey: ['userData', user?.id] });
+  };
+
   // if (isLoading) return <div>Laddar statistik...</div>;
   // if (error) return <div>Kunde inte ladda statistik.</div>;
   // if (!data) return <div>Ingen data tillgänglig.</div>;
@@ -40,6 +69,10 @@ const Header = () => {
     <>
       <header className="bg-primary flex justify-between items-center">
         <h1>Kronspar</h1>
+        <button onClick={() => setIsTimeTravelOpen(!isTimeTravelOpen)}>
+          Timetravel
+        </button>
+
         <div className="flex hidden md:flex items-center gap-4">
           <SignedOut>
             <SignInButton mode="modal">
@@ -85,7 +118,10 @@ const Header = () => {
                 {data?.graduation ? (
                   <p>
                     Studenten är om:{' '}
-                    {getDaysUntilGraduation(data.graduation?.graduationDay)}{' '}
+                    {getDaysUntilGraduation(
+                      data.graduation?.graduationDay,
+                      user?.id
+                    )}{' '}
                     dagar
                   </p>
                 ) : null}
@@ -105,7 +141,11 @@ const Header = () => {
               {data?.graduation ? (
                 <p>
                   <p>Studenten är om: </p>
-                  {getDaysUntilGraduation(data.graduation?.graduationDay)} dagar
+                  {getDaysUntilGraduation(
+                    data.graduation?.graduationDay,
+                    user?.id
+                  )}{' '}
+                  dagar
                 </p>
               ) : null}
             </div>
@@ -122,6 +162,30 @@ const Header = () => {
           </button>
         </div>
       </header>
+      {isTimeTravelOpen && (
+        <div className=" z-index-20 fixed  w-full h-full flex justify-center items-center">
+          <div className="flex gap-4 justify-center items-center bg-primary h-[30%] w-[50%] relative">
+            <button
+              className="top-5 right-5 absolute"
+              onClick={() => setIsTimeTravelOpen(false)}
+            >
+              X
+            </button>
+            {!hasTimeBackup ? (
+              <div className="flex gap-4">
+                <button onClick={handleFastForwardToPurchaseHatDay}>
+                  Mössa
+                </button>
+                <button onClick={handleFastForwardToGraduationDay}>
+                  Graduation
+                </button>
+              </div>
+            ) : (
+              <button onClick={handleResetToCurrentTime}>Återställ</button>
+            )}
+          </div>
+        </div>
+      )}
       {isOpen && (
         <nav className=" bg-primary/70 border-y-2 border-primary/90 text-p-white text-center p-4 md:hidden">
           <SignedOut>
@@ -355,7 +419,7 @@ const Settings = () => {
 
   useEffect(() => {
     if (savingsMode === 'auto' && priceOnHat && dateForPurchaseHat) {
-      const daysLeft = getDaysUntilPurchaseHat(dateForPurchaseHat);
+      const daysLeft = getDaysUntilPurchaseHat(dateForPurchaseHat, user?.id);
       const monthsLeft = Math.max(1, Math.ceil(daysLeft / 30));
       const price = parseFloat(priceOnHat);
       if (!isNaN(price)) {
@@ -363,7 +427,7 @@ const Settings = () => {
         setMonthlyAmount(calculatedAmount.toString());
       }
     }
-  }, [savingsMode, priceOnHat, dateForPurchaseHat]);
+  }, [savingsMode, priceOnHat, dateForPurchaseHat, user?.id]);
 
   if (isLoading) return <div>Laddar inställningar...</div>;
   if (error) return <div>Kunde inte ladda inställningar.</div>;
@@ -741,8 +805,22 @@ const Settings = () => {
   );
 };
 
-const getDaysUntilGraduation = (graduationDateString: string) => {
-  const today = new Date();
+const getDaysUntilGraduation = (
+  graduationDateString: string,
+  userId?: string
+) => {
+  let today = new Date();
+
+  // Om vi är i time travel-läge, använd simulerat datum
+  if (userId) {
+    const simulatedDateStr = localStorage.getItem(
+      `data_${userId}_simulatedDate`
+    );
+    if (simulatedDateStr) {
+      today = new Date(simulatedDateStr);
+    }
+  }
+
   const graduationDay = new Date(graduationDateString);
 
   const timeDifference = graduationDay.getTime() - today.getTime();
@@ -758,8 +836,22 @@ const getDaysUntilGraduation = (graduationDateString: string) => {
   return Math.ceil(dayLeftUntilGraduation);
 };
 
-const getDaysUntilPurchaseHat = (dateForPurchasingHatString: string) => {
-  const today = new Date();
+const getDaysUntilPurchaseHat = (
+  dateForPurchasingHatString: string,
+  userId?: string
+) => {
+  let today = new Date();
+
+  // Om vi är i time travel-läge, använd simulerat datum
+  if (userId) {
+    const simulatedDateStr = localStorage.getItem(
+      `data_${userId}_simulatedDate`
+    );
+    if (simulatedDateStr) {
+      today = new Date(simulatedDateStr);
+    }
+  }
+
   const purchaseHatDate = new Date(dateForPurchasingHatString);
 
   const timeDifference = purchaseHatDate.getTime() - today.getTime();
@@ -778,44 +870,171 @@ const getDaysUntilPurchaseHat = (dateForPurchasingHatString: string) => {
 // Caluculate what the sum of savings till be at the date for purchasing the hat when in manual savings mode
 const calculateSumOfSavingsInManualSavingsMode = (
   monthlyAmount: number,
-  dateForPurchaseHat: string
+  dateForPurchaseHat: string,
+  userId?: string
 ) => {
-  const dayLeft = getDaysUntilPurchaseHat(dateForPurchaseHat);
+  const dayLeft = getDaysUntilPurchaseHat(dateForPurchaseHat, userId);
 
   const monthsLeft = Math.max(0, Math.ceil(dayLeft / 30));
 
   return monthsLeft * monthlyAmount;
 };
 
-// const fastFowardToPurchaseHatDay = (
-//   data: UserData,
-//   userId: string | undefined
-// ) => {
-//   // 1. Extra säkerhetskoll
-//   if (!userId || !data?.graduation?.dateForPurchaseHat) return;
+const fastForwardToPurchaseHatDay = async (
+  data: UserData,
+  userId: string | undefined
+) => {
+  // 1. Extra säkerhetskoll
+  if (!userId || !data?.graduation?.dateForPurchaseHat) {
+    alert('Saknar nödvändig information');
+    return null;
+  }
 
-//   const daysLeft = getDaysUntilPurchaseHat(data.graduation.dateForPurchaseHat);
+  const daysLeft = getDaysUntilPurchaseHat(
+    data.graduation.dateForPurchaseHat,
+    userId
+  );
 
-//   if (daysLeft <= 0) {
-//     alert('Datumet har passerat');
-//     return;
-//   }
+  if (daysLeft <= 0) {
+    alert('Datumet har redan passerat');
+    return null;
+  }
 
-//   const monthDifference = Math.max(0, Math.ceil(daysLeft / 30));
+  // 2. SPARA ENDAST TIDSRELATERADE VÄRDEN I BACKUP
+  // (savedAmount och lastTransactionDate)
+  const timeBackup = {
+    savedAmount: data.savings?.savedAmount || 0,
+    lastTransactionDate: data.savings?.lastTransactionDate || null,
+  };
+  localStorage.setItem(`data_${userId}_timeBackup`, JSON.stringify(timeBackup));
 
-//   const pastDate = new Date();
-//   pastDate.setMonth(pastDate.getMonth() - monthDifference);
+  // 3. Beräkna månadsskillnaden
+  const monthsLeft = Math.max(0, Math.ceil(daysLeft / 30));
 
-//   // 2. Djupkopiering med JSON.parse/JSON.stringify
-//   // Detta garanterar att vi har ett helt nytt, fristående objekt att leka med.
-//   const newData = JSON.parse(JSON.stringify(data));
+  // 4. Beräkna hur mycket som skulle ha sparats
+  const monthlyAmount = Number(data.savings?.monthlyAmount) || 0;
+  const amountToAdd = monthsLeft * monthlyAmount;
 
-//   // 3. Nu kan vi säkert ändra i det
-//   newData.savings.lastTransactionDate = pastDate.toISOString().split('T')[0];
+  // 5. Skapa ett datum i framtiden (köpdatumet)
+  const purchaseDate = new Date(data.graduation.dateForPurchaseHat);
 
-//   localStorage.setItem(`data_${userId}`, JSON.stringify(newData));
-//   window.location.reload();
-// };
+  // 6. Djupkopiering med JSON.parse/JSON.stringify
+  const newData = JSON.parse(JSON.stringify(data));
+
+  // 7. Uppdatera ENDAST tidsrelaterade värden
+  newData.savings.savedAmount =
+    (newData.savings.savedAmount || 0) + amountToAdd;
+  newData.savings.lastTransactionDate = purchaseDate
+    .toISOString()
+    .split('T')[0];
+
+  // 8. Spara simulerat datum för time travel
+  localStorage.setItem(
+    `data_${userId}_simulatedDate`,
+    purchaseDate.toISOString().split('T')[0]
+  );
+
+  // 9. Spara till localStorage (behåller alla andra inställningar)
+  localStorage.setItem(`data_${userId}`, JSON.stringify(newData));
+
+  return newData;
+};
+
+const fastForwardToGraduationDay = async (
+  data: UserData,
+  userId: string | undefined
+) => {
+  // 1. Extra säkerhetskoll
+  if (!userId || !data?.graduation?.graduationDay) {
+    alert('Saknar nödvändig information');
+    return null;
+  }
+
+  const daysLeft = getDaysUntilGraduation(
+    data.graduation.graduationDay,
+    userId
+  );
+
+  if (daysLeft <= 0) {
+    alert('Datumet har redan passerat');
+    return null;
+  }
+
+  // 2. SPARA ENDAST TIDSRELATERADE VÄRDEN I BACKUP
+  // (savedAmount och lastTransactionDate)
+  const timeBackup = {
+    savedAmount: data.savings?.savedAmount || 0,
+    lastTransactionDate: data.savings?.lastTransactionDate || null,
+  };
+  localStorage.setItem(`data_${userId}_timeBackup`, JSON.stringify(timeBackup));
+
+  // 3. Beräkna månadsskillnaden
+  const monthsLeft = Math.max(0, Math.ceil(daysLeft / 30));
+
+  // 4. Beräkna hur mycket som skulle ha sparats
+  const monthlyAmount = Number(data.savings?.monthlyAmount) || 0;
+  const amountToAdd = monthsLeft * monthlyAmount;
+
+  // 5. Skapa ett datum i framtiden (examensdagen)
+  const graduationDate = new Date(data.graduation.graduationDay);
+
+  // 6. Djupkopiering med JSON.parse/JSON.stringify
+  const newData = JSON.parse(JSON.stringify(data));
+
+  // 7. Uppdatera ENDAST tidsrelaterade värden
+  newData.savings.savedAmount =
+    (newData.savings.savedAmount || 0) + amountToAdd;
+  newData.savings.lastTransactionDate = graduationDate
+    .toISOString()
+    .split('T')[0];
+
+  // 8. Spara simulerat datum för time travel
+  localStorage.setItem(
+    `data_${userId}_simulatedDate`,
+    graduationDate.toISOString().split('T')[0]
+  );
+
+  // 9. Spara till localStorage (behåller alla andra inställningar)
+  localStorage.setItem(`data_${userId}`, JSON.stringify(newData));
+
+  return newData;
+};
+
+const resetToCurrentTime = async (
+  data: UserData,
+  userId: string | undefined
+) => {
+  if (!userId) {
+    alert('Saknar användar-ID');
+    return null;
+  }
+
+  // 1. Hämta backup av tidsrelaterade värden
+  const timeBackupString = localStorage.getItem(`data_${userId}_timeBackup`);
+
+  if (!timeBackupString) {
+    alert('Ingen backup hittades. Kan inte återställa.');
+    return null;
+  }
+
+  const timeBackup = JSON.parse(timeBackupString);
+
+  // 2. Djupkopiera nuvarande data (som innehåller alla användarens inställningar)
+  const currentData = JSON.parse(JSON.stringify(data));
+
+  // 3. Återställ ENDAST tidsrelaterade värden från backup
+  currentData.savings.savedAmount = timeBackup.savedAmount;
+  currentData.savings.lastTransactionDate = timeBackup.lastTransactionDate;
+
+  // 4. Spara tillbaka (med alla inställningar intakta)
+  localStorage.setItem(`data_${userId}`, JSON.stringify(currentData));
+
+  // 5. Ta bort backup och simulerat datum
+  localStorage.removeItem(`data_${userId}_timeBackup`);
+  localStorage.removeItem(`data_${userId}_simulatedDate`);
+
+  return currentData;
+};
 
 const Statistics = () => {
   const { user } = useUser();
@@ -855,7 +1074,8 @@ const Statistics = () => {
               {calculateSumOfSavingsInManualSavingsMode(
                 // Make sure to convert to numbers before passing to the function
                 Number(data.savings?.monthlyAmount),
-                data.graduation?.dateForPurchaseHat
+                data.graduation?.dateForPurchaseHat,
+                user?.id
               )}{' '}
               kr den {data.graduation?.dateForPurchaseHat}
             </p>
@@ -868,24 +1088,27 @@ const Statistics = () => {
         <div className="bg-background-muted md:col-span-2">
           <p>
             Studenten är om{' '}
-            {getDaysUntilGraduation(data.graduation?.graduationDay)} dagar
+            {getDaysUntilGraduation(data.graduation?.graduationDay, user?.id)}{' '}
+            dagar
           </p>
         </div>
         <div className="bg-background-muted md:col-span-2">
           <p>
             Dags att köpa mössa om:{' '}
-            {getDaysUntilPurchaseHat(data.graduation?.dateForPurchaseHat)}
+            {getDaysUntilPurchaseHat(
+              data.graduation?.dateForPurchaseHat,
+              user?.id
+            )}
           </p>
         </div>
         <div className="bg-background-muted md:col-span-2">
-          <p>Du har sparat: x antal kr</p>
+          <p>Du har sparat: {data.savings?.savedAmount || 0} kr</p>
         </div>
       </div>
     </section>
   );
 };
 
-const savedAmount = () => {};
 const App = () => {
   return (
     <BrowserRouter>
