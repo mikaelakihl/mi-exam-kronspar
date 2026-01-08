@@ -19,6 +19,7 @@ import {
   useUser,
 } from '@clerk/clerk-react';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
+import type { UserData } from './mocks/handlers';
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -777,6 +778,7 @@ const getDaysUntilPurchaseHat = (dateForPurchasingHatString: string) => {
   return Math.ceil(dayLeftUntilPurchaseHat);
 };
 
+// Caluculate what the sum of savings till be at the date for purchasing the hat when in manual savings mode
 const calculateSumOfSavingsInManualSavingsMode = (
   monthlyAmount: number,
   dateForPurchaseHat: string
@@ -786,6 +788,36 @@ const calculateSumOfSavingsInManualSavingsMode = (
   const monthsLeft = Math.max(0, Math.ceil(dayLeft / 30));
 
   return monthsLeft * monthlyAmount;
+};
+
+const fastFowardToPurchaseHatDay = (
+  data: UserData,
+  userId: string | undefined
+) => {
+  // 1. Extra säkerhetskoll
+  if (!userId || !data?.graduation?.dateForPurchaseHat) return;
+
+  const daysLeft = getDaysUntilPurchaseHat(data.graduation.dateForPurchaseHat);
+
+  if (daysLeft <= 0) {
+    alert('Datumet har passerat');
+    return;
+  }
+
+  const monthDifference = Math.max(0, Math.ceil(daysLeft / 30));
+
+  const pastDate = new Date();
+  pastDate.setMonth(pastDate.getMonth() - monthDifference);
+
+  // 2. Djupkopiering med JSON.parse/JSON.stringify
+  // Detta garanterar att vi har ett helt nytt, fristående objekt att leka med.
+  const newData = JSON.parse(JSON.stringify(data));
+
+  // 3. Nu kan vi säkert ändra i det
+  newData.savings.lastTransactionDate = pastDate.toISOString().split('T')[0];
+
+  localStorage.setItem(`data_${userId}`, JSON.stringify(newData));
+  window.location.reload();
 };
 
 const Statistics = () => {
@@ -824,6 +856,7 @@ const Statistics = () => {
             <p>
               Du beräknas ha{' '}
               {calculateSumOfSavingsInManualSavingsMode(
+                // Make sure to convert to numbers before passing to the function
                 Number(data.savings?.monthlyAmount),
                 data.graduation?.dateForPurchaseHat
               )}{' '}
@@ -854,6 +887,8 @@ const Statistics = () => {
     </section>
   );
 };
+
+const savedAmount = () => {};
 const App = () => {
   return (
     <BrowserRouter>
