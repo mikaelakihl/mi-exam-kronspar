@@ -17,6 +17,32 @@
   --color-stroke: #28114a;
 }
 
+@layer base {
+  p {
+    @apply text-base  lg:text-lg;
+  }
+
+  h2 {
+    @apply text-xl lg:text-3xl;
+  }
+
+  h3 {
+    @apply text-lg  lg:text-3xl;
+  }
+
+  h4 {
+    @apply text-base font-bold lg:text-xl;
+  }
+
+  input {
+    @apply p-3;
+  }
+
+  button {
+    @apply p-3;
+  }
+}
+
 .text-stroke {
   -webkit-text-stroke: 1px var(--color-stroke);
   -webkit-text-fill-color: #f5e298;

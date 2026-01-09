@@ -610,290 +610,331 @@ const Settings = () => {
   console.log(cardMonth);
 
   return (
-    <section>
-      {(showSuccessMessageForSavedCardDetails ||
-        showErrorMessageForSavedCardDetails) && (
-        <>
-          <div className="w-full h-full z-10 fixed flex justify-center items-center">
-            <div className="bg-secondary h-[30%] w-[50%] flex justify-center items-center relative">
-              <button
-                className="top-0 right-0 absolute"
-                onClick={() => {
-                  setShowSuccessMessageForSavedCardDetails(false);
-                  setShowErrorMessageForSavedCardDetails(false);
-                }}
-              >
-                X
-              </button>
-              {showSuccessMessageForSavedCardDetails && (
-                <p>Dina ändringar har sparats</p>
-              )}
+    <section className="">
+      <h2>Inställningar</h2>
+      <div className="grid gap-4 lg:grid-cols-3">
+        {(showSuccessMessageForSavedCardDetails ||
+          showErrorMessageForSavedCardDetails) && (
+          <>
+            <div className="w-full h-full z-10 fixed flex justify-center items-center">
+              <div className="bg-secondary h-[30%] w-[50%] flex justify-center items-center relative">
+                <button
+                  className="top-0 right-0 absolute"
+                  onClick={() => {
+                    setShowSuccessMessageForSavedCardDetails(false);
+                    setShowErrorMessageForSavedCardDetails(false);
+                  }}
+                >
+                  X
+                </button>
+                {showSuccessMessageForSavedCardDetails && (
+                  <p>Dina ändringar har sparats</p>
+                )}
 
-              {showErrorMessageForSavedCardDetails && (
-                <p>Det gick inte att spara</p>
-              )}
-            </div>
-          </div>
-        </>
-      )}
-      {(showSuccessMessageForSavedSavingPlan ||
-        showErrorMessageForSavedSavingPlan) && (
-        <>
-          <div className="w-full h-full z-10 fixed flex justify-center items-center">
-            <div className="bg-secondary h-[30%] w-[50%] flex justify-center items-center relative">
-              <button
-                className="top-0 right-0 absolute"
-                onClick={() => {
-                  setShowSuccessMessageForSavedSavingPlan(false);
-                  setShowErrorMessageForSavedSavingPlan(false);
-                }}
-              >
-                X
-              </button>
-              {showSuccessMessageForSavedSavingPlan && (
-                <p>Dina ändringar har sparats</p>
-              )}
-
-              {showErrorMessageForSavedSavingPlan && (
-                <p>Det gick inte att spara</p>
-              )}
-            </div>
-          </div>
-        </>
-      )}
-      {showWithdrawalSuccessMessage && (
-        <>
-          <div className="w-full h-full z-10 fixed flex justify-center items-center">
-            <div className="bg-secondary h-[30%] w-[50%] flex justify-center items-center relative">
-              <button
-                className="top-0 right-0 absolute"
-                onClick={() => {
-                  setShowWithdrawalSuccessMessage(false);
-                }}
-              >
-                X
-              </button>
-              <p>
-                Ditt uttag lyckades, pengarna når ditt konto inom 1-3
-                arbetsdagar
-              </p>
-            </div>
-          </div>
-        </>
-      )}
-      {showWithdrawalErrorMessage && (
-        <>
-          <div className="w-full h-full z-10 fixed flex justify-center items-center">
-            <div className="bg-secondary h-[30%] w-[50%] flex justify-center items-center relative">
-              <button
-                className="top-0 right-0 absolute"
-                onClick={() => {
-                  setShowWithdrawalSuccessMessage(false);
-                }}
-              >
-                X
-              </button>
-              <p>Något gick fel, försök igen senare</p>
-            </div>
-          </div>
-        </>
-      )}
-      <div className="bg-secondary">
-        <h2>Info om hur det går till</h2>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam,
-          quos.
-        </p>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam,
-          quos.
-        </p>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam,
-          quos.
-        </p>
-      </div>
-      <div className="bg-primary">
-        <div className="flex flex-col gap-4">
-          <div>
-            <h2>Betalningsuppgifter</h2>
-            <button
-              onClick={() => setIsCardDetailsEditing(!isCardDetailsEditing)}
-            >
-              {isCardDetailsEditing
-                ? 'Avbryt ändringar'
-                : 'Redigera Betalningsuppgifter'}
-            </button>
-          </div>
-          <form onSubmit={handleSave} className="flex flex-col gap-2">
-            <label className="flex flex-col gap-2">
-              Namn på kortet
-              <input
-                value={nameOnCard}
-                onChange={(e) => setNameOnCard(e.target.value)}
-                disabled={!isCardDetailsEditing}
-                className="bg-background-muted disabled:bg-gray-100 disabled:text-gray-500 disabled:cursor-not-allowed"
-              />
-            </label>
-            <label className="flex flex-col gap-2">
-              Kortnummer
-              <input
-                value={cardNumber}
-                onChange={(e) => setCardNumber(e.target.value)}
-                className="bg-background-muted disabled:bg-gray-100 disabled:text-gray-500 disabled:cursor-not-allowed"
-                disabled={!isCardDetailsEditing}
-              />
-            </label>
-
-            <div>
-              <h3>MM/YY</h3>
-              <div className="flex gap-2">
-                <input
-                  aria-label="Månad kortet går ut"
-                  type="number"
-                  className="bg-background-muted disabled:bg-gray-100 disabled:text-gray-500 disabled:cursor-not-allowed"
-                  value={cardMonth}
-                  onChange={(e) => setCardMonth(e.target.value)}
-                  disabled={!isCardDetailsEditing}
-                />
-                <span>/</span>
-                <input
-                  aria-label="År kortet går ut"
-                  type="number"
-                  className="bg-background-muted disabled:bg-gray-100 disabled:text-gray-500 disabled:cursor-not-allowed"
-                  value={cardYear}
-                  onChange={(e) => setCardYear(e.target.value)}
-                  disabled={!isCardDetailsEditing}
-                />
+                {showErrorMessageForSavedCardDetails && (
+                  <p>Det gick inte att spara</p>
+                )}
               </div>
+            </div>
+          </>
+        )}
+        {(showSuccessMessageForSavedSavingPlan ||
+          showErrorMessageForSavedSavingPlan) && (
+          <>
+            <div className="w-full h-full z-10 fixed flex justify-center items-center">
+              <div className="bg-secondary h-[30%] w-[50%] flex justify-center items-center relative">
+                <button
+                  className="top-0 right-0 absolute"
+                  onClick={() => {
+                    setShowSuccessMessageForSavedSavingPlan(false);
+                    setShowErrorMessageForSavedSavingPlan(false);
+                  }}
+                >
+                  X
+                </button>
+                {showSuccessMessageForSavedSavingPlan && (
+                  <p>Dina ändringar har sparats</p>
+                )}
+
+                {showErrorMessageForSavedSavingPlan && (
+                  <p>Det gick inte att spara</p>
+                )}
+              </div>
+            </div>
+          </>
+        )}
+        {showWithdrawalSuccessMessage && (
+          <>
+            <div className="w-full h-full z-10 fixed flex justify-center items-center">
+              <div className="bg-secondary h-[30%] w-[50%] flex justify-center items-center relative">
+                <button
+                  className="top-0 right-0 absolute"
+                  onClick={() => {
+                    setShowWithdrawalSuccessMessage(false);
+                  }}
+                >
+                  X
+                </button>
+                <p>
+                  Ditt uttag lyckades, pengarna når ditt konto inom 1-3
+                  arbetsdagar
+                </p>
+              </div>
+            </div>
+          </>
+        )}
+        {showWithdrawalErrorMessage && (
+          <>
+            <div className="w-full h-full z-10 fixed flex justify-center items-center">
+              <div className="bg-secondary h-[30%] w-[50%] flex justify-center items-center relative">
+                <button
+                  className="top-0 right-0 absolute"
+                  onClick={() => {
+                    setShowWithdrawalSuccessMessage(false);
+                  }}
+                >
+                  X
+                </button>
+                <p>Något gick fel, försök igen senare</p>
+              </div>
+            </div>
+          </>
+        )}
+        <div className="bg-secondary p-4 flex flex-col gap-2 rounded-xl lg:row-span-1">
+          <h3>Information</h3>
+          <div>
+            <h4>Betalning</h4>
+            <p>
+              När du registrerat dina kortuppgifter kan du välja mellan två sätt
+              att spara.
+            </p>
+            <p>
+              {' '}
+              Med automatisk sparning beräknar systemet månadsbeloppet baserat
+              på priset på studentmössan och när du planerar att köpa den.{' '}
+            </p>
+            <p>
+              {' '}
+              Beloppet dras automatiskt från ditt kort varje månad. Med manuell
+              sparning väljer du själv månadsbeloppet, som också dras
+              automatiskt varje månad.{' '}
+            </p>
+            <p>
+              {' '}
+              Betalningarna sker automatiskt varje månad baserat på när du
+              senast gjorde en betalning.{' '}
+            </p>
+            <p>
+              När du loggar in uppdateras ditt sparande med eventuella månader
+              som har passerat sedan senaste betalningen.{' '}
+            </p>
+          </div>
+          <div>
+            <h4>Uttag</h4>
+            <p>
+              Du kan när som helst ta ut dina sparade pengar. När du gör ett
+              uttag skickas pengarna tillbaka till ditt konto och når dig inom
+              1–3 arbetsdagar.{' '}
+            </p>{' '}
+            <p>
+              Efter ett uttag nollställs ditt sparande, men du kan fortsätta
+              spara igen genom att behålla din sparningsplan aktiv.
+            </p>
+          </div>
+          <div>
+            <h4>Hantera dina uppgifter</h4>
+            <p>
+              Du kan när som helst ändra dina kortuppgifter, sparningsplan eller
+              ta ut pengar via inställningar
+            </p>
+            <p>Alla ändringar sparas direkt när du klickar på "Spara".</p>
+          </div>
+        </div>
+        <div className="bg-primary flex flex-col gap-4 rounded-xl lg:col-span-2 lg:grid-cols-2 lg:grid">
+          <div className="flex flex-col gap-4 p-4 lg:col-span-1">
+            <div>
+              <h3>Betalningsuppgifter</h3>
+              <button
+                onClick={() => setIsCardDetailsEditing(!isCardDetailsEditing)}
+              >
+                {isCardDetailsEditing
+                  ? 'Avbryt ändringar'
+                  : 'Redigera Betalningsuppgifter'}
+              </button>
+            </div>
+            <form onSubmit={handleSave} className="flex flex-col gap-2">
+              <label className="flex flex-col gap-2">
+                Namn på kortet
+                <input
+                  value={nameOnCard}
+                  onChange={(e) => setNameOnCard(e.target.value)}
+                  disabled={!isCardDetailsEditing}
+                  className="bg-background-muted disabled:bg-gray-100 disabled:text-gray-500 disabled:cursor-not-allowed"
+                />
+              </label>
+              <label className="flex flex-col gap-2">
+                Kortnummer
+                <input
+                  value={cardNumber}
+                  onChange={(e) => setCardNumber(e.target.value)}
+                  className="bg-background-muted disabled:bg-gray-100 disabled:text-gray-500 disabled:cursor-not-allowed"
+                  disabled={!isCardDetailsEditing}
+                />
+              </label>
+
               <div>
-                <label className="flex flex-col gap-2">
-                  CVV
+                <h3>MM/YY</h3>
+                <div className="flex gap-2">
                   <input
-                    value={cvv}
-                    onChange={(e) => setCvv(e.target.value)}
+                    aria-label="Månad kortet går ut"
                     type="number"
                     className="bg-background-muted disabled:bg-gray-100 disabled:text-gray-500 disabled:cursor-not-allowed"
+                    value={cardMonth}
+                    onChange={(e) => setCardMonth(e.target.value)}
                     disabled={!isCardDetailsEditing}
                   />
-                </label>
+                  <span>/</span>
+                  <input
+                    aria-label="År kortet går ut"
+                    type="number"
+                    className="bg-background-muted disabled:bg-gray-100 disabled:text-gray-500 disabled:cursor-not-allowed"
+                    value={cardYear}
+                    onChange={(e) => setCardYear(e.target.value)}
+                    disabled={!isCardDetailsEditing}
+                  />
+                </div>
+                <div>
+                  <label className="flex flex-col gap-2">
+                    CVV
+                    <input
+                      value={cvv}
+                      onChange={(e) => setCvv(e.target.value)}
+                      type="number"
+                      className="bg-background-muted disabled:bg-gray-100 disabled:text-gray-500 disabled:cursor-not-allowed"
+                      disabled={!isCardDetailsEditing}
+                    />
+                  </label>
+                </div>
               </div>
-            </div>
 
-            <button
-              onClick={() => setShowSuccessMessageForSavedCardDetails(true)}
-              type="submit"
-              className="bg-accent"
-            >
-              Spara
-            </button>
-          </form>
-        </div>
-        <div className="bg-background-muted">
-          <div>
-            <h2>Din sparningsplan</h2>
-            <button
-              onSubmit={handleSaveForSavingPlan}
-              onClick={() =>
-                setIsSavingPlanDetailsEditing(!isSavingPlanDetailsEditing)
-              }
-            >
-              {isSavingPlanDetailsEditing
-                ? 'Avbryt ändringar'
-                : 'Ändra din sparningsplan'}
-            </button>
+              <button
+                onClick={() => setShowSuccessMessageForSavedCardDetails(true)}
+                type="submit"
+                className="bg-accent"
+              >
+                Spara
+              </button>
+            </form>
           </div>
-          <form
-            onSubmit={handleSaveForSavingPlan}
-            className="flex flex-col gap-2"
-          >
-            <label className="flex flex-col gap-2">
-              {' '}
-              Examensdag
-              <input
-                value={graduationDay}
-                onChange={(e) => setGraduationDay(e.target.value)}
-                className="bg-primary  disabled:text-gray-300 disabled:cursor-not-allowed"
-                disabled={!isSavingPlanDetailsEditing}
-              />
-            </label>
-            <label className="flex flex-col gap-2">
-              Vilket datum planeras inköpet av mössan?
-              <input
-                value={dateForPurchaseHat}
-                onChange={(e) => setDateForPurchaseHat(e.target.value)}
-                className="bg-primary disabled:text-gray-300 disabled:cursor-not-allowed"
-                disabled={!isSavingPlanDetailsEditing}
-              />
-            </label>
-            <label className="flex flex-col gap-2">
-              Pris på studentmössan
-              <input
-                value={priceOnHat}
-                onChange={(e) => setPriceOnHat(e.target.value)}
-                className="bg-primary disabled:text-gray-300 disabled:cursor-not-allowed"
-                disabled={!isSavingPlanDetailsEditing}
-              />
-            </label>
-            <label className="flex flex-col gap-2">
-              Vill du välja summa att spara per månad? eller vill du spara
-              automatiskt den summa som behövs för att köpa mössan?
-              <div className="flex gap-2">
-                <button
-                  type="button"
-                  className="bg-primary text-p-white disabled:text-gray-300 disabled:cursor-not-allowed"
-                  disabled={!isSavingPlanDetailsEditing}
-                  onClick={() => setSavingsMode('manual')}
-                >
-                  Manuellt
-                </button>
-                <button
-                  type="button"
-                  className="bg-primary text-p-white disabled:text-gray-300 disabled:cursor-not-allowed"
-                  disabled={!isSavingPlanDetailsEditing}
-                  onClick={() => setSavingsMode('auto')}
-                >
-                  Automatiskt
-                </button>
-              </div>
-            </label>
-            {savingsMode === 'manual' && (
+          <div className="bg-background-muted m-4 p-4 rounded-xl lg:col-span-1">
+            <div>
+              <h2>Din sparningsplan</h2>
+              <button
+                onSubmit={handleSaveForSavingPlan}
+                onClick={() =>
+                  setIsSavingPlanDetailsEditing(!isSavingPlanDetailsEditing)
+                }
+              >
+                {isSavingPlanDetailsEditing
+                  ? 'Avbryt ändringar'
+                  : 'Ändra din sparningsplan'}
+              </button>
+            </div>
+            <form
+              onSubmit={handleSaveForSavingPlan}
+              className="flex flex-col gap-2"
+            >
               <label className="flex flex-col gap-2">
-                Summa du vill spara per månad
+                {' '}
+                Examensdag
                 <input
-                  value={monthlyAmount}
-                  onChange={(e) => setMonthlyAmount(e.target.value)}
+                  value={graduationDay}
+                  onChange={(e) => setGraduationDay(e.target.value)}
+                  className="bg-primary  disabled:text-gray-300 disabled:cursor-not-allowed"
+                  disabled={!isSavingPlanDetailsEditing}
+                />
+              </label>
+              <label className="flex flex-col gap-2">
+                Vilket datum planeras inköpet av mössan?
+                <input
+                  value={dateForPurchaseHat}
+                  onChange={(e) => setDateForPurchaseHat(e.target.value)}
                   className="bg-primary disabled:text-gray-300 disabled:cursor-not-allowed"
                   disabled={!isSavingPlanDetailsEditing}
                 />
               </label>
-            )}
-            {savingsMode === 'auto' && (
-              <p>Du kommer att spara {monthlyAmount} kr i månaden</p>
-            )}
-            <button type="submit">Spara</button>
+              <label className="flex flex-col gap-2">
+                Pris på studentmössan
+                <input
+                  value={priceOnHat}
+                  onChange={(e) => setPriceOnHat(e.target.value)}
+                  className="bg-primary disabled:text-gray-300 disabled:cursor-not-allowed"
+                  disabled={!isSavingPlanDetailsEditing}
+                />
+              </label>
+              <label className="flex flex-col gap-2">
+                Vill du välja summa att spara per månad? eller vill du spara
+                automatiskt den summa som behövs för att köpa mössan?
+                <div className="flex gap-2">
+                  <button
+                    type="button"
+                    className="bg-primary text-p-white disabled:text-gray-300 disabled:cursor-not-allowed"
+                    disabled={!isSavingPlanDetailsEditing}
+                    onClick={() => setSavingsMode('manual')}
+                  >
+                    Manuellt
+                  </button>
+                  <button
+                    type="button"
+                    className="bg-primary text-p-white disabled:text-gray-300 disabled:cursor-not-allowed"
+                    disabled={!isSavingPlanDetailsEditing}
+                    onClick={() => setSavingsMode('auto')}
+                  >
+                    Automatiskt
+                  </button>
+                </div>
+              </label>
+              {savingsMode === 'manual' && (
+                <label className="flex flex-col gap-2">
+                  Summa du vill spara per månad
+                  <input
+                    value={monthlyAmount}
+                    onChange={(e) => setMonthlyAmount(e.target.value)}
+                    className="bg-primary disabled:text-gray-300 disabled:cursor-not-allowed"
+                    disabled={!isSavingPlanDetailsEditing}
+                  />
+                </label>
+              )}
+              {savingsMode === 'auto' && (
+                <p>Du kommer att spara {monthlyAmount} kr i månaden</p>
+              )}
+              <button className="bg-secondary text-p-white" type="submit">
+                Spara
+              </button>
 
-            <button
-              type="button"
-              onClick={() => {
-                if (userData && user?.id) {
-                  const updatedData = withdrawSavings(userData, user.id);
-                  if (updatedData) {
-                    queryClient.invalidateQueries({
-                      queryKey: ['userData', user.id],
-                    });
-                    setShowWithdrawalSuccessMessage(true);
+              <button
+                type="button"
+                className="bg-accent text-p-white"
+                onClick={() => {
+                  if (userData && user?.id) {
+                    const updatedData = withdrawSavings(userData, user.id);
+                    if (updatedData) {
+                      queryClient.invalidateQueries({
+                        queryKey: ['userData', user.id],
+                      });
+                      setShowWithdrawalSuccessMessage(true);
+                    } else {
+                      setShowWithdrawalErrorMessage(true);
+                    }
                   } else {
                     setShowWithdrawalErrorMessage(true);
                   }
-                } else {
-                  setShowWithdrawalErrorMessage(true);
-                }
-              }}
-            >
-              Ta ut sparande
-            </button>
-          </form>
+                }}
+              >
+                Ta ut sparande
+              </button>
+            </form>
+          </div>
         </div>
       </div>
     </section>
