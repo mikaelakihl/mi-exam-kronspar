@@ -77,7 +77,9 @@ const Header = () => {
           />
           <div className="absolute top-7 left-3.5 text-center flex flex-col font-bold gap-0 ">
             <p className="text-xs">{data?.savings?.savedAmount}</p>
-            <h1 className=" font-bold text-background-muted ">Kronspar</h1>
+            <h1 className=" font-bold text-background-muted text-stroke ">
+              Kronspar
+            </h1>
           </div>
         </div>
         <button

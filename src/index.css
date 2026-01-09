@@ -13,4 +13,11 @@
   /* text */
   --color-p-black: #000000;
   --color-p-white: #ffffff;
+
+  --color-stroke: #28114a;
+}
+
+.text-stroke {
+  -webkit-text-stroke: 1px var(--color-stroke);
+  -webkit-text-fill-color: #f5e298;
 }
