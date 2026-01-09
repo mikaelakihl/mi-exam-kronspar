@@ -73,11 +73,11 @@ const Header = () => {
           <img
             src="/assets/kronspar-pig.png"
             alt="Kronspar"
-            className="w-18 h-18 ml-5"
+            className="w-17 h-17 ml-5"
           />
-          <div className="absolute top-8 left-4 text-center flex flex-col font-bold ">
+          <div className="absolute top-7 left-3.5 text-center flex flex-col font-bold gap-0 ">
             <p className="text-xs">{data?.savings?.savedAmount}</p>
-            <h1 className=" font-bold text-background-muted">Kronspar</h1>
+            <h1 className=" font-bold text-background-muted ">Kronspar</h1>
           </div>
         </div>
         <button
@@ -128,7 +128,7 @@ const Header = () => {
               </NavLink>
             </nav>
             <div className="flex items-center">
-              <div className="text-p-white bg-secondary h-[60px] p-4 mb-1">
+              <div className="text-p-white bg-secondary h-[60px] p-4  mb-2">
                 {data?.graduation ? (
                   <p>
                     Studenten är om:{' '}
@@ -140,7 +140,7 @@ const Header = () => {
                   </p>
                 ) : null}
               </div>
-              <div className="flex items-center bg-accent p-4 mb-1">
+              <div className="flex items-center bg-accent p-4 [h-60px] mb-2 ">
                 <UserButton />
               </div>
             </div>
