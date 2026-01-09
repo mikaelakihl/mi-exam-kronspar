@@ -69,7 +69,17 @@ const Header = () => {
   return (
     <>
       <header className="bg-primary flex justify-between items-center">
-        <h1>Kronspar</h1>
+        <div>
+          <img
+            src="/assets/kronspar-pig.png"
+            alt="Kronspar"
+            className="w-18 h-18 ml-5"
+          />
+          <div className="absolute top-8 left-4 text-center flex flex-col font-bold ">
+            <p className="text-xs">{data?.savings?.savedAmount}</p>
+            <h1 className=" font-bold text-background-muted">Kronspar</h1>
+          </div>
+        </div>
         <button
           className="bg-primary text-primary hover:bg-primary/80 transition-all duration-300 hover:text-primary hover:border-secondary hover:text-white hover:border-2 p-2 rounded uppercase tracking-wider "
           onClick={() => setIsTimeTravelOpen(!isTimeTravelOpen)}
