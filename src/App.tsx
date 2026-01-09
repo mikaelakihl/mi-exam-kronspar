@@ -783,7 +783,7 @@ const Settings = () => {
               </label>
 
               <div>
-                <h3>MM/YY</h3>
+                <p>MM/YY</p>
                 <div className="flex gap-2">
                   <input
                     aria-label="Månad kortet går ut"
@@ -803,18 +803,18 @@ const Settings = () => {
                     disabled={!isCardDetailsEditing}
                   />
                 </div>
-                <div>
-                  <label className="flex flex-col gap-2">
-                    CVV
-                    <input
-                      value={cvv}
-                      onChange={(e) => setCvv(e.target.value)}
-                      type="number"
-                      className="bg-background-muted disabled:bg-gray-100 disabled:text-gray-500 disabled:cursor-not-allowed"
-                      disabled={!isCardDetailsEditing}
-                    />
-                  </label>
-                </div>
+              </div>
+              <div>
+                <label className="flex flex-col gap-2">
+                  CVV
+                  <input
+                    value={cvv}
+                    onChange={(e) => setCvv(e.target.value)}
+                    type="number"
+                    className="bg-background-muted disabled:bg-gray-100 disabled:text-gray-500 disabled:cursor-not-allowed"
+                    disabled={!isCardDetailsEditing}
+                  />
+                </label>
               </div>
 
               <button
