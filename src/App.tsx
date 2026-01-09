@@ -908,31 +908,33 @@ const Settings = () => {
               {savingsMode === 'auto' && (
                 <p>Du kommer att spara {monthlyAmount} kr i månaden</p>
               )}
-              <button className="bg-secondary text-p-white" type="submit">
-                Spara
-              </button>
+              <div className="grid grid-cols-2 gap-2">
+                <button className="bg-secondary text-p-white" type="submit">
+                  Spara
+                </button>
 
-              <button
-                type="button"
-                className="bg-accent text-p-white"
-                onClick={() => {
-                  if (userData && user?.id) {
-                    const updatedData = withdrawSavings(userData, user.id);
-                    if (updatedData) {
-                      queryClient.invalidateQueries({
-                        queryKey: ['userData', user.id],
-                      });
-                      setShowWithdrawalSuccessMessage(true);
+                <button
+                  type="button"
+                  className="bg-accent text-p-white"
+                  onClick={() => {
+                    if (userData && user?.id) {
+                      const updatedData = withdrawSavings(userData, user.id);
+                      if (updatedData) {
+                        queryClient.invalidateQueries({
+                          queryKey: ['userData', user.id],
+                        });
+                        setShowWithdrawalSuccessMessage(true);
+                      } else {
+                        setShowWithdrawalErrorMessage(true);
+                      }
                     } else {
                       setShowWithdrawalErrorMessage(true);
                     }
-                  } else {
-                    setShowWithdrawalErrorMessage(true);
-                  }
-                }}
-              >
-                Ta ut sparande
-              </button>
+                  }}
+                >
+                  Ta ut sparande
+                </button>
+              </div>
             </form>
           </div>
         </div>
