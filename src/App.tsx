@@ -615,7 +615,7 @@ const Settings = () => {
 
   return (
     <section className="">
-      <h2>Inställningar</h2>
+      <h2 className="mb-4">Inställningar</h2>
       <div className="grid gap-4 lg:grid-cols-3">
         {(showSuccessMessageForSavedCardDetails ||
           showErrorMessageForSavedCardDetails) && (
@@ -1213,7 +1213,7 @@ const Statistics = () => {
 
   return (
     <section>
-      <h2>Statistik</h2>
+      <h2 className="mb-4">Statistik</h2>
       <div className="grid gap-2 md:grid md:grid-cols-6">
         <div className="bg-background-muted md:col-span-4">
           <p>Du sparar just nu {data.savings?.monthlyAmount} kr i månaden </p>
