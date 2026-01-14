@@ -1217,7 +1217,7 @@ const Statistics = () => {
     <section>
       <h2 className="mb-4">Statistik</h2>
       <div className="grid gap-2 md:grid md:grid-cols-6">
-        <div className="bg-background-muted md:col-span-4 flex flex-col gap-2 p-4 ">
+        <div className="glass-effect md:col-span-4 flex flex-col gap-2 p-4 ">
           <div>
             <div>
               <p>
@@ -1246,26 +1246,28 @@ const Statistics = () => {
               )}
             </div>
           </div>
-          <div className="flex items-center gap-1">
+          <div className="flex items-center gap-1 text-tertiary">
             <IoMdSettings />{' '}
             <NavLink to="/settings">
               Klicka här om du vill ändra din spar-plan
             </NavLink>
           </div>
         </div>
-        <div className="bg-background-muted md:col-span-2 flex gap-2 justify-between items-center p-4">
+        <div className="glass-effect bg-background-muted md:col-span-2 flex gap-2 justify-between items-center p-4">
           <div>
             <p>Nästa inbetalning sker datum</p>
-            <p className="text-3xl md:text-4xl lg:text-5xl">Datum</p>
+            <p className="text-3xl md:text-4xl lg:text-5xl text-tertiary">
+              Datum
+            </p>
           </div>
           <div>
             <p>icon</p>
           </div>
         </div>
-        <div className="bg-background-muted md:col-span-2 flex gap-2 justify-between items-center p-4">
+        <div className="glass-effect md:col-span-2 flex gap-2 justify-between items-center p-4">
           <div>
             <p>Antal dagar till studenten </p>{' '}
-            <p className="text-3xl md:text-4xl lg:text-5xl">
+            <p className="text-3xl md:text-4xl lg:text-5xl text-tertiary">
               {getDaysUntilGraduation(
                 data.graduation?.graduationDay,
                 user?.id
@@ -1276,11 +1278,11 @@ const Statistics = () => {
             <p>icon</p>
           </div>
         </div>
-        <div className="bg-background-muted md:col-span-2 flex  gap-2 justify-between items-center p-4">
+        <div className="glass-effect md:col-span-2 flex  gap-2 justify-between items-center p-4">
           <div>
             <p>Du behöver köpa mössa om: </p>
             <div className="flex items-baseline gap-2">
-              <p className="text-3xl md:text-4xl lg:text-5xl">
+              <p className="text-3xl md:text-4xl lg:text-5xl text-tertiary">
                 {getDaysUntilPurchaseHat(
                   data.graduation?.dateForPurchaseHat,
                   user?.id
@@ -1293,11 +1295,11 @@ const Statistics = () => {
             <p>icon</p>
           </div>
         </div>
-        <div className="bg-background-muted md:col-span-2 flex  gap-2 justify-between items-center p-4">
+        <div className=" glass-effect md:col-span-2 flex gap-2 justify-between items-center p-4">
           <div>
-            <p>Du har sparat:</p>{' '}
+            <p className="text-tertiary">Du har sparat:</p>{' '}
             <div className="flex items-baseline gap-2">
-              <p className="text-3xl md:text-4xl lg:text-5xl">
+              <p className="text-3xl md:text-4xl lg:text-5xl ">
                 {' '}
                 {data.savings?.savedAmount || 0}
               </p>
