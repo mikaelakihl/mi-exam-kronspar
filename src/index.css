@@ -5,6 +5,7 @@
   --color-primary: #70508f; /* deep purple */
   --color-accent: #f67f77; /* coral */
   --color-secondary: #b99ef1; /* lavender */
+  --color-tertiary: #190330; /* dark purple */
 
   /* backgrounds*/
   --color-background-muted: #fefeff; /* almost white*/
@@ -40,6 +41,12 @@
 
   button {
     @apply p-3 lg:p-2;
+  }
+}
+
+@layer utilities {
+  .glass-effect {
+    @apply bg-background-muted/60 rounded-xl backdrop-blur-lg border border-white shadow-lg;
   }
 }
 
