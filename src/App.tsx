@@ -14,6 +14,8 @@ import {
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import type { UserData } from './mocks/handlers';
 import { CiTimer } from 'react-icons/ci';
+import { IoSettings } from 'react-icons/io5';
+import { IoMdSettings } from 'react-icons/io';
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -1215,49 +1217,96 @@ const Statistics = () => {
     <section>
       <h2 className="mb-4">Statistik</h2>
       <div className="grid gap-2 md:grid md:grid-cols-6">
-        <div className="bg-background-muted md:col-span-4">
-          <p>Du sparar just nu {data.savings?.monthlyAmount} kr i månaden </p>
-          {data.savings?.savingsMode === 'auto' && (
-            <p>
-              Du beräknas ha {data.graduation?.priceOnHat} kr den{' '}
-              {data.graduation?.dateForPurchaseHat}
-            </p>
-          )}
-          {data.savings?.savingsMode === 'manual' && (
-            <p>
-              Du beräknas ha{' '}
-              {calculateSumOfSavingsInManualSavingsMode(
-                // Make sure to convert to numbers before passing to the function
-                Number(data.savings?.monthlyAmount),
-                data.graduation?.dateForPurchaseHat,
+        <div className="bg-background-muted md:col-span-4 flex flex-col gap-2 p-4 ">
+          <div>
+            <div>
+              <p>
+                Du sparar just nu {data.savings?.monthlyAmount} kr i
+                månaden{' '}
+              </p>
+              {data.savings?.savingsMode === 'auto' && (
+                <p>
+                  Du beräknas ha {data.graduation?.priceOnHat} kr den{' '}
+                  {data.graduation?.dateForPurchaseHat}
+                </p>
+              )}
+            </div>
+            <div>
+              {data.savings?.savingsMode === 'manual' && (
+                <p>
+                  Du beräknas ha{' '}
+                  {calculateSumOfSavingsInManualSavingsMode(
+                    // Make sure to convert to numbers before passing to the function
+                    Number(data.savings?.monthlyAmount),
+                    data.graduation?.dateForPurchaseHat,
+                    user?.id
+                  )}{' '}
+                  kr den {data.graduation?.dateForPurchaseHat}
+                </p>
+              )}
+            </div>
+          </div>
+          <div className="flex items-center gap-1">
+            <IoMdSettings />{' '}
+            <NavLink to="/settings">
+              Klicka här om du vill ändra din spar-plan
+            </NavLink>
+          </div>
+        </div>
+        <div className="bg-background-muted md:col-span-2 flex gap-2 justify-between items-center p-4">
+          <div>
+            <p>Nästa inbetalning sker datum</p>
+            <p className="text-3xl md:text-4xl lg:text-5xl">Datum</p>
+          </div>
+          <div>
+            <p>icon</p>
+          </div>
+        </div>
+        <div className="bg-background-muted md:col-span-2 flex gap-2 justify-between items-center p-4">
+          <div>
+            <p>Antal dagar till studenten </p>{' '}
+            <p className="text-3xl md:text-4xl lg:text-5xl">
+              {getDaysUntilGraduation(
+                data.graduation?.graduationDay,
                 user?.id
               )}{' '}
-              kr den {data.graduation?.dateForPurchaseHat}
             </p>
-          )}
-          <button>Klicka här om du vill ändra din spar-plan</button>
+          </div>
+          <div>
+            <p>icon</p>
+          </div>
         </div>
-        <div className="bg-background-muted md:col-span-2">
-          <p>Nästa inbetalning sker datum</p>
+        <div className="bg-background-muted md:col-span-2 flex  gap-2 justify-between items-center p-4">
+          <div>
+            <p>Du behöver köpa mössa om: </p>
+            <div className="flex items-baseline gap-2">
+              <p className="text-3xl md:text-4xl lg:text-5xl">
+                {getDaysUntilPurchaseHat(
+                  data.graduation?.dateForPurchaseHat,
+                  user?.id
+                )}
+              </p>
+              <p>Dagar</p>
+            </div>
+          </div>
+          <div>
+            <p>icon</p>
+          </div>
         </div>
-        <div className="bg-background-muted md:col-span-2">
-          <p>
-            Studenten är om{' '}
-            {getDaysUntilGraduation(data.graduation?.graduationDay, user?.id)}{' '}
-            dagar
-          </p>
-        </div>
-        <div className="bg-background-muted md:col-span-2">
-          <p>
-            Dags att köpa mössa om:{' '}
-            {getDaysUntilPurchaseHat(
-              data.graduation?.dateForPurchaseHat,
-              user?.id
-            )}
-          </p>
-        </div>
-        <div className="bg-background-muted md:col-span-2">
-          <p>Du har sparat: {data.savings?.savedAmount || 0} kr</p>
+        <div className="bg-background-muted md:col-span-2 flex  gap-2 justify-between items-center p-4">
+          <div>
+            <p>Du har sparat:</p>{' '}
+            <div className="flex items-baseline gap-2">
+              <p className="text-3xl md:text-4xl lg:text-5xl">
+                {' '}
+                {data.savings?.savedAmount || 0}
+              </p>
+              <p>kr</p>
+            </div>
+          </div>
+          <div>
+            <p>icon</p>
+          </div>
         </div>
       </div>
     </section>
