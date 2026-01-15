@@ -754,16 +754,18 @@ const Settings = () => {
             <p>Alla ändringar sparas direkt när du klickar på "Spara".</p>
           </div>
         </div>
-        <div className="bg-primary flex flex-col gap-4 rounded-xl lg:col-span-2 lg:grid-cols-2 lg:grid">
-          <div className="flex flex-col gap-4 p-4 lg:col-span-1">
-            <div>
+        <div className="bg-primary flex flex-col gap-4 lg:gap-0 rounded-xl lg:col-span-2 lg:grid-cols-2 lg:grid ">
+          <div className=" p-4 lg:col-span-1 items-center text-p-white lg:mt-4">
+            <div className="flex flex-col justify-between items-center">
               <h3>Betalningsuppgifter</h3>
               <button
+                className="flex items-center gap-1 text-p-white"
                 onClick={() => setIsCardDetailsEditing(!isCardDetailsEditing)}
               >
+                <IoMdSettings />
                 {isCardDetailsEditing
                   ? 'Avbryt ändringar'
-                  : 'Redigera Betalningsuppgifter'}
+                  : 'Redigera betalningsuppgifter'}
               </button>
             </div>
             <form onSubmit={handleSave} className="flex flex-col gap-2">
@@ -792,7 +794,7 @@ const Settings = () => {
                   <input
                     aria-label="Månad kortet går ut"
                     type="number"
-                    className="bg-background-muted disabled:bg-gray-100 disabled:text-gray-500 disabled:cursor-not-allowed"
+                    className=" w-full min-w-0 flex-1 bg-background-muted disabled:bg-gray-100 disabled:text-gray-500 disabled:cursor-not-allowed"
                     value={cardMonth}
                     onChange={(e) => setCardMonth(e.target.value)}
                     disabled={!isCardDetailsEditing}
@@ -801,7 +803,7 @@ const Settings = () => {
                   <input
                     aria-label="År kortet går ut"
                     type="number"
-                    className="bg-background-muted disabled:bg-gray-100 disabled:text-gray-500 disabled:cursor-not-allowed"
+                    className=" w-full min-w-0 flex-1 bg-background-muted disabled:bg-gray-100 disabled:text-gray-500 disabled:cursor-not-allowed"
                     value={cardYear}
                     onChange={(e) => setCardYear(e.target.value)}
                     disabled={!isCardDetailsEditing}
@@ -830,15 +832,17 @@ const Settings = () => {
               </button>
             </form>
           </div>
-          <div className="bg-background-muted m-4 p-4 rounded-xl lg:col-span-1">
-            <div>
-              <h2>Din sparningsplan</h2>
+          <div className="bg-background-muted m-4 p-4 rounded-xl lg:col-span-1 flex flex-col items-center">
+            <div className="flex flex-col justify-between items-center">
+              <h3>Din sparningsplan</h3>
               <button
+                className="flex items-center gap-1"
                 onSubmit={handleSaveForSavingPlan}
                 onClick={() =>
                   setIsSavingPlanDetailsEditing(!isSavingPlanDetailsEditing)
                 }
               >
+                <IoMdSettings />
                 {isSavingPlanDetailsEditing
                   ? 'Avbryt ändringar'
                   : 'Ändra din sparningsplan'}
