@@ -756,7 +756,7 @@ const Settings = () => {
         </div>
         <div className="bg-primary flex flex-col gap-4 lg:gap-0 rounded-xl lg:col-span-2 lg:grid-cols-2 lg:grid ">
           <div className=" p-4 lg:col-span-1 items-center text-p-white lg:mt-4">
-            <div className="flex flex-col justify-between items-center">
+            <div className="flex flex-col justify-between items-center pb-4 lg:pb-6">
               <h3>Betalningsuppgifter</h3>
               <button
                 className="flex items-center gap-1 text-p-white"
@@ -833,7 +833,7 @@ const Settings = () => {
             </form>
           </div>
           <div className="bg-background-muted m-4 p-4 rounded-xl lg:col-span-1 flex flex-col items-center">
-            <div className="flex flex-col justify-between items-center">
+            <div className="flex flex-col justify-between items-center pb-4 lg:pb-6">
               <h3>Din sparningsplan</h3>
               <button
                 className="flex items-center gap-1"
