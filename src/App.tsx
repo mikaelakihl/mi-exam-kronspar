@@ -615,7 +615,7 @@ const Settings = () => {
 
   return (
     <section className="">
-      <h2 className="mb-4">Inställningar</h2>
+      <h2 className="mb-4 text-center">Inställningar</h2>
       <div className="grid gap-4 lg:grid-cols-3">
         {(showSuccessMessageForSavedCardDetails ||
           showErrorMessageForSavedCardDetails) && (
@@ -715,10 +715,10 @@ const Settings = () => {
           </div>
           <div>
             <details>
-              <summary className="bg-primary text-p-white rounded-lg p-2">
+              <summary className="bg-primary text-p-white rounded-lg p-3 ">
                 Betalning
               </summary>
-              <div className="flex flex-col gap-2 bg-background rounded-lg  p-2">
+              <div className="flex flex-col gap-2 bg-background rounded-lg  p-3">
                 <p>
                   När du registrerat dina kortuppgifter kan du välja mellan två
                   sätt att spara.
@@ -745,10 +745,10 @@ const Settings = () => {
             </details>
           </div>
           <details>
-            <summary className="bg-primary text-p-white rounded-lg p-2">
+            <summary className="bg-primary text-p-white rounded-lg p-3">
               Uttag
             </summary>
-            <div className="flex flex-col gap-2 bg-background rounded-lg  p-2">
+            <div className="flex flex-col gap-2 bg-background rounded-lg  p-3">
               <p>
                 Du kan när som helst ta ut dina sparade pengar. När du gör ett
                 uttag skickas pengarna tillbaka till ditt konto och når dig inom
@@ -761,10 +761,10 @@ const Settings = () => {
             </div>
           </details>
           <details>
-            <summary className="bg-primary text-p-white rounded-lg p-2">
+            <summary className="bg-primary text-p-white rounded-lg p-3">
               Hantera dina uppgifter
             </summary>
-            <div className="flex flex-col gap-2 bg-background rounded-lg  p-2">
+            <div className="flex flex-col gap-2 bg-background rounded-lg  p-3">
               <p>
                 Du kan när som helst ändra dina kortuppgifter, sparningsplan
                 eller ta ut pengar via inställningar
