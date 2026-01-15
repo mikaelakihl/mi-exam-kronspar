@@ -773,7 +773,7 @@ const Settings = () => {
             </div>
           </details>
         </div>
-        <div className="bg-primary flex flex-col gap-4 lg:gap-0 rounded-xl lg:col-span-2 lg:grid-cols-2 lg:grid ">
+        <div className="bg-primary glass-effect-input flex flex-col gap-4 lg:gap-0 rounded-xl lg:col-span-2 lg:grid-cols-2 lg:grid ">
           <div className=" p-4 lg:col-span-1 items-center text-p-white lg:mt-4">
             <div className="flex flex-col justify-between items-center pb-4 lg:pb-6">
               <h3>Betalningsuppgifter</h3>
@@ -794,7 +794,7 @@ const Settings = () => {
                   value={nameOnCard}
                   onChange={(e) => setNameOnCard(e.target.value)}
                   disabled={!isCardDetailsEditing}
-                  className="bg-background-muted disabled:bg-gray-100 disabled:text-gray-500 disabled:cursor-not-allowed"
+                  className="bg-background-muted disabled:bg-gray-100 disabled:text-gray-500 disabled:cursor-not-allowed glass-effect-input"
                 />
               </label>
               <label className="flex flex-col gap-2">
@@ -802,18 +802,18 @@ const Settings = () => {
                 <input
                   value={cardNumber}
                   onChange={(e) => setCardNumber(e.target.value)}
-                  className="bg-background-muted disabled:bg-gray-100 disabled:text-gray-500 disabled:cursor-not-allowed"
+                  className="bg-background-muted disabled:bg-gray-100 disabled:text-gray-500 disabled:cursor-not-allowed glass-effect-input"
                   disabled={!isCardDetailsEditing}
                 />
               </label>
 
               <div>
-                <p>MM/YY</p>
+                <p className="text-base lg:text-lg mb-2">MM/YY</p>
                 <div className="flex gap-2">
                   <input
                     aria-label="Månad kortet går ut"
                     type="number"
-                    className=" w-full min-w-0 flex-1 bg-background-muted disabled:bg-gray-100 disabled:text-gray-500 disabled:cursor-not-allowed"
+                    className=" w-full min-w-0 flex-1 bg-background-muted disabled:bg-gray-100 disabled:text-gray-500 disabled:cursor-not-allowed glass-effect-input"
                     value={cardMonth}
                     onChange={(e) => setCardMonth(e.target.value)}
                     disabled={!isCardDetailsEditing}
@@ -822,7 +822,7 @@ const Settings = () => {
                   <input
                     aria-label="År kortet går ut"
                     type="number"
-                    className=" w-full min-w-0 flex-1 bg-background-muted disabled:bg-gray-100 disabled:text-gray-500 disabled:cursor-not-allowed"
+                    className=" w-full min-w-0 flex-1 bg-background-muted disabled:bg-gray-100 disabled:text-gray-500 disabled:cursor-not-allowed glass-effect-input"
                     value={cardYear}
                     onChange={(e) => setCardYear(e.target.value)}
                     disabled={!isCardDetailsEditing}
@@ -836,7 +836,7 @@ const Settings = () => {
                     value={cvv}
                     onChange={(e) => setCvv(e.target.value)}
                     type="number"
-                    className="bg-background-muted disabled:bg-gray-100 disabled:text-gray-500 disabled:cursor-not-allowed"
+                    className="bg-background-muted disabled:bg-gray-100 disabled:text-gray-500 disabled:cursor-not-allowed glass-effect-input"
                     disabled={!isCardDetailsEditing}
                   />
                 </label>
@@ -845,7 +845,7 @@ const Settings = () => {
               <button
                 onClick={() => setShowSuccessMessageForSavedCardDetails(true)}
                 type="submit"
-                className="bg-accent"
+                className="bg-accent glass-effect-input mt-2"
               >
                 Spara
               </button>
@@ -877,7 +877,7 @@ const Settings = () => {
                 <input
                   value={graduationDay}
                   onChange={(e) => setGraduationDay(e.target.value)}
-                  className="bg-primary  disabled:text-gray-300 disabled:cursor-not-allowed"
+                  className="bg-primary  disabled:text-gray-300 disabled:cursor-not-allowed glass-effect-input text-p-white"
                   disabled={!isSavingPlanDetailsEditing}
                 />
               </label>
@@ -886,7 +886,7 @@ const Settings = () => {
                 <input
                   value={dateForPurchaseHat}
                   onChange={(e) => setDateForPurchaseHat(e.target.value)}
-                  className="bg-primary disabled:text-gray-300 disabled:cursor-not-allowed"
+                  className="bg-primary disabled:text-gray-300 disabled:cursor-not-allowed glass-effect-input text-p-white"
                   disabled={!isSavingPlanDetailsEditing}
                 />
               </label>
@@ -895,7 +895,7 @@ const Settings = () => {
                 <input
                   value={priceOnHat}
                   onChange={(e) => setPriceOnHat(e.target.value)}
-                  className="bg-primary disabled:text-gray-300 disabled:cursor-not-allowed"
+                  className="bg-primary text-p-white disabled:text-gray-300 disabled:cursor-not-allowed glass-effect-input"
                   disabled={!isSavingPlanDetailsEditing}
                 />
               </label>
@@ -905,7 +905,7 @@ const Settings = () => {
                 <div className="flex gap-2">
                   <button
                     type="button"
-                    className="bg-primary text-p-white disabled:text-gray-300 disabled:cursor-not-allowed"
+                    className="bg-primary text-p-white disabled:text-gray-300 disabled:cursor-not-allowed glass-effect-input"
                     disabled={!isSavingPlanDetailsEditing}
                     onClick={() => setSavingsMode('manual')}
                   >
@@ -913,7 +913,7 @@ const Settings = () => {
                   </button>
                   <button
                     type="button"
-                    className="bg-primary text-p-white disabled:text-gray-300 disabled:cursor-not-allowed"
+                    className="bg-primary text-p-white disabled:text-gray-300 disabled:cursor-not-allowed glass-effect-input"
                     disabled={!isSavingPlanDetailsEditing}
                     onClick={() => setSavingsMode('auto')}
                   >
@@ -927,7 +927,7 @@ const Settings = () => {
                   <input
                     value={monthlyAmount}
                     onChange={(e) => setMonthlyAmount(e.target.value)}
-                    className="bg-primary disabled:text-gray-300 disabled:cursor-not-allowed"
+                    className="bg-primary glass-effect-input disabled:text-gray-300 disabled:cursor-not-allowed text-p-white"
                     disabled={!isSavingPlanDetailsEditing}
                   />
                 </label>
@@ -936,13 +936,16 @@ const Settings = () => {
                 <p>Du kommer att spara {monthlyAmount} kr i månaden</p>
               )}
               <div className="grid grid-cols-2 gap-2">
-                <button className="bg-secondary text-p-white" type="submit">
+                <button
+                  className="bg-secondary text-p-white glass-effect-input"
+                  type="submit"
+                >
                   Spara
                 </button>
 
                 <button
                   type="button"
-                  className="bg-accent text-p-white"
+                  className="bg-accent text-p-white glass-effect-input"
                   onClick={() => {
                     if (userData && user?.id) {
                       const updatedData = withdrawSavings(userData, user.id);

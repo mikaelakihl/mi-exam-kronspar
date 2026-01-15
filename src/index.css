@@ -43,6 +43,10 @@
     font-family: 'Manrope', serif;
   }
 
+  label {
+    @apply text-base lg:text-lg;
+  }
+
   input {
     @apply p-3 lg:p-2;
   }
@@ -58,6 +62,10 @@
   }
   .glass-effect-info {
     @apply bg-secondary/60 rounded-xl backdrop-blur-xl border border-white shadow-lg;
+  }
+
+  .glass-effect-input {
+    @apply rounded-lg backdrop-blur-lg border border-white shadow-lg;
   }
 }
 
