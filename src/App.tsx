@@ -705,7 +705,7 @@ const Settings = () => {
           </>
         )}
         <div className="bg-secondary p-4 flex flex-col gap-2 rounded-xl lg:row-span-1">
-          <h3>Information</h3>
+          <h3 className="p-4">Information</h3>
           <div>
             <h4>Betalning</h4>
             <p>
