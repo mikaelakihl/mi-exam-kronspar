@@ -615,7 +615,7 @@ const Settings = () => {
 
   return (
     <section className="">
-      <h2 className="mb-4 text-center">Inställningar</h2>
+      <h2 className="mb-4 text-center text-tertiary">Inställningar</h2>
       <div className="grid gap-4 lg:grid-cols-3">
         {(showSuccessMessageForSavedCardDetails ||
           showErrorMessageForSavedCardDetails) && (
@@ -705,8 +705,8 @@ const Settings = () => {
           </>
         )}
         <div className=" glass-effect-info  p-4 flex flex-col gap-4 rounded-xl lg:row-span-1">
-          <h3 className="p-4">Information</h3>
-          <div className="p-2">
+          <h3 className="p-4  text-tertiary">Information</h3>
+          <div className="p-2 text-tertiary">
             <p>Här hittar du information om hur ditt sparande fungerar.</p>
             <p>
               Klicka på rubrikerna nedan för att läsa mer om betalningar, uttag
@@ -853,9 +853,9 @@ const Settings = () => {
           </div>
           <div className="bg-background-muted m-4 p-4 rounded-xl lg:col-span-1 flex flex-col items-center">
             <div className="flex flex-col justify-between items-center pb-4 lg:pb-6">
-              <h3>Din sparningsplan</h3>
+              <h3 className="text-tertiary">Din sparningsplan</h3>
               <button
-                className="flex items-center gap-1"
+                className="flex items-center gap-1 text-tertiary"
                 onSubmit={handleSaveForSavingPlan}
                 onClick={() =>
                   setIsSavingPlanDetailsEditing(!isSavingPlanDetailsEditing)
@@ -871,7 +871,7 @@ const Settings = () => {
               onSubmit={handleSaveForSavingPlan}
               className="flex flex-col gap-2"
             >
-              <label className="flex flex-col gap-2">
+              <label className="flex flex-col gap-2 text-tertiary">
                 {' '}
                 Examensdag
                 <input
@@ -881,7 +881,7 @@ const Settings = () => {
                   disabled={!isSavingPlanDetailsEditing}
                 />
               </label>
-              <label className="flex flex-col gap-2">
+              <label className="flex flex-col gap-2 text-tertiary">
                 Vilket datum planeras inköpet av mössan?
                 <input
                   value={dateForPurchaseHat}
@@ -890,7 +890,7 @@ const Settings = () => {
                   disabled={!isSavingPlanDetailsEditing}
                 />
               </label>
-              <label className="flex flex-col gap-2">
+              <label className="flex flex-col gap-2 text-tertiary">
                 Pris på studentmössan
                 <input
                   value={priceOnHat}
@@ -899,7 +899,7 @@ const Settings = () => {
                   disabled={!isSavingPlanDetailsEditing}
                 />
               </label>
-              <label className="flex flex-col gap-2">
+              <label className="flex flex-col gap-2 text-tertiary">
                 Vill du välja summa att spara per månad? eller vill du spara
                 automatiskt den summa som behövs för att köpa mössan?
                 <div className="flex gap-2">
@@ -933,7 +933,9 @@ const Settings = () => {
                 </label>
               )}
               {savingsMode === 'auto' && (
-                <p>Du kommer att spara {monthlyAmount} kr i månaden</p>
+                <p className="text-tertiary">
+                  Du kommer att spara {monthlyAmount} kr i månaden
+                </p>
               )}
               <div className="grid grid-cols-2 gap-2">
                 <button
@@ -1238,7 +1240,7 @@ const Statistics = () => {
   if (!data) return <div>Ingen data tillgänglig.</div>;
 
   return (
-    <section>
+    <section className="tertiary">
       <h2 className="mb-4">Statistik</h2>
       <div className="grid gap-2 md:grid md:grid-cols-6">
         <div className="glass-effect md:col-span-4 flex flex-col gap-2 p-4 ">
