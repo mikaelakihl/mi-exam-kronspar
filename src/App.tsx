@@ -13,8 +13,6 @@ import {
 } from '@clerk/clerk-react';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import type { UserData } from './mocks/handlers';
-import { CiTimer } from 'react-icons/ci';
-import { IoSettings } from 'react-icons/io5';
 import { IoMdSettings } from 'react-icons/io';
 
 const Header = () => {
