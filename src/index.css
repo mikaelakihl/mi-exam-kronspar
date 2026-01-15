@@ -56,6 +56,9 @@
   .glass-effect {
     @apply bg-background-muted/60 rounded-xl backdrop-blur-lg border border-white shadow-lg;
   }
+  .glass-effect-info {
+    @apply bg-secondary/60 rounded-xl backdrop-blur-xl border border-white shadow-lg;
+  }
 }
 
 .text-stroke {

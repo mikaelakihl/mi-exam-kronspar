@@ -704,55 +704,74 @@ const Settings = () => {
             </div>
           </>
         )}
-        <div className="bg-secondary p-4 flex flex-col gap-2 rounded-xl lg:row-span-1">
+        <div className=" glass-effect-info  p-4 flex flex-col gap-4 rounded-xl lg:row-span-1">
           <h3 className="p-4">Information</h3>
-          <div>
-            <h4>Betalning</h4>
+          <div className="p-2">
+            <p>Här hittar du information om hur ditt sparande fungerar.</p>
             <p>
-              När du registrerat dina kortuppgifter kan du välja mellan två sätt
-              att spara.
-            </p>
-            <p>
-              {' '}
-              Med automatisk sparning beräknar systemet månadsbeloppet baserat
-              på priset på studentmössan och när du planerar att köpa den.{' '}
-            </p>
-            <p>
-              {' '}
-              Beloppet dras automatiskt från ditt kort varje månad. Med manuell
-              sparning väljer du själv månadsbeloppet, som också dras
-              automatiskt varje månad.{' '}
-            </p>
-            <p>
-              {' '}
-              Betalningarna sker automatiskt varje månad baserat på när du
-              senast gjorde en betalning.{' '}
-            </p>
-            <p>
-              När du loggar in uppdateras ditt sparande med eventuella månader
-              som har passerat sedan senaste betalningen.{' '}
+              Klicka på rubrikerna nedan för att läsa mer om betalningar, uttag
+              och hur du hanterar dina uppgifter.
             </p>
           </div>
           <div>
-            <h4>Uttag</h4>
-            <p>
-              Du kan när som helst ta ut dina sparade pengar. När du gör ett
-              uttag skickas pengarna tillbaka till ditt konto och når dig inom
-              1–3 arbetsdagar.{' '}
-            </p>{' '}
-            <p>
-              Efter ett uttag nollställs ditt sparande, men du kan fortsätta
-              spara igen genom att behålla din sparningsplan aktiv.
-            </p>
+            <details>
+              <summary className="bg-primary text-p-white rounded-lg p-2">
+                Betalning
+              </summary>
+              <div className="flex flex-col gap-2 bg-background rounded-lg  p-2">
+                <p>
+                  När du registrerat dina kortuppgifter kan du välja mellan två
+                  sätt att spara.
+                </p>
+                <p>
+                  Med automatisk sparning beräknar systemet månadsbeloppet
+                  baserat på priset på studentmössan och när du planerar att
+                  köpa den.
+                </p>
+                <p>
+                  Beloppet dras automatiskt från ditt kort varje månad. Med
+                  manuell sparning väljer du själv månadsbeloppet, som också
+                  dras automatiskt varje månad.
+                </p>
+                <p>
+                  Betalningarna sker automatiskt varje månad baserat på när du
+                  senast gjorde en betalning.
+                </p>
+                <p>
+                  När du loggar in uppdateras ditt sparande med eventuella
+                  månader som har passerat sedan senaste betalningen.
+                </p>
+              </div>
+            </details>
           </div>
-          <div>
-            <h4>Hantera dina uppgifter</h4>
-            <p>
-              Du kan när som helst ändra dina kortuppgifter, sparningsplan eller
-              ta ut pengar via inställningar
-            </p>
-            <p>Alla ändringar sparas direkt när du klickar på "Spara".</p>
-          </div>
+          <details>
+            <summary className="bg-primary text-p-white rounded-lg p-2">
+              Uttag
+            </summary>
+            <div className="flex flex-col gap-2 bg-background rounded-lg  p-2">
+              <p>
+                Du kan när som helst ta ut dina sparade pengar. När du gör ett
+                uttag skickas pengarna tillbaka till ditt konto och når dig inom
+                1–3 arbetsdagar.
+              </p>
+              <p>
+                Efter ett uttag nollställs ditt sparande, men du kan fortsätta
+                spara igen genom att behålla din sparningsplan aktiv.
+              </p>
+            </div>
+          </details>
+          <details>
+            <summary className="bg-primary text-p-white rounded-lg p-2">
+              Hantera dina uppgifter
+            </summary>
+            <div className="flex flex-col gap-2 bg-background rounded-lg  p-2">
+              <p>
+                Du kan när som helst ändra dina kortuppgifter, sparningsplan
+                eller ta ut pengar via inställningar
+              </p>
+              <p>Alla ändringar sparas direkt när du klickar på "Spara".</p>
+            </div>
+          </details>
         </div>
         <div className="bg-primary flex flex-col gap-4 lg:gap-0 rounded-xl lg:col-span-2 lg:grid-cols-2 lg:grid ">
           <div className=" p-4 lg:col-span-1 items-center text-p-white lg:mt-4">
