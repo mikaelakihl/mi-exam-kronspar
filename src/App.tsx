@@ -1298,7 +1298,7 @@ const Statistics = () => {
         <div className=" glass-effect md:col-span-2 flex gap-2 justify-between items-center p-4">
           <div>
             <p className="text-tertiary">Du har sparat:</p>{' '}
-            <div className="flex items-baseline gap-2">
+            <div className="flex items-baseline gap-2 font-poppins">
               <p className="text-3xl md:text-4xl lg:text-5xl ">
                 {' '}
                 {data.savings?.savedAmount || 0}
