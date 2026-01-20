@@ -1305,18 +1305,19 @@ const Statistics = () => {
 
   return (
     <section className="tertiary">
-      <h2 className="mb-4">Statistik</h2>
-      <div className="grid gap-2 md:grid md:grid-cols-6">
-        <div className="glass-effect md:col-span-4 flex flex-col gap-2 p-4 ">
+      <h2 className="mb-4 text-center">Statistik</h2>
+      <div className="grid gap-4 md:grid md:grid-cols-6">
+        <div className="glass-effect md:col-span-4 flex flex-col  p-8  ">
+          <h3 className="text-left pb-4">Aktiv status</h3>
           <div>
-            <div>
-              <p>
-                Du sparar just nu {data.savings?.monthlyAmount} kr i
-                månaden{' '}
+            <div className='flex flex-col gap-2'>
+              <p >
+                <span className="text-3xl md:text-4xl lg:text-5xl text-primary">{data.savings?.monthlyAmount} kr</span> /
+                månad{' '}
               </p>
               {data.savings?.savingsMode === 'auto' && (
                 <p>
-                  Du beräknas ha {data.graduation?.priceOnHat} kr den{' '}
+                  Du beräknas ha {data.graduation?.priceOnHat} kr lagom till{' '}
                   {data.graduation?.dateForPurchaseHat}
                 </p>
               )}
@@ -1331,11 +1332,12 @@ const Statistics = () => {
                     data.graduation?.dateForPurchaseHat,
                     user?.id
                   )}{' '}
-                  kr den {data.graduation?.dateForPurchaseHat}
+                  kr lagom till {data.graduation?.dateForPurchaseHat}
                 </p>
               )}
             </div>
           </div>
+          <div className='border-b-2 border-p-disabled my-4'></div>
           <div className="flex items-center gap-1 text-tertiary">
             <IoMdSettings />{' '}
             <NavLink to="/settings">
@@ -1343,7 +1345,7 @@ const Statistics = () => {
             </NavLink>
           </div>
         </div>
-        <div className="glass-effect bg-background-muted md:col-span-2 flex gap-2 justify-between items-center p-4">
+        <div className="glass-effect bg-background-muted md:col-span-2 flex gap-2 justify-between items-center p-8">
           <div>
             <p>Nästa inbetalning sker datum</p>
             <p className="text-3xl md:text-4xl lg:text-5xl text-tertiary">
@@ -1354,7 +1356,7 @@ const Statistics = () => {
             <p>icon</p>
           </div>
         </div>
-        <div className="glass-effect md:col-span-2 flex gap-2 justify-between items-center p-4">
+        <div className="glass-effect md:col-span-2 flex gap-2 justify-between items-center p-8">
           <div>
             <p>Antal dagar till studenten </p>{' '}
             <p className="text-3xl md:text-4xl lg:text-5xl text-tertiary">
@@ -1368,7 +1370,7 @@ const Statistics = () => {
             <p>icon</p>
           </div>
         </div>
-        <div className="glass-effect md:col-span-2 flex  gap-2 justify-between items-center p-4">
+        <div className="glass-effect md:col-span-2 flex  gap-2 justify-between items-center p-8">
           <div>
             <p>Du behöver köpa mössa om: </p>
             <div className="flex items-baseline gap-2">
@@ -1385,7 +1387,7 @@ const Statistics = () => {
             <p>icon</p>
           </div>
         </div>
-        <div className=" glass-effect md:col-span-2 flex gap-2 justify-between items-center p-4">
+        <div className=" glass-effect md:col-span-2 flex gap-2 justify-between items-center p-8">
           <div>
             <p className="text-tertiary">Du har sparat:</p>{' '}
             <div className="flex items-baseline gap-2 font-poppins">
