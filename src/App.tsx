@@ -274,9 +274,9 @@ const Header = () => {
 
 const Layout = () => {
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col lg:h-screen lg:overflow-hidden">
       <Header />
-      <main className="flex-1 bg-background p-4">
+      <main className="flex-1 bg-background lg:px-30 overflow-hidden flex-col flex">
         <Outlet />
       </main>
       <footer className="bg-primary p-4 text-center">
@@ -616,9 +616,9 @@ const Settings = () => {
   console.log(cardMonth);
 
   return (
-    <section className="">
+    <section className="lg:h-screen lg:overflow-hidden flex-col flex">
       <h2 className="mb-4 text-center text-tertiary">Inställningar</h2>
-      <div className="grid gap-4 lg:grid-cols-3">
+      <div className="grid gap-4 lg:grid-cols-3 flex-1 min-h-0">
         {(showSuccessMessageForSavedCardDetails ||
           showErrorMessageForSavedCardDetails) && (
           <>
@@ -775,10 +775,7 @@ const Settings = () => {
             </div>
           </details>
         </div>
-        <div className="bg-primary glass-effect-input flex flex-col gap-4 lg:gap-0 rounded-xl lg:col-span-2 lg:grid-cols-2 lg:grid ">
-          <div className=" p-4 lg:col-span-1 items-center text-p-white lg:mt-4">
-            <div className="flex flex-col justify-between items-center pb-4 lg:pb-6">
-              <h3>Betalningsuppgifter</h3>
+        <div className="lg:flex- flex flex-col gap-2 lg:overflow-y-auto lg:col-span-2">
               <button
                 className="flex items-center gap-1 text-p-white"
                 onClick={() => setIsCardDetailsEditing(!isCardDetailsEditing)}
