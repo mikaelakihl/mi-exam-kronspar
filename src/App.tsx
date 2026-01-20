@@ -279,8 +279,8 @@ const Layout = () => {
       <main className="flex-1 bg-background lg:px-30 overflow-hidden flex-col flex">
         <Outlet />
       </main>
-      <footer className="bg-primary p-4 text-center">
-        <p>Copyright 2025 Kronspar</p>
+      <footer className="bg-background text-primary p-4 text-center">
+        <p>Copyright 2026 Kronspar</p>
       </footer>
     </div>
   );
@@ -618,7 +618,7 @@ const Settings = () => {
   return (
     <section className="lg:h-screen lg:overflow-hidden flex-col flex">
       <h2 className="mb-4 text-center text-tertiary">Inställningar</h2>
-      <div className="grid gap-4 lg:grid-cols-3 flex-1 min-h-0">
+      <div className="grid gap-0 lg:gap-4 lg:grid-cols-3 flex-1 min-h-0">
         {(showSuccessMessageForSavedCardDetails ||
           showErrorMessageForSavedCardDetails) && (
           <>
@@ -707,7 +707,7 @@ const Settings = () => {
           </>
         )}
         <div className="lg:col-span-1 lg:overflow-y-auto">
-        <div className=" bg-secondary/20 h-fit  m-4  p-8 flex flex-col gap-4 rounded-3xl  ">
+        <div className=" bg-secondary/20 h-fit  m-4  p-8 flex flex-col gap-4 rounded-3xl glass-effect-input  ">
           <h3 className="p-4  text-tertiary">Information</h3>
           <div className="p-2 text-tertiary">
             <p>Här hittar du information om hur ditt sparande fungerar.</p>
@@ -777,7 +777,7 @@ const Settings = () => {
           </details>
         </div>
         </div>
-        <div className="lg:flex- flex flex-col gap-2 lg:overflow-y-auto lg:col-span-2">
+        <div className="lg:flex- flex flex-col gap-0 lg:gap-4 lg:overflow-y-auto lg:col-span-2">
         
          <div className="bg-p-white glass-effect-input flex flex-col gap-4 lg:gap-0 rounded-3xl p-8 m-4 ">
             <div className="flex flex-row justify-between items-center pb-4 ">

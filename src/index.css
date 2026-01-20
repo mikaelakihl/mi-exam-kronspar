@@ -20,7 +20,7 @@
 
 @layer base {
   body {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Source Sans 3', sans-serif;
   }
 
   p {
@@ -61,11 +61,16 @@
     @apply bg-background-muted/60 rounded-xl backdrop-blur-lg border border-white shadow-lg;
   }
   .glass-effect-info {
-    @apply bg-secondary/60 rounded-xl backdrop-blur-xl border border-white shadow-lg;
+    @apply bg-secondary/20 rounded-xl backdrop-blur-xl border border-white shadow-lg;
   }
 
   .glass-effect-input {
-    @apply rounded-lg backdrop-blur-lg border border-white shadow-lg;
+    @apply  backdrop-blur-lg border border-white shadow-lg;
+  }
+
+  .uppercase {
+    text-transform: uppercase;
+    font-family: 'Source Sans 3', sans-serif;
   }
 }
 
