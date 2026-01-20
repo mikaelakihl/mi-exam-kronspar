@@ -706,7 +706,8 @@ const Settings = () => {
             </div>
           </>
         )}
-        <div className=" bg-secondary/20 h-fit  m-4  p-8 flex flex-col gap-4 rounded-3xl  lg:col-span-1">
+        <div className="lg:col-span-1 lg:overflow-y-auto">
+        <div className=" bg-secondary/20 h-fit  m-4  p-8 flex flex-col gap-4 rounded-3xl  ">
           <h3 className="p-4  text-tertiary">Information</h3>
           <div className="p-2 text-tertiary">
             <p>Här hittar du information om hur ditt sparande fungerar.</p>
@@ -774,6 +775,7 @@ const Settings = () => {
               <p>Alla ändringar sparas direkt när du klickar på "Spara".</p>
             </div>
           </details>
+        </div>
         </div>
         <div className="lg:flex- flex flex-col gap-2 lg:overflow-y-auto lg:col-span-2">
         
