@@ -69,7 +69,7 @@ const Header = () => {
 
   return (
     <>
-      <header className="bg-primary flex justify-between items-center">
+      <header className="bg-background flex justify-between items-center">
         <div>
           <img
             src="/assets/kronspar-pig.png"
@@ -88,7 +88,7 @@ const Header = () => {
           </div>
         </div>
         <button
-          className="bg-primary text-primary hover:bg-primary/80 transition-all duration-300 hover:text-primary hover:border-secondary hover:text-white hover:border-2 p-2 rounded uppercase tracking-wider "
+          className="bg-background text-background hover:bg-primary/80 transition-all duration-300 hover:text-primary hover:border-secondary hover:text-white hover:border-2 p-2 rounded uppercase tracking-wider "
           onClick={() => setIsTimeTravelOpen(!isTimeTravelOpen)}
         >
           Time-travel
@@ -108,10 +108,10 @@ const Header = () => {
             </SignUpButton>
           </SignedOut>
           <SignedIn>
-            <nav className="flex gap-6 text-p-white">
+            <nav className="flex gap-6 text-p-black">
               <NavLink
                 className={({ isActive }) =>
-                  isActive ? 'border-b-2 border-accent' : 'text-p-white'
+                  isActive ? 'border-b-2 border-accent' : 'text-p-black'
                 }
                 to="/"
               >
@@ -119,7 +119,7 @@ const Header = () => {
               </NavLink>
               <NavLink
                 className={({ isActive }) =>
-                  isActive ? 'border-b-2 border-accent' : 'text-p-white'
+                  isActive ? 'border-b-2 border-accent' : 'text-p-black'
                 }
                 to="/settings"
               >
@@ -127,7 +127,7 @@ const Header = () => {
               </NavLink>
               <NavLink
                 className={({ isActive }) =>
-                  isActive ? 'border-b-2 border-accent' : 'text-p-white'
+                  isActive ? 'border-b-2 border-accent' : 'text-p-black'
                 }
                 to="/statistics"
               >
