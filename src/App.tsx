@@ -776,8 +776,11 @@ const Settings = () => {
           </details>
         </div>
         <div className="lg:flex- flex flex-col gap-2 lg:overflow-y-auto lg:col-span-2">
+         <div className="bg-p-white glass-effect-input flex flex-col gap-4 lg:gap-0 rounded-3xl p-8 m-4 ">
+            <div className="flex flex-row justify-between items-center pb-4 ">
+              <h3 >Betalningsuppgifter</h3>
               <button
-                className="flex items-center gap-1 text-p-white"
+                className="flex items-center gap-1 text-p-black"
                 onClick={() => setIsCardDetailsEditing(!isCardDetailsEditing)}
               >
                 <IoMdSettings />
@@ -786,14 +789,15 @@ const Settings = () => {
                   : 'Redigera betalningsuppgifter'}
               </button>
             </div>
-            <form onSubmit={handleSave} className="flex flex-col gap-2">
+            <div className='border-b-2 border-background '></div>
+            <form onSubmit={handleSave} className="flex flex-col gap-2 pt-4 uppercase">
               <label className="flex flex-col gap-2">
                 Namn på kortet
                 <input
                   value={nameOnCard}
                   onChange={(e) => setNameOnCard(e.target.value)}
                   disabled={!isCardDetailsEditing}
-                  className="bg-background-muted disabled:bg-gray-100 disabled:text-gray-500 disabled:cursor-not-allowed glass-effect-input"
+                  className="  disabled:text-gray-500 disabled:cursor-not-allowed "
                 />
               </label>
               <label className="flex flex-col gap-2">
@@ -801,18 +805,21 @@ const Settings = () => {
                 <input
                   value={cardNumber}
                   onChange={(e) => setCardNumber(e.target.value)}
-                  className="bg-background-muted disabled:bg-gray-100 disabled:text-gray-500 disabled:cursor-not-allowed glass-effect-input"
+                  className=" disabled:text-gray-500 disabled:cursor-not-allowed "
                   disabled={!isCardDetailsEditing}
                 />
               </label>
 
-              <div>
-                <p className="text-base lg:text-lg mb-2">MM/YY</p>
+              <div className="flex flex-row gap-2">
+                <div>
+
+               
+                <p className="text-base lg:text-lg mb-2">Gilftighetstid (MM/YY)</p>
                 <div className="flex gap-2">
                   <input
                     aria-label="Månad kortet går ut"
                     type="number"
-                    className=" w-full min-w-0 flex-1 bg-background-muted disabled:bg-gray-100 disabled:text-gray-500 disabled:cursor-not-allowed glass-effect-input"
+                    className=" w-full min-w-0 flex-1  disabled:text-gray-500 disabled:cursor-not-allowed "
                     value={cardMonth}
                     onChange={(e) => setCardMonth(e.target.value)}
                     disabled={!isCardDetailsEditing}
@@ -821,34 +828,40 @@ const Settings = () => {
                   <input
                     aria-label="År kortet går ut"
                     type="number"
-                    className=" w-full min-w-0 flex-1 bg-background-muted disabled:bg-gray-100 disabled:text-gray-500 disabled:cursor-not-allowed glass-effect-input"
+                    className=" w-full min-w-0 flex-1  disabled:text-gray-500 disabled:cursor-not-allowed "
                     value={cardYear}
                     onChange={(e) => setCardYear(e.target.value)}
                     disabled={!isCardDetailsEditing}
                   />
                 </div>
-              </div>
-              <div>
+                </div>
+                <div>
+              
                 <label className="flex flex-col gap-2">
                   CVV
                   <input
                     value={cvv}
                     onChange={(e) => setCvv(e.target.value)}
                     type="number"
-                    className="bg-background-muted disabled:bg-gray-100 disabled:text-gray-500 disabled:cursor-not-allowed glass-effect-input"
+                    className="disabled:text-gray-500 disabled:cursor-not-allowed "
                     disabled={!isCardDetailsEditing}
                   />
                 </label>
               </div>
-
-              <button
+              </div>
+            
+                {isCardDetailsEditing && (
+                  <button
                 onClick={() => setShowSuccessMessageForSavedCardDetails(true)}
                 type="submit"
-                className="bg-accent glass-effect-input mt-2"
+                className="bg-accent w-1/2 mt-2"
               >
                 Spara
               </button>
+                )}
+           
             </form>
+          
           </div>
           <div className="bg-background-muted m-4 p-4 rounded-xl lg:col-span-1 flex flex-col items-center">
             <div className="flex flex-col justify-between items-center pb-4 lg:pb-6">
