@@ -1219,6 +1219,20 @@ const resetToCurrentTime = async (
   return currentData;
 };
 
+const getNextPaymentDate = (lastPaymentDate: string) => {
+  if (!lastPaymentDate) return 'Datum saknas';
+
+  const date = new Date(lastPaymentDate);
+  date.setMonth(date.getMonth() + 1);
+
+  return date.toLocaleDateString('sv-SE', {
+    day: 'numeric',
+    month: 'long',
+  });
+};
+
+console.log(getNextPaymentDate('2026-01-20'));
+
 const Statistics = () => {
   const { user } = useUser();
 
@@ -1283,7 +1297,7 @@ const Statistics = () => {
           <div>
             <p>Nästa inbetalning sker datum</p>
             <p className="text-3xl md:text-4xl lg:text-5xl text-tertiary">
-              Datum
+              {getNextPaymentDate(data.savings?.lastTransactionDate).toString()}
             </p>
           </div>
           <div>
