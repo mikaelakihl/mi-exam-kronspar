@@ -14,6 +14,7 @@ import {
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import type { UserData } from './mocks/handlers';
 import { IoMdSettings } from 'react-icons/io';
+import { PiStudentFill } from 'react-icons/pi';
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -136,14 +137,15 @@ const Header = () => {
             <div className="flex items-center">
               <div className="text-p-white bg-secondary h-[60px] p-4  mb-2">
                 {data?.graduation ? (
-                  <p>
-                    Studenten är om:{' '}
-                    {getDaysUntilGraduation(
-                      data.graduation?.graduationDay,
-                      user?.id
-                    )}{' '}
-                    dagar
-                  </p>
+                  <div className="flex items-center gap-2">
+                    <PiStudentFill size={20} />
+                    <p>
+                      {getDaysUntilGraduation(
+                        data.graduation?.graduationDay,
+                        user?.id
+                      )}{' '}
+                    </p>
+                  </div>
                 ) : null}
               </div>
               <div className="flex items-center bg-accent p-4 [h-60px] mb-2 ">
