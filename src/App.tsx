@@ -706,7 +706,7 @@ const Settings = () => {
             </div>
           </>
         )}
-        <div className=" glass-effect-info  p-4 flex flex-col gap-4 rounded-xl lg:row-span-1">
+        <div className=" bg-secondary/20 h-fit  m-4  p-8 flex flex-col gap-4 rounded-3xl  lg:col-span-1">
           <h3 className="p-4  text-tertiary">Information</h3>
           <div className="p-2 text-tertiary">
             <p>Här hittar du information om hur ditt sparande fungerar.</p>
@@ -863,9 +863,10 @@ const Settings = () => {
             </form>
           
           </div>
-          <div className="bg-background-muted m-4 p-4 rounded-xl lg:col-span-1 flex flex-col items-center">
-            <div className="flex flex-col justify-between items-center pb-4 lg:pb-6">
-              <h3 className="text-tertiary">Din sparningsplan</h3>
+
+          <div className="bg-p-white glass-effect-input   rounded-3xl  flex flex-col items-center p-8 m-4">
+            <div className="flex flex-row justify-between items-center pb-4 w-full ">
+              <h3 className="text-tertiary text-left">Din sparningsplan</h3>
               <button
                 className="flex items-center gap-1 text-tertiary"
                 onSubmit={handleSaveForSavingPlan}
@@ -879,17 +880,19 @@ const Settings = () => {
                   : 'Ändra din sparningsplan'}
               </button>
             </div>
+            <div className='border-b-2 border-background w-full'></div>
             <form
               onSubmit={handleSaveForSavingPlan}
-              className="flex flex-col gap-2"
+              className="flex flex-col gap-2 pt-4 uppercase"
             >
+              <div className="flex flex-row gap-2">
               <label className="flex flex-col gap-2 text-tertiary">
                 {' '}
                 Examensdag
                 <input
                   value={graduationDay}
                   onChange={(e) => setGraduationDay(e.target.value)}
-                  className="bg-primary  disabled:text-gray-300 disabled:cursor-not-allowed glass-effect-input text-p-white"
+                  className=" disabled:text-gray-300 disabled:cursor-not-allowed text-p-black"
                   disabled={!isSavingPlanDetailsEditing}
                 />
               </label>
@@ -898,26 +901,26 @@ const Settings = () => {
                 <input
                   value={dateForPurchaseHat}
                   onChange={(e) => setDateForPurchaseHat(e.target.value)}
-                  className="bg-primary disabled:text-gray-300 disabled:cursor-not-allowed glass-effect-input text-p-white"
+                  className="  disabled:text-gray-300 disabled:cursor-not-allowed text-p-black"
                   disabled={!isSavingPlanDetailsEditing}
                 />
               </label>
+              </div>
               <label className="flex flex-col gap-2 text-tertiary">
                 Pris på studentmössan
                 <input
                   value={priceOnHat}
                   onChange={(e) => setPriceOnHat(e.target.value)}
-                  className="bg-primary text-p-white disabled:text-gray-300 disabled:cursor-not-allowed glass-effect-input"
+                  className="  disabled:text-gray-300 disabled:cursor-not-allowed text-p-black"
                   disabled={!isSavingPlanDetailsEditing}
                 />
               </label>
               <label className="flex flex-col gap-2 text-tertiary">
-                Vill du välja summa att spara per månad? eller vill du spara
-                automatiskt den summa som behövs för att köpa mössan?
+                Hur vill du spara?
                 <div className="flex gap-2">
                   <button
                     type="button"
-                    className="bg-primary text-p-white disabled:text-gray-300 disabled:cursor-not-allowed glass-effect-input"
+                    className={`disabled:text-gray-300 disabled:cursor-not-allowed glass-effect-input w-full ${savingsMode === 'manual' ? 'bg-primary text-p-white'  : 'bg-p-white text-p-black'}`}
                     disabled={!isSavingPlanDetailsEditing}
                     onClick={() => setSavingsMode('manual')}
                   >
@@ -925,7 +928,7 @@ const Settings = () => {
                   </button>
                   <button
                     type="button"
-                    className="bg-primary text-p-white disabled:text-gray-300 disabled:cursor-not-allowed glass-effect-input"
+                    className={`disabled:text-gray-300 disabled:cursor-not-allowed glass-effect-input w-full ${savingsMode === 'auto' ? 'bg-primary text-p-white'  : 'bg-p-white text-p-black'}`}
                     disabled={!isSavingPlanDetailsEditing}
                     onClick={() => setSavingsMode('auto')}
                   >
@@ -939,27 +942,28 @@ const Settings = () => {
                   <input
                     value={monthlyAmount}
                     onChange={(e) => setMonthlyAmount(e.target.value)}
-                    className="bg-primary glass-effect-input disabled:text-gray-300 disabled:cursor-not-allowed text-p-white"
+                    className=" rounded-lg disabled:bg-text-p-white disabled:text-gray-300 disabled:cursor-not-allowed"
                     disabled={!isSavingPlanDetailsEditing}
                   />
                 </label>
               )}
               {savingsMode === 'auto' && (
                 <p className="text-tertiary">
-                  Du kommer att spara {monthlyAmount} kr i månaden
+                  Vi drar {monthlyAmount} kr / månad
                 </p>
               )}
               <div className="grid grid-cols-2 gap-2">
+                {isSavingPlanDetailsEditing && (
                 <button
                   className="bg-secondary text-p-white glass-effect-input"
                   type="submit"
                 >
                   Spara
                 </button>
-
-                <button
+                )}
+               <button
                   type="button"
-                  className="bg-accent text-p-white glass-effect-input"
+                  className="bg-accent text-p-white glass-effect-input "
                   onClick={() => {
                     if (userData && user?.id) {
                       const updatedData = withdrawSavings(userData, user.id);
@@ -979,8 +983,10 @@ const Settings = () => {
                   Ta ut sparande
                 </button>
               </div>
+              
+              
             </form>
-          </div>
+            </div>
         </div>
       </div>
     </section>
