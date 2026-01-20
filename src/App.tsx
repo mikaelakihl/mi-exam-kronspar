@@ -776,8 +776,8 @@ const Settings = () => {
           </details>
         </div>
         <div className="lg:flex- flex flex-col gap-2 lg:overflow-y-auto lg:col-span-2">
-        <div className="bg-p-white glass-effect-input flex flex-col gap-4 lg:gap-0 rounded-3xl p-8 m-4 ">
-         
+        
+         <div className="bg-p-white glass-effect-input flex flex-col gap-4 lg:gap-0 rounded-3xl p-8 m-4 ">
             <div className="flex flex-row justify-between items-center pb-4 ">
               <h3 >Betalningsuppgifter</h3>
               <button
@@ -815,7 +815,7 @@ const Settings = () => {
                 <div>
 
                
-                <p className="text-base lg:text-lg mb-2">Gilftighetstid (MM/YY)</p>
+                <p className="text-base  lg:text-lg mb-2">Gilftighetstid (MM/YY)</p>
                 <div className="flex gap-2">
                   <input
                     aria-label="Månad kortet går ut"
@@ -844,7 +844,7 @@ const Settings = () => {
                     value={cvv}
                     onChange={(e) => setCvv(e.target.value)}
                     type="number"
-                    className="disabled:text-gray-500 disabled:cursor-not-allowed "
+                    className="disabled:text-gray-500 disabled:cursor-not-allowed text-base"
                     disabled={!isCardDetailsEditing}
                   />
                 </label>
@@ -884,9 +884,9 @@ const Settings = () => {
             <div className='border-b-2 border-background w-full'></div>
             <form
               onSubmit={handleSaveForSavingPlan}
-              className="flex flex-col gap-2 pt-4 uppercase"
+              className="flex flex-col gap-2 pt-4 uppercase w-full"
             >
-              <div className="flex flex-row gap-2">
+              <div className="flex flex-col md:flex-row gap-2">
               <label className="flex flex-col gap-2 text-tertiary">
                 {' '}
                 Examensdag
@@ -918,7 +918,7 @@ const Settings = () => {
               </label>
               <label className="flex flex-col gap-2 text-tertiary">
                 Hur vill du spara?
-                <div className="flex gap-2">
+                <div className="flex gap-2 mb-2">
                   <button
                     type="button"
                     className={`disabled:text-gray-300 disabled:cursor-not-allowed glass-effect-input w-full ${savingsMode === 'manual' ? 'bg-primary text-p-white'  : 'bg-p-white text-p-black'}`}
