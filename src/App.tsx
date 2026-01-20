@@ -776,7 +776,8 @@ const Settings = () => {
           </details>
         </div>
         <div className="lg:flex- flex flex-col gap-2 lg:overflow-y-auto lg:col-span-2">
-         <div className="bg-p-white glass-effect-input flex flex-col gap-4 lg:gap-0 rounded-3xl p-8 m-4 ">
+        <div className="bg-p-white glass-effect-input flex flex-col gap-4 lg:gap-0 rounded-3xl p-8 m-4 ">
+         
             <div className="flex flex-row justify-between items-center pb-4 ">
               <h3 >Betalningsuppgifter</h3>
               <button
@@ -785,8 +786,8 @@ const Settings = () => {
               >
                 <IoMdSettings />
                 {isCardDetailsEditing
-                  ? 'Avbryt ändringar'
-                  : 'Redigera betalningsuppgifter'}
+                  ? 'Avbryt'
+                  : 'Ändra'}
               </button>
             </div>
             <div className='border-b-2 border-background '></div>
@@ -876,8 +877,8 @@ const Settings = () => {
               >
                 <IoMdSettings />
                 {isSavingPlanDetailsEditing
-                  ? 'Avbryt ändringar'
-                  : 'Ändra din sparningsplan'}
+                  ? 'Avbryt'
+                  : 'Ändra'}
               </button>
             </div>
             <div className='border-b-2 border-background w-full'></div>
