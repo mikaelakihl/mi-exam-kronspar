@@ -4,7 +4,7 @@
   /* colors */
   --color-primary: #70508f; /* deep purple */
   --color-accent: #f67f77; /* coral */
-  --color-secondary: #b99ef1; /* lavender */
+  --color-secondary: #A29EF1; /* lavender */
   --color-tertiary: #190330; /* dark purple */
 
   /* backgrounds*/
@@ -71,6 +71,10 @@
   .uppercase {
     text-transform: uppercase;
     font-family: 'Source Sans 3', sans-serif;
+  }
+
+  .bg-gradient {
+    @apply bg-gradient-to-b from-background to-secondary/60;
   }
 }
 

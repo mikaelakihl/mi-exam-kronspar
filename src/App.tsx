@@ -13,8 +13,8 @@ import {
 } from '@clerk/clerk-react';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import type { UserData } from './mocks/handlers';
-import { IoMdSettings } from 'react-icons/io';
-import { PiStudentFill } from 'react-icons/pi';
+import { IoIosSave, IoMdSettings } from 'react-icons/io';
+import { PiHandWithdrawFill, PiStudentFill } from 'react-icons/pi';
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -277,10 +277,10 @@ const Layout = () => {
   return (
     <div className="flex flex-col lg:h-screen lg:overflow-hidden">
       <Header />
-      <main className="flex-1 bg-background lg:px-30 overflow-hidden flex-col flex">
+      <main className="flex-1 bg-gradient lg:px-30 overflow-hidden flex-col flex">
         <Outlet />
       </main>
-      <footer className="bg-background text-primary p-4 text-center">
+      <footer className="bg-secondary/60 text-primary p-4 text-center">
         <p>Copyright 2026 Kronspar</p>
       </footer>
     </div>
@@ -708,7 +708,7 @@ const Settings = () => {
           </>
         )}
         <div className="lg:col-span-1 lg:overflow-y-auto">
-        <div className=" bg-secondary/20 h-fit  m-4  p-8 flex flex-col gap-4 rounded-3xl glass-effect-input  ">
+        <div className=" bg-background/70 h-fit  m-4  p-8 flex flex-col gap-4 rounded-3xl glass-effect-input  ">
           <h3 className="p-4  text-tertiary">Information</h3>
           <div className="p-2 text-tertiary">
             <p>Här hittar du information om hur ditt sparande fungerar.</p>
@@ -780,7 +780,7 @@ const Settings = () => {
         </div>
         <div className="lg:flex- flex flex-col gap-0 lg:gap-4 lg:overflow-y-auto lg:col-span-2">
         
-         <div className="bg-p-white glass-effect-input flex flex-col gap-4 lg:gap-0 rounded-3xl p-8 m-4 ">
+         <div className="bg-background-muted glass-effect-input flex flex-col gap-4 lg:gap-0 rounded-3xl p-8 m-4 ">
             <div className="flex flex-row justify-between items-center pb-4 ">
               <h3 >Betalningsuppgifter</h3>
               <button
@@ -858,8 +858,9 @@ const Settings = () => {
                   <button
                 onClick={() => setShowSuccessMessageForSavedCardDetails(true)}
                 type="submit"
-                className="bg-accent w-1/2 mt-2"
+                className="text-p-white bg-primary glass-effect-input rounded-4xl w-1/2 flex justify-center items-center gap-2"
               >
+                <IoIosSave/>
                 Spara
               </button>
                 )}
@@ -868,7 +869,7 @@ const Settings = () => {
           
           </div>
 
-          <div className="bg-p-white glass-effect-input   rounded-3xl  flex flex-col items-center p-8 m-4">
+          <div className="bg-background-muted glass-effect-input   rounded-3xl  flex flex-col items-center p-8 m-4">
             <div className="flex flex-row justify-between items-center pb-4 w-full ">
               <h3 className="text-tertiary text-left">Din sparningsplan</h3>
               <button
@@ -924,7 +925,7 @@ const Settings = () => {
                 <div className="flex gap-2 mb-2">
                   <button
                     type="button"
-                    className={`disabled:text-gray-300 disabled:cursor-not-allowed glass-effect-input w-full ${savingsMode === 'manual' ? 'bg-primary text-p-white'  : 'bg-p-white text-p-black'}`}
+                    className={` rounded-xl disabled:text-gray-300 disabled:cursor-not-allowed  w-full ${savingsMode === 'manual' ? 'bg-secondary/30 text-p-primary'  : 'bg-p-white border border-2 border-secondary/30 text-p-black'}`}
                     disabled={!isSavingPlanDetailsEditing}
                     onClick={() => setSavingsMode('manual')}
                   >
@@ -932,7 +933,7 @@ const Settings = () => {
                   </button>
                   <button
                     type="button"
-                    className={`disabled:text-gray-300 disabled:cursor-not-allowed glass-effect-input w-full ${savingsMode === 'auto' ? 'bg-primary text-p-white'  : 'bg-p-white text-p-black'}`}
+                    className={`rounded-xl disabled:text-gray-300 disabled:cursor-not-allowed  w-full ${savingsMode === 'auto' ? 'bg-secondary/30 text-p-primary'  : 'bg-p-white border border-2 border-secondary/30 text-p-black'}`}
                     disabled={!isSavingPlanDetailsEditing}
                     onClick={() => setSavingsMode('auto')}
                   >
@@ -958,16 +959,17 @@ const Settings = () => {
               )}
               <div className="grid grid-cols-2 gap-2">
                 {isSavingPlanDetailsEditing && (
-                <button
-                  className="bg-secondary text-p-white glass-effect-input"
+                <button 
+                  className="text-p-white bg-primary glass-effect-input rounded-4xl flex justify-center items-center gap-2"
                   type="submit"
                 >
+                  <IoIosSave/>
                   Spara
                 </button>
                 )}
                <button
                   type="button"
-                  className="bg-accent text-p-white glass-effect-input "
+                  className="text-p-black bg-accent glass-effect-input rounded-4xl flex justify-center items-center gap-2"
                   onClick={() => {
                     if (userData && user?.id) {
                       const updatedData = withdrawSavings(userData, user.id);
@@ -984,6 +986,7 @@ const Settings = () => {
                     }
                   }}
                 >
+                  <PiHandWithdrawFill/>
                   Ta ut sparande
                 </button>
               </div>
