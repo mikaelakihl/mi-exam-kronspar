@@ -108,7 +108,7 @@ const Header = () => {
             </SignUpButton>
           </SignedOut>
           <SignedIn>
-            <nav className="flex gap-6 text-p-black">
+            <nav className="flex gap-6 text-p-black bg-secondary/20 glass-effect-input rounded-4xl px-4 py-2">
               <NavLink
                 className={({ isActive }) =>
                   isActive ? 'border-b-2 border-accent' : 'text-p-black'
@@ -134,8 +134,8 @@ const Header = () => {
                 Statistik
               </NavLink>
             </nav>
-            <div className="flex items-center">
-              <div className="text-p-white bg-secondary h-[60px] p-4  mb-2">
+            <div className="flex items-center gap-2">
+              <div className="text-primary bg-secondary/20 glass-effect-input rounded-full  p-2  ">
                 {data?.graduation ? (
                   <div className="flex items-center gap-2">
                     <PiStudentFill size={20} />
@@ -148,7 +148,7 @@ const Header = () => {
                   </div>
                 ) : null}
               </div>
-              <div className="flex items-center bg-accent p-4 [h-60px] mb-2 ">
+              <div className="flex items-center bg-secondary/20 glass-effect-input rounded-4xl  p-2 [h-60px]  ">
                 <UserButton />
               </div>
             </div>
@@ -159,21 +159,22 @@ const Header = () => {
         <div className="md:hidden flex">
           {' '}
           <SignedIn>
-            <div className="text-p-white bg-secondary h-full p-2">
-              {data?.graduation ? (
-                <p>
-                  <p>Studenten är om: </p>
-                  {getDaysUntilGraduation(
-                    data.graduation?.graduationDay,
-                    user?.id
-                  )}{' '}
-                  dagar
-                </p>
-              ) : null}
-            </div>
-            <div className="flex items-center bg-accent p-2">
-              <UserButton userProfileMode="modal" />
-            </div>
+          <div className="text-primary bg-secondary/20 glass-effect-input rounded-full  p-2  ">
+                {data?.graduation ? (
+                  <div className="flex items-center gap-2">
+                    <PiStudentFill size={20} />
+                    <p>
+                      {getDaysUntilGraduation(
+                        data.graduation?.graduationDay,
+                        user?.id
+                      )}{' '}
+                    </p>
+                  </div>
+                ) : null}
+              </div>
+              <div className="flex items-center bg-secondary/20 glass-effect-input rounded-4xl  p-2 [h-60px]  ">
+                <UserButton userProfileMode="modal" />
+              </div>
           </SignedIn>
           <button onClick={() => setIsOpen(!isOpen)} className="p-2">
             {isOpen ? (
@@ -185,7 +186,7 @@ const Header = () => {
         </div>
       </header>
       {isTimeTravelOpen && (
-        <div className=" z-index-20 fixed  w-full h-full flex justify-center items-center">
+        <div className=" z-20 fixed  w-full h-full flex justify-center items-center">
           <div className="flex gap-4 justify-center items-center bg-primary h-[30%] w-[50%] relative border-2 border-secondary rounded">
             <button
               className="top-5 right-5 absolute text-p-white mb-5"
@@ -225,7 +226,7 @@ const Header = () => {
         </div>
       )}
       {isOpen && (
-        <nav className=" bg-primary/70 border-y-2 border-primary/90 text-p-white text-center p-4 md:hidden">
+        <nav className=" bg-secondary/20 glass-effect-input text-p-black text-center p-4 md:hidden">
           <SignedOut>
             <SignInButton mode="modal">
               <button className="bg-accent text-p-white px-4 py-2 rounded w-full mb-2">
@@ -242,7 +243,7 @@ const Header = () => {
             <div className="flex flex-col gap-4">
               <NavLink
                 className={({ isActive }) =>
-                  isActive ? 'text-accent' : 'text-p-white'
+                  isActive ? 'text-accent' : 'text-p-black'
                 }
                 to="/"
               >
@@ -250,7 +251,7 @@ const Header = () => {
               </NavLink>
               <NavLink
                 className={({ isActive }) =>
-                  isActive ? 'text-accent ' : 'text-p-white'
+                  isActive ? 'text-accent ' : 'text-p-black'
                 }
                 to="/settings"
               >
@@ -258,7 +259,7 @@ const Header = () => {
               </NavLink>
               <NavLink
                 className={({ isActive }) =>
-                  isActive ? 'text-accent' : 'text-p-white'
+                  isActive ? 'text-accent' : 'text-p-black'
                 }
                 to="/statistics"
               >
