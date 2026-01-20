@@ -826,7 +826,7 @@ const Settings = () => {
                   value={nameOnCard}
                   onChange={(e) => setNameOnCard(e.target.value)}
                   disabled={!isCardDetailsEditing}
-                  className="  disabled:text-gray-500 disabled:cursor-not-allowed "
+                  className="  disabled:text-p-disabled disabled:cursor-not-allowed "
                 />
               </label>
               <label className="flex flex-col gap-2">
@@ -834,7 +834,7 @@ const Settings = () => {
                 <input
                   value={cardNumber}
                   onChange={(e) => setCardNumber(e.target.value)}
-                  className=" disabled:text-gray-500 disabled:cursor-not-allowed "
+                  className=" disabled:text-p-disabled disabled:cursor-not-allowed "
                   disabled={!isCardDetailsEditing}
                 />
               </label>
@@ -848,7 +848,7 @@ const Settings = () => {
                   <input
                     aria-label="Månad kortet går ut"
                     type="number"
-                    className=" w-full min-w-0 flex-1  disabled:text-gray-500 disabled:cursor-not-allowed "
+                    className=" w-full min-w-0 flex-1  disabled:text-p-disabled disabled:cursor-not-allowed "
                     value={cardMonth}
                     onChange={(e) => setCardMonth(e.target.value)}
                     disabled={!isCardDetailsEditing}
@@ -857,7 +857,7 @@ const Settings = () => {
                   <input
                     aria-label="År kortet går ut"
                     type="number"
-                    className=" w-full min-w-0 flex-1  disabled:text-gray-500 disabled:cursor-not-allowed "
+                    className=" w-full min-w-0 flex-1  disabled:text-p-disabled disabled:cursor-not-allowed "
                     value={cardYear}
                     onChange={(e) => setCardYear(e.target.value)}
                     disabled={!isCardDetailsEditing}
@@ -872,7 +872,7 @@ const Settings = () => {
                     value={cvv}
                     onChange={(e) => setCvv(e.target.value)}
                     type="number"
-                    className="disabled:text-gray-500 disabled:cursor-not-allowed text-base"
+                    className="disabled:text-p-disabled disabled:cursor-not-allowed text-base"
                     disabled={!isCardDetailsEditing}
                   />
                 </label>
@@ -922,7 +922,7 @@ const Settings = () => {
                 <input
                   value={graduationDay}
                   onChange={(e) => setGraduationDay(e.target.value)}
-                  className=" disabled:text-gray-300 disabled:cursor-not-allowed text-p-black"
+                  className=" disabled:text-p-disabled disabled:cursor-not-allowed text-p-black"
                   disabled={!isSavingPlanDetailsEditing}
                 />
               </label>
@@ -931,7 +931,7 @@ const Settings = () => {
                 <input
                   value={dateForPurchaseHat}
                   onChange={(e) => setDateForPurchaseHat(e.target.value)}
-                  className="  disabled:text-gray-300 disabled:cursor-not-allowed text-p-black"
+                  className="  disabled:text-p-disabled disabled:cursor-not-allowed text-p-black"
                   disabled={!isSavingPlanDetailsEditing}
                 />
               </label>
@@ -941,7 +941,7 @@ const Settings = () => {
                 <input
                   value={priceOnHat}
                   onChange={(e) => setPriceOnHat(e.target.value)}
-                  className="  disabled:text-gray-300 disabled:cursor-not-allowed text-p-black"
+                  className="  disabled:text-p-disabled disabled:cursor-not-allowed text-p-black"
                   disabled={!isSavingPlanDetailsEditing}
                 />
               </label>
@@ -950,7 +950,7 @@ const Settings = () => {
                 <div className="flex gap-2 mb-2">
                   <button
                     type="button"
-                    className={` rounded-xl disabled:text-gray-300 disabled:cursor-not-allowed  w-full ${savingsMode === 'manual' ? 'bg-secondary/30 text-p-primary'  : 'bg-p-white border border-2 border-secondary/30 text-p-black'}`}
+                    className={` rounded-xl disabled:text-p-disabled disabled:cursor-not-allowed  w-full ${savingsMode === 'manual' ? 'bg-secondary/30 text-p-primary'  : 'bg-p-white border border-2 border-secondary/30 text-p-black'}`}
                     disabled={!isSavingPlanDetailsEditing}
                     onClick={() => setSavingsMode('manual')}
                   >
@@ -958,7 +958,7 @@ const Settings = () => {
                   </button>
                   <button
                     type="button"
-                    className={`rounded-xl disabled:text-gray-300 disabled:cursor-not-allowed  w-full ${savingsMode === 'auto' ? 'bg-secondary/30 text-p-primary'  : 'bg-p-white border border-2 border-secondary/30 text-p-black'}`}
+                    className={`rounded-xl disabled:text-p-disabled disabled:cursor-not-allowed  w-full ${savingsMode === 'auto' ? 'bg-secondary/30 text-p-primary'  : 'bg-p-white border border-2 border-secondary/30 text-p-black'}`}
                     disabled={!isSavingPlanDetailsEditing}
                     onClick={() => setSavingsMode('auto')}
                   >
