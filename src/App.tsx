@@ -622,73 +622,69 @@ const Settings = () => {
       <div className="grid gap-0 lg:gap-4 lg:grid-cols-3 flex-1 min-h-0">
         {(showSuccessMessageForSavedCardDetails ||
           showErrorMessageForSavedCardDetails) && (
-          <>
-            <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/30 text-p-black">
-              <div className="relative bg-background/60 glass-effect-input   w-[90%] md:w-[50%] p-8 rounded-xl shadow-2xl flex flex-col items-center text-center">
-                <button
-                  className="top-0 right-0 absolute"
-                  onClick={() => {
-                    setShowSuccessMessageForSavedCardDetails(false);
-                    setShowErrorMessageForSavedCardDetails(false);
-                  }}
-                >
-                  X
-                </button>
-                {showSuccessMessageForSavedCardDetails && (
-                  <div className="flex flex-col gap-2 items-center justify-center">
-                   <h3>Allt gick bra!</h3>
-                  <p>Dina ändringar har sparats</p>
-                  </div>
-                )}
+            <>
+              <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/30 text-p-black">
+                <div className="relative bg-background/60 glass-effect-input   w-[90%] md:w-[50%] p-8 rounded-xl shadow-2xl flex flex-col items-center text-center">
+                  <button
+                    className="top-0 right-0 absolute"
+                    onClick={() => {
+                      setShowSuccessMessageForSavedCardDetails(false);
+                      setShowErrorMessageForSavedCardDetails(false);
+                    }}
+                  >
+                    X
+                  </button>
+                  {showSuccessMessageForSavedCardDetails && (
+                    <div className="flex flex-col gap-2 items-center justify-center">
+                      <h3>Allt gick bra!</h3>
+                      <p>Dina ändringar har sparats</p>
+                    </div>
+                  )}
 
-                {showErrorMessageForSavedCardDetails && (
-                  <div className="flex flex-col gap-2 items-center justify-center">
-                   <h3>Oops!</h3>
-                  <p>Det gick inte att spara</p>
-                  </div>
-                )}
+                  {showErrorMessageForSavedCardDetails && (
+                    <div className="flex flex-col gap-2 items-center justify-center">
+                      <h3>Oops!</h3>
+                      <p>Det gick inte att spara</p>
+                    </div>
+                  )}
+                </div>
               </div>
-            </div>
-          </>
-        )}
+            </>
+          )}
         {(showSuccessMessageForSavedSavingPlan ||
           showErrorMessageForSavedSavingPlan) && (
-          <>
-            <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/30 text-p-black">
-              <div className="relative bg-background/60 glass-effect-input   w-[90%] md:w-[50%] p-8 rounded-xl shadow-2xl flex flex-col items-center text-center">
-                <button
-                  className="top-0 right-0 absolute"
-                  onClick={() => {
-                    setShowSuccessMessageForSavedSavingPlan(false);
-                    setShowErrorMessageForSavedSavingPlan(false);
-                  }}
-                >
-                  X
-                </button>
-                
+            <>
+              <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/30 text-p-black">
+                <div className="relative bg-background/60 glass-effect-input   w-[90%] md:w-[50%] p-8 rounded-xl shadow-2xl flex flex-col items-center text-center">
+                  <button
+                    className="top-0 right-0 absolute"
+                    onClick={() => {
+                      setShowSuccessMessageForSavedSavingPlan(false);
+                      setShowErrorMessageForSavedSavingPlan(false);
+                    }}
+                  >
+                    X
+                  </button>
 
-               
-                
-                {showSuccessMessageForSavedSavingPlan && (
-                  <div className="flex flex-col gap-2 items-center justify-center">
-                   <h3>Allt gick bra!</h3>
-                  <p>Dina ändringar har sparats</p>
-                  </div>
-                )}
+                  {showSuccessMessageForSavedSavingPlan && (
+                    <div className="flex flex-col gap-2 items-center justify-center">
+                      <h3>Allt gick bra!</h3>
+                      <p>Dina ändringar har sparats</p>
+                    </div>
+                  )}
 
-                {showErrorMessageForSavedSavingPlan && (
-                  <div className="flex flex-col gap-2 items-center justify-center">
-                   <h3>Oops!</h3>
-                  <p>Det gick inte att spara</p>
+                  {showErrorMessageForSavedSavingPlan && (
+                    <div className="flex flex-col gap-2 items-center justify-center">
+                      <h3>Oops!</h3>
+                      <p>Det gick inte att spara</p>
 
-                  <p>Det gick inte att spara</p>
-                  </div>
-                )}
+                      <p>Det gick inte att spara</p>
+                    </div>
+                  )}
+                </div>
               </div>
-              
-            </div>
-          </>
-        )}
+            </>
+          )}
         {showWithdrawalSuccessMessage && (
           <>
             <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/30 text-p-black">
@@ -702,11 +698,11 @@ const Settings = () => {
                   X
                 </button>
                 <div className="flex flex-col gap-2 items-center justify-center">
-                <h3>Grattis!</h3>
-                <p>
-                  Ditt uttag lyckades, pengarna når ditt konto inom 1-3
-                  arbetsdagar
-                </p>
+                  <h3>Grattis!</h3>
+                  <p>
+                    Ditt uttag lyckades, pengarna når ditt konto inom 1-3
+                    arbetsdagar
+                  </p>
                 </div>
               </div>
             </div>
@@ -725,8 +721,8 @@ const Settings = () => {
                   X
                 </button>
                 <div className="flex flex-col gap-2 items-center justify-center">
-                <h3>Oops!</h3>
-                <p>Något gick fel, försök igen senare</p>
+                  <h3>Oops!</h3>
+                  <p>Något gick fel, försök igen senare</p>
                 </div>
               </div>
             </div>
