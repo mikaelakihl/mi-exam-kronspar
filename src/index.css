@@ -73,6 +73,7 @@
   .uppercase {
     text-transform: uppercase;
     font-family: 'Source Sans 3', sans-serif;
+    @apply tracking-wider;
   }
 
   .bg-gradient {

@@ -734,6 +734,15 @@ const Settings = () => {
         )}
         <div className="lg:col-span-1 lg:overflow-y-auto">
         <div className=" bg-background/70 h-fit  m-4  p-8 flex flex-col gap-4 rounded-3xl glass-effect-input  ">
+        <div className='flex flex-row gap-2 justify-between items-center'>
+          <div className='bg-p-black text-p-white rounded-full h-3 w-3 flex justify-center items-center'>
+            <p className='text-[10px]'>x</p>
+    
+          </div>
+          <div className='bg-p-black text-p-white rounded-full h-3 w-3 flex justify-center items-center'>
+            <p className='text-[10px] text-p-white/90'>x</p>
+          </div>
+        </div>
           <h3 className="p-4  text-tertiary">Information</h3>
           <div className="p-2 text-tertiary">
             <p>Här hittar du information om hur ditt sparande fungerar.</p>
@@ -1345,34 +1354,39 @@ const Statistics = () => {
             </NavLink>
           </div>
         </div>
-        <div className="glass-effect bg-background-muted md:col-span-2 flex gap-2 justify-between items-center p-8">
-          <div>
-            <p>Nästa inbetalning sker datum</p>
+        <div className="glass-effect bg-background-muted md:col-span-2 flex flex-col gap-2 justify-between items-center p-8">
+        <div className='flex justify-center items-center rounded-full bg-yellow-100 w-17 h-17 backdrop-blur-lg border border-white shadow-lg'>
+            <p className='text-3xl'>💸</p>
+          </div>
+            <p className='uppercase font-bold text-gray-500 font-bold'>Nästa inbetalning sker datum</p>
             <p className="text-3xl md:text-4xl lg:text-5xl text-tertiary">
               {getNextPaymentDate(data.savings?.lastTransactionDate).toString()}
             </p>
-          </div>
-          <div>
-            <p>icon</p>
-          </div>
+         
+         
         </div>
-        <div className="glass-effect md:col-span-2 flex gap-2 justify-between items-center p-8">
-          <div>
-            <p>Antal dagar till studenten </p>{' '}
+        <div className="glass-effect md:col-span-2 flex-col flex gap-2 justify-between items-center p-8">
+        <div className='flex justify-center items-center rounded-full bg-yellow-100 w-17 h-17 backdrop-blur-lg border border-white shadow-lg'>
+            <p className='text-3xl'>📅</p>
+          </div>
+            <p className='uppercase font-bold text-gray-500 font-bold'>Studenten är om</p>{' '}
+            <div className='flex items-baseline gap-2'>
             <p className="text-3xl md:text-4xl lg:text-5xl text-tertiary">
               {getDaysUntilGraduation(
                 data.graduation?.graduationDay,
                 user?.id
               )}{' '}
             </p>
-          </div>
-          <div>
-            <p>icon</p>
-          </div>
+            <p className='text-gray-500'>Dagar</p>
+            </div>
+          
+          
         </div>
-        <div className="glass-effect md:col-span-2 flex  gap-2 justify-between items-center p-8">
-          <div>
-            <p>Du behöver köpa mössa om: </p>
+        <div className="glass-effect md:col-span-2 flex flex-col  gap-2 justify-between items-center p-8">
+        <div className='flex justify-center items-center rounded-full bg-yellow-100 w-17 h-17 backdrop-blur-lg border border-white shadow-lg'>
+            <p className='text-3xl'>🎓</p>
+          </div>
+            <p className='uppercase font-bold text-gray-500'>Köp mössan om </p>
             <div className="flex items-baseline gap-2">
               <p className="text-3xl md:text-4xl lg:text-5xl text-tertiary">
                 {getDaysUntilPurchaseHat(
@@ -1380,12 +1394,10 @@ const Statistics = () => {
                   user?.id
                 )}
               </p>
-              <p>Dagar</p>
+              <p className='text-gray-500'>Dagar</p>
             </div>
-          </div>
-          <div>
-            <p>icon</p>
-          </div>
+          
+         
         </div>
         <div className=" glass-effect md:col-span-2 flex gap-2 justify-between items-center p-8">
           <div>
