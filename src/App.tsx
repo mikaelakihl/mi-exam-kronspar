@@ -159,22 +159,22 @@ const Header = () => {
         <div className="md:hidden flex">
           {' '}
           <SignedIn>
-          <div className="text-primary bg-secondary/20 glass-effect-input rounded-full  p-2  ">
-                {data?.graduation ? (
-                  <div className="flex items-center gap-2">
-                    <PiStudentFill size={20} />
-                    <p>
-                      {getDaysUntilGraduation(
-                        data.graduation?.graduationDay,
-                        user?.id
-                      )}{' '}
-                    </p>
-                  </div>
-                ) : null}
-              </div>
-              <div className="flex items-center bg-secondary/20 glass-effect-input rounded-4xl  p-2 [h-60px]  ">
-                <UserButton userProfileMode="modal" />
-              </div>
+            <div className="text-primary bg-secondary/20 glass-effect-input rounded-full  p-2  ">
+              {data?.graduation ? (
+                <div className="flex items-center gap-2">
+                  <PiStudentFill size={20} />
+                  <p>
+                    {getDaysUntilGraduation(
+                      data.graduation?.graduationDay,
+                      user?.id
+                    )}{' '}
+                  </p>
+                </div>
+              ) : null}
+            </div>
+            <div className="flex items-center bg-secondary/20 glass-effect-input rounded-4xl  p-2 [h-60px]  ">
+              <UserButton userProfileMode="modal" />
+            </div>
           </SignedIn>
           <button onClick={() => setIsOpen(!isOpen)} className="p-2">
             {isOpen ? (
