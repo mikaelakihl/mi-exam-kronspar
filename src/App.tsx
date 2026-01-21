@@ -729,102 +729,92 @@ const Settings = () => {
           </>
         )}
         <div className="lg:col-span-1 lg:overflow-y-auto">
-        <div className=" bg-background/70 h-fit  m-4  p-8 flex flex-col gap-4 rounded-3xl glass-effect-input  ">
-        <div className='flex flex-row gap-2 justify-between items-center'>
-          <div className='bg-p-black text-p-white rounded-full h-3 w-3 flex justify-center items-center'>
-            <p className='text-[10px]'>x</p>
-    
-          </div>
-          <div className='bg-p-black text-p-white rounded-full h-3 w-3 flex justify-center items-center'>
-            <p className='text-[10px] text-p-white/90'>x</p>
-          </div>
-        </div>
-          <h3 className="p-4  text-tertiary">Information</h3>
-          <div className="p-2 text-tertiary">
-            <p>Här hittar du information om hur ditt sparande fungerar.</p>
-            <p>
-              Klicka på rubrikerna nedan för att läsa mer om betalningar, uttag
-              och hur du hanterar dina uppgifter.
-            </p>
-          </div>
-          <div>
+            <h3 className="p-4  text-tertiary">Information</h3>
+            <div className="p-2 text-tertiary">
+              <p>Här hittar du information om hur ditt sparande fungerar.</p>
+              <p>
+                Klicka på rubrikerna nedan för att läsa mer om betalningar,
+                uttag och hur du hanterar dina uppgifter.
+              </p>
+            </div>
+            <div>
+              <details>
+                <summary className="bg-primary text-p-white rounded-lg p-3 ">
+                  Betalning
+                </summary>
+                <div className="flex flex-col gap-2 bg-background rounded-lg  p-3">
+                  <p>
+                    När du registrerat dina kortuppgifter kan du välja mellan
+                    två sätt att spara.
+                  </p>
+                  <p>
+                    Med automatisk sparning beräknar systemet månadsbeloppet
+                    baserat på priset på studentmössan och när du planerar att
+                    köpa den.
+                  </p>
+                  <p>
+                    Beloppet dras automatiskt från ditt kort varje månad. Med
+                    manuell sparning väljer du själv månadsbeloppet, som också
+                    dras automatiskt varje månad.
+                  </p>
+                  <p>
+                    Betalningarna sker automatiskt varje månad baserat på när du
+                    senast gjorde en betalning.
+                  </p>
+                  <p>
+                    När du loggar in uppdateras ditt sparande med eventuella
+                    månader som har passerat sedan senaste betalningen.
+                  </p>
+                </div>
+              </details>
+            </div>
             <details>
-              <summary className="bg-primary text-p-white rounded-lg p-3 ">
-                Betalning
+              <summary className="bg-primary text-p-white rounded-lg p-3">
+                Uttag
               </summary>
               <div className="flex flex-col gap-2 bg-background rounded-lg  p-3">
                 <p>
-                  När du registrerat dina kortuppgifter kan du välja mellan två
-                  sätt att spara.
+                  Du kan när som helst ta ut dina sparade pengar. När du gör ett
+                  uttag skickas pengarna tillbaka till ditt konto och når dig
+                  inom 1–3 arbetsdagar.
                 </p>
                 <p>
-                  Med automatisk sparning beräknar systemet månadsbeloppet
-                  baserat på priset på studentmössan och när du planerar att
-                  köpa den.
-                </p>
-                <p>
-                  Beloppet dras automatiskt från ditt kort varje månad. Med
-                  manuell sparning väljer du själv månadsbeloppet, som också
-                  dras automatiskt varje månad.
-                </p>
-                <p>
-                  Betalningarna sker automatiskt varje månad baserat på när du
-                  senast gjorde en betalning.
-                </p>
-                <p>
-                  När du loggar in uppdateras ditt sparande med eventuella
-                  månader som har passerat sedan senaste betalningen.
+                  Efter ett uttag nollställs ditt sparande, men du kan fortsätta
+                  spara igen genom att behålla din sparningsplan aktiv.
                 </p>
               </div>
             </details>
+            <details>
+              <summary className="bg-primary text-p-white rounded-lg p-3">
+                Hantera dina uppgifter
+              </summary>
+              <div className="flex flex-col gap-2 bg-background rounded-lg  p-3">
+                <p>
+                  Du kan när som helst ändra dina kortuppgifter, sparningsplan
+                  eller ta ut pengar via inställningar
+                </p>
+                <p>Alla ändringar sparas direkt när du klickar på "Spara".</p>
+              </div>
+            </details>
           </div>
-          <details>
-            <summary className="bg-primary text-p-white rounded-lg p-3">
-              Uttag
-            </summary>
-            <div className="flex flex-col gap-2 bg-background rounded-lg  p-3">
-              <p>
-                Du kan när som helst ta ut dina sparade pengar. När du gör ett
-                uttag skickas pengarna tillbaka till ditt konto och når dig inom
-                1–3 arbetsdagar.
-              </p>
-              <p>
-                Efter ett uttag nollställs ditt sparande, men du kan fortsätta
-                spara igen genom att behålla din sparningsplan aktiv.
-              </p>
-            </div>
-          </details>
-          <details>
-            <summary className="bg-primary text-p-white rounded-lg p-3">
-              Hantera dina uppgifter
-            </summary>
-            <div className="flex flex-col gap-2 bg-background rounded-lg  p-3">
-              <p>
-                Du kan när som helst ändra dina kortuppgifter, sparningsplan
-                eller ta ut pengar via inställningar
-              </p>
-              <p>Alla ändringar sparas direkt när du klickar på "Spara".</p>
-            </div>
-          </details>
-        </div>
         </div>
         <div className="lg:flex- flex flex-col gap-0 lg:gap-4 lg:overflow-y-auto lg:col-span-2">
-        
-         <div className="bg-background-muted glass-effect-input flex flex-col gap-4 lg:gap-0 rounded-3xl p-8 m-4 ">
+          <div className="bg-background-muted glass-effect-input flex flex-col gap-4 lg:gap-0 rounded-3xl p-8 m-4 ">
             <div className="flex flex-row justify-between items-center pb-4 ">
-              <h3 >Betalningsuppgifter</h3>
+              <h3>Betalningsuppgifter</h3>
               <button
                 className="flex items-center gap-1 text-p-black"
                 onClick={() => setIsCardDetailsEditing(!isCardDetailsEditing)}
               >
                 <IoMdSettings />
-                {isCardDetailsEditing
-                  ? 'Avbryt'
-                  : 'Ändra'}
+                {isCardDetailsEditing ? 'Avbryt' : 'Ändra'}
               </button>
             </div>
-            <div className='border-b-2 border-background '></div>
-            <form onSubmit={handleSave} className="flex flex-col gap-2 pt-4 uppercase">
+            <div className="border-b-2 border-background "></div>
+            <form
+              onSubmit={handleSave}
+              className="flex flex-col gap-2 pt-4 uppercase"
+            >
               <label className="flex flex-col gap-2">
                 Namn på kortet
                 <input
@@ -846,57 +836,54 @@ const Settings = () => {
 
               <div className="flex flex-row gap-2">
                 <div>
-
-               
-                <p className="text-base  lg:text-lg mb-2">Gilftighetstid (MM/YY)</p>
-                <div className="flex gap-2">
-                  <input
-                    aria-label="Månad kortet går ut"
-                    type="number"
-                    className=" w-full min-w-0 flex-1  disabled:text-p-disabled disabled:cursor-not-allowed "
-                    value={cardMonth}
-                    onChange={(e) => setCardMonth(e.target.value)}
-                    disabled={!isCardDetailsEditing}
-                  />
-                  <span>/</span>
-                  <input
-                    aria-label="År kortet går ut"
-                    type="number"
-                    className=" w-full min-w-0 flex-1  disabled:text-p-disabled disabled:cursor-not-allowed "
-                    value={cardYear}
-                    onChange={(e) => setCardYear(e.target.value)}
-                    disabled={!isCardDetailsEditing}
-                  />
-                </div>
+                  <p className="text-base  lg:text-lg mb-2">
+                    Gilftighetstid (MM/YY)
+                  </p>
+                  <div className="flex gap-2">
+                    <input
+                      aria-label="Månad kortet går ut"
+                      type="number"
+                      className=" w-full min-w-0 flex-1  disabled:text-p-disabled disabled:cursor-not-allowed "
+                      value={cardMonth}
+                      onChange={(e) => setCardMonth(e.target.value)}
+                      disabled={!isCardDetailsEditing}
+                    />
+                    <span>/</span>
+                    <input
+                      aria-label="År kortet går ut"
+                      type="number"
+                      className=" w-full min-w-0 flex-1  disabled:text-p-disabled disabled:cursor-not-allowed "
+                      value={cardYear}
+                      onChange={(e) => setCardYear(e.target.value)}
+                      disabled={!isCardDetailsEditing}
+                    />
+                  </div>
                 </div>
                 <div>
-              
-                <label className="flex flex-col gap-2">
-                  CVV
-                  <input
-                    value={cvv}
-                    onChange={(e) => setCvv(e.target.value)}
-                    type="number"
-                    className="disabled:text-p-disabled disabled:cursor-not-allowed text-base"
-                    disabled={!isCardDetailsEditing}
-                  />
-                </label>
+                  <label className="flex flex-col gap-2">
+                    CVV
+                    <input
+                      value={cvv}
+                      onChange={(e) => setCvv(e.target.value)}
+                      type="number"
+                      className="disabled:text-p-disabled disabled:cursor-not-allowed text-base"
+                      disabled={!isCardDetailsEditing}
+                    />
+                  </label>
+                </div>
               </div>
-              </div>
-            
-                {isCardDetailsEditing && (
-                  <button
-                onClick={() => setShowSuccessMessageForSavedCardDetails(true)}
-                type="submit"
-                className="text-p-white bg-primary glass-effect-input rounded-4xl w-1/2 flex justify-center items-center gap-2"
-              >
-                <IoIosSave/>
-                Spara
-              </button>
-                )}
-           
+
+              {isCardDetailsEditing && (
+                <button
+                  onClick={() => setShowSuccessMessageForSavedCardDetails(true)}
+                  type="submit"
+                  className="text-p-white bg-primary glass-effect-input rounded-4xl w-1/2 flex justify-center items-center gap-2"
+                >
+                  <IoIosSave />
+                  Spara
+                </button>
+              )}
             </form>
-          
           </div>
 
           <div className="bg-background-muted glass-effect-input   rounded-3xl  flex flex-col items-center p-8 m-4">
@@ -910,36 +897,34 @@ const Settings = () => {
                 }
               >
                 <IoMdSettings />
-                {isSavingPlanDetailsEditing
-                  ? 'Avbryt'
-                  : 'Ändra'}
+                {isSavingPlanDetailsEditing ? 'Avbryt' : 'Ändra'}
               </button>
             </div>
-            <div className='border-b-2 border-background w-full'></div>
+            <div className="border-b-2 border-background w-full"></div>
             <form
               onSubmit={handleSaveForSavingPlan}
               className="flex flex-col gap-2 pt-4 uppercase w-full"
             >
               <div className="flex flex-col md:flex-row gap-2">
-              <label className="flex flex-col gap-2 text-tertiary">
-                {' '}
-                Examensdag
-                <input
-                  value={graduationDay}
-                  onChange={(e) => setGraduationDay(e.target.value)}
-                  className=" disabled:text-p-disabled disabled:cursor-not-allowed text-p-black"
-                  disabled={!isSavingPlanDetailsEditing}
-                />
-              </label>
-              <label className="flex flex-col gap-2 text-tertiary">
-                Vilket datum planeras inköpet av mössan?
-                <input
-                  value={dateForPurchaseHat}
-                  onChange={(e) => setDateForPurchaseHat(e.target.value)}
-                  className="  disabled:text-p-disabled disabled:cursor-not-allowed text-p-black"
-                  disabled={!isSavingPlanDetailsEditing}
-                />
-              </label>
+                <label className="flex flex-col gap-2 text-tertiary">
+                  {' '}
+                  Examensdag
+                  <input
+                    value={graduationDay}
+                    onChange={(e) => setGraduationDay(e.target.value)}
+                    className=" disabled:text-p-disabled disabled:cursor-not-allowed text-p-black"
+                    disabled={!isSavingPlanDetailsEditing}
+                  />
+                </label>
+                <label className="flex flex-col gap-2 text-tertiary">
+                  Vilket datum planeras inköpet av mössan?
+                  <input
+                    value={dateForPurchaseHat}
+                    onChange={(e) => setDateForPurchaseHat(e.target.value)}
+                    className="  disabled:text-p-disabled disabled:cursor-not-allowed text-p-black"
+                    disabled={!isSavingPlanDetailsEditing}
+                  />
+                </label>
               </div>
               <label className="flex flex-col gap-2 text-tertiary">
                 Pris på studentmössan
@@ -955,7 +940,7 @@ const Settings = () => {
                 <div className="flex gap-2 mb-2">
                   <button
                     type="button"
-                    className={` rounded-xl disabled:text-p-disabled disabled:cursor-not-allowed  w-full ${savingsMode === 'manual' ? 'bg-secondary/30 text-p-primary'  : 'bg-p-white border border-2 border-secondary/30 text-p-black'}`}
+                    className={` rounded-xl disabled:text-p-disabled disabled:cursor-not-allowed  w-full ${savingsMode === 'manual' ? 'bg-secondary/30 text-p-primary' : 'bg-p-white border border-2 border-secondary/30 text-p-black'}`}
                     disabled={!isSavingPlanDetailsEditing}
                     onClick={() => setSavingsMode('manual')}
                   >
@@ -963,7 +948,7 @@ const Settings = () => {
                   </button>
                   <button
                     type="button"
-                    className={`rounded-xl disabled:text-p-disabled disabled:cursor-not-allowed  w-full ${savingsMode === 'auto' ? 'bg-secondary/30 text-p-primary'  : 'bg-p-white border border-2 border-secondary/30 text-p-black'}`}
+                    className={`rounded-xl disabled:text-p-disabled disabled:cursor-not-allowed  w-full ${savingsMode === 'auto' ? 'bg-secondary/30 text-p-primary' : 'bg-p-white border border-2 border-secondary/30 text-p-black'}`}
                     disabled={!isSavingPlanDetailsEditing}
                     onClick={() => setSavingsMode('auto')}
                   >
@@ -989,15 +974,15 @@ const Settings = () => {
               )}
               <div className="grid grid-cols-2 gap-2">
                 {isSavingPlanDetailsEditing && (
-                <button 
-                  className="text-p-white bg-primary glass-effect-input rounded-4xl flex justify-center items-center gap-2"
-                  type="submit"
-                >
-                  <IoIosSave/>
-                  Spara
-                </button>
+                  <button
+                    className="text-p-white bg-primary glass-effect-input rounded-4xl flex justify-center items-center gap-2"
+                    type="submit"
+                  >
+                    <IoIosSave />
+                    Spara
+                  </button>
                 )}
-               <button
+                <button
                   type="button"
                   className="text-p-black bg-accent glass-effect-input rounded-4xl flex justify-center items-center gap-2"
                   onClick={() => {
@@ -1016,14 +1001,12 @@ const Settings = () => {
                     }
                   }}
                 >
-                  <PiHandWithdrawFill/>
+                  <PiHandWithdrawFill />
                   Ta ut sparande
                 </button>
               </div>
-              
-              
             </form>
-            </div>
+          </div>
         </div>
       </div>
     </section>
