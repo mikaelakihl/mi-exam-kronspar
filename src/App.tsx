@@ -67,6 +67,8 @@ const Header = () => {
   // if (error) return <div>Kunde inte ladda statistik.</div>;
   // if (!data) return <div>Ingen data tillgänglig.</div>;
 
+
+
   return (
     <>
       <header className="bg-background flex justify-between items-center">
@@ -272,6 +274,8 @@ const Header = () => {
     </>
   );
 };
+
+
 
 const Layout = () => {
   return (
@@ -1298,14 +1302,16 @@ const Statistics = () => {
         <div className="glass-effect md:col-span-4 flex flex-col  p-8  ">
           <h3 className="text-left pb-4">Aktiv status</h3>
           <div>
-            <div className='flex flex-col gap-2'>
-              <p >
-                <span className="text-3xl md:text-4xl lg:text-5xl text-primary">{data.savings?.monthlyAmount} kr</span> /
-                månad{' '}
+            <div className="flex flex-col gap-2">
+              <p>
+                <span className="text-3xl md:text-4xl lg:text-5xl text-primary">
+                  {data.savings?.monthlyAmount} kr
+                </span>{' '}
+                / månad{' '}
               </p>
               {data.savings?.savingsMode === 'auto' && (
                 <p>
-                  Du beräknas ha {data.graduation?.priceOnHat} kr lagom till{' '}
+                  Du beräknas ha <span className="font-bold">{data.graduation?.priceOnHat} kr</span> lagom till{' '}
                   {data.graduation?.dateForPurchaseHat}
                 </p>
               )}
@@ -1325,7 +1331,7 @@ const Statistics = () => {
               )}
             </div>
           </div>
-          <div className='border-b-2 border-p-disabled my-4'></div>
+          <div className="border-b-2 border-p-disabled my-4"></div>
           <div className="flex items-center gap-1 text-tertiary">
             <IoMdSettings />{' '}
             <NavLink to="/settings">
@@ -1334,64 +1340,68 @@ const Statistics = () => {
           </div>
         </div>
         <div className="glass-effect bg-background-muted md:col-span-2 flex flex-col gap-2 justify-between items-center p-8">
-        <div className='flex justify-center items-center rounded-full bg-yellow-100 w-17 h-17 backdrop-blur-lg border border-white shadow-lg'>
-            <p className='text-3xl'>💸</p>
+          <div className="flex justify-center items-center rounded-full bg-yellow-100 w-17 h-17 backdrop-blur-lg border border-white shadow-lg">
+            <p className="text-3xl">💸</p>
           </div>
-            <p className='uppercase font-bold text-gray-500 font-bold'>Nästa inbetalning sker datum</p>
-            <p className="text-3xl md:text-4xl lg:text-5xl text-tertiary">
-              {getNextPaymentDate(data.savings?.lastTransactionDate).toString()}
-            </p>
-         
-         
+          <p className="uppercase font-bold text-gray-500 font-bold">
+            Nästa inbetalning sker datum
+          </p>
+          <p className="text-3xl md:text-4xl lg:text-5xl text-tertiary">
+            {getNextPaymentDate(data.savings?.lastTransactionDate).toString()}
+          </p>
         </div>
         <div className="glass-effect md:col-span-2 flex-col flex gap-2 justify-between items-center p-8">
-        <div className='flex justify-center items-center rounded-full bg-yellow-100 w-17 h-17 backdrop-blur-lg border border-white shadow-lg'>
-            <p className='text-3xl'>📅</p>
+          <div className="flex justify-center items-center rounded-full bg-yellow-100 w-17 h-17 backdrop-blur-lg border border-white shadow-lg">
+            <p className="text-3xl">📅</p>
           </div>
-            <p className='uppercase font-bold text-gray-500 font-bold'>Studenten är om</p>{' '}
-            <div className='flex items-baseline gap-2'>
+          <p className="uppercase font-bold text-gray-500 font-bold">
+            Studenten är om
+          </p>{' '}
+          <div className="flex items-baseline gap-2">
             <p className="text-3xl md:text-4xl lg:text-5xl text-tertiary">
               {getDaysUntilGraduation(
                 data.graduation?.graduationDay,
                 user?.id
               )}{' '}
             </p>
-            <p className='text-gray-500'>Dagar</p>
-            </div>
-          
-          
+            <p className="text-gray-500">Dagar</p>
+          </div>
         </div>
         <div className="glass-effect md:col-span-2 flex flex-col  gap-2 justify-between items-center p-8">
-        <div className='flex justify-center items-center rounded-full bg-yellow-100 w-17 h-17 backdrop-blur-lg border border-white shadow-lg'>
-            <p className='text-3xl'>🎓</p>
+          <div className="flex justify-center items-center rounded-full bg-yellow-100 w-17 h-17 backdrop-blur-lg border border-white shadow-lg">
+            <p className="text-3xl">🎓</p>
           </div>
-            <p className='uppercase font-bold text-gray-500'>Köp mössan om </p>
-            <div className="flex items-baseline gap-2">
-              <p className="text-3xl md:text-4xl lg:text-5xl text-tertiary">
-                {getDaysUntilPurchaseHat(
-                  data.graduation?.dateForPurchaseHat,
-                  user?.id
-                )}
-              </p>
-              <p className='text-gray-500'>Dagar</p>
-            </div>
-          
-         
+          <p className="uppercase font-bold text-gray-500">Köp mössan om </p>
+          <div className="flex items-baseline gap-2">
+            <p className="text-3xl md:text-4xl lg:text-5xl text-tertiary">
+              {getDaysUntilPurchaseHat(
+                data.graduation?.dateForPurchaseHat,
+                user?.id
+              )}
+            </p>
+            <p className="text-gray-500">Dagar</p>
+          </div>
         </div>
-        <div className=" glass-effect md:col-span-2 flex gap-2 justify-between items-center p-8">
-          <div>
-            <p className="text-tertiary">Du har sparat:</p>{' '}
-            <div className="flex items-baseline gap-2 font-poppins">
-              <p className="text-3xl md:text-4xl lg:text-5xl ">
-                {' '}
-                {data.savings?.savedAmount || 0}
+        <div className=" glass-effect md:col-span-2  flex justify-center flex-col  items-center p-8">
+          <p className="uppercase font-bold text-gray-500">Du har sparat</p>
+          <div className='relative w-fit'>
+            <img
+              src="/assets/kronspar-pig.png"
+              alt="Kronspar"
+              className="w-35 h-35  relative"
+            />
+            <div className="absolute inset-0 text-center flex flex-col font-bold gap-0 pt-15 pr-5 ">
+              <p className="text-3xl">
+                {data?.savings?.savedAmount === 0
+                  ? '0'
+                  : data?.savings?.savedAmount}
               </p>
-              <p>kr</p>
+              {/* <p className=" font-bold text-background-muted text-stroke text-3xl">
+                Kronspar
+              </p> */}
             </div>
           </div>
-          <div>
-            <p>icon</p>
-          </div>
+
         </div>
       </div>
     </section>
