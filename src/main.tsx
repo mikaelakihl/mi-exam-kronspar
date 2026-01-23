@@ -4,6 +4,7 @@ import './index.css';
 import App from './App.tsx';
 import { ClerkProvider } from '@clerk/clerk-react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { TimeTravelProvider } from './contexts/TimeTravelContext.tsx';
 
 // Create a client
 const queryClient = new QueryClient();
@@ -26,11 +27,16 @@ async function enableMocking() {
 const mountApp = () => {
   createRoot(document.getElementById('root')!).render(
     <StrictMode>
+
       <ClerkProvider publishableKey={PUBLISHABLE_KEY}>
         <QueryClientProvider client={queryClient}>
-          <App />
+          <TimeTravelProvider>
+            <App />
+          </TimeTravelProvider>
         </QueryClientProvider>
+
       </ClerkProvider>
+
     </StrictMode>
   );
 };

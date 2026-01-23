@@ -1,12 +1,13 @@
 import { useUser } from "@clerk/clerk-react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
-import { getDaysUntilPurchaseHat } from "../utils/getDays";
 import { IoIosSave, IoMdSettings } from "react-icons/io";
 import { withdrawSavings } from "../utils/payment";
 import { PiHandWithdrawFill } from "react-icons/pi";
+import { useTimeTravel } from "../contexts/TimeTravelContext";
 
 export const Settings = () => {
+    const { getDaysUntilPurchaseHat } = useTimeTravel();
     const [nameOnCard, setNameOnCard] = useState('');
     const [cardNumber, setCardNumber] = useState('');
     const [cardMonth, setCardMonth] = useState('');
@@ -109,7 +110,8 @@ export const Settings = () => {
 
     useEffect(() => {
         if (savingsMode === 'auto' && priceOnHat && dateForPurchaseHat) {
-            const daysLeft = getDaysUntilPurchaseHat(dateForPurchaseHat, user?.id);
+
+            const daysLeft = getDaysUntilPurchaseHat(dateForPurchaseHat);
             const monthsLeft = Math.max(1, Math.ceil(daysLeft / 30));
             const price = parseFloat(priceOnHat);
             if (!isNaN(price)) {
@@ -117,7 +119,7 @@ export const Settings = () => {
                 setMonthlyAmount(calculatedAmount.toString());
             }
         }
-    }, [savingsMode, priceOnHat, dateForPurchaseHat, user?.id]);
+    }, [savingsMode, priceOnHat, dateForPurchaseHat, getDaysUntilPurchaseHat]);
 
     if (isLoading) return <div>Laddar inställningar...</div>;
     if (error) return <div>Kunde inte ladda inställningar.</div>;

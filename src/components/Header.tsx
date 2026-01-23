@@ -1,4 +1,4 @@
-import { useQueryClient } from "@tanstack/react-query";
+
 import { useUser } from "@clerk/clerk-react";
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
@@ -7,13 +7,11 @@ import { NavLink } from "react-router";
 import { PiStudentFill } from "react-icons/pi";
 import { AiOutlineClose } from "react-icons/ai";
 import { GiHamburgerMenu } from "react-icons/gi";
-import { fastForwardToGraduationDay, fastForwardToPurchaseHatDay, resetToCurrentTime } from "../utils/timeTravel";
-import { getDaysUntilGraduation } from "../utils/getDays";
+import { useTimeTravel } from "../contexts/TimeTravelContext";
 
 export const Header = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [isTimeTravelOpen, setIsTimeTravelOpen] = useState(false);
-    const queryClient = useQueryClient();
 
     const { user } = useUser();
 
@@ -29,32 +27,29 @@ export const Header = () => {
         },
         enabled: !!user?.id,
     });
+    const { fastForwardToPurchaseHatDay, fastForwardToGraduationDay, resetToCurrentTime, simulatedDate, getDaysUntilGraduation } = useTimeTravel();
 
     const hasTimeBackup =
-        user?.id && localStorage.getItem(`data_${user.id}_timeBackup`);
+        !!simulatedDate
 
     const handleFastForwardToPurchaseHatDay = async () => {
-        if (!data || !user?.id) return;
-
-        await fastForwardToPurchaseHatDay(data, user.id);
-
-        await queryClient.refetchQueries({ queryKey: ['userData', user?.id] });
+        if (!data) return;
+        await fastForwardToPurchaseHatDay(data);
     };
 
+
     const handleFastForwardToGraduationDay = async () => {
-        if (!data || !user?.id) return;
+        if (!data) return;
 
-        await fastForwardToGraduationDay(data, user.id);
+        await fastForwardToGraduationDay(data);
 
-        await queryClient.refetchQueries({ queryKey: ['userData', user.id] });
     };
 
     const handleResetToCurrentTime = async () => {
-        if (!data || !user?.id) return;
+        if (!data) return;
 
-        await resetToCurrentTime(data, user.id);
+        await resetToCurrentTime(data);
 
-        await queryClient.refetchQueries({ queryKey: ['userData', user?.id] });
     };
 
     // if (isLoading) return <div>Laddar statistik...</div>;
@@ -137,8 +132,7 @@ export const Header = () => {
                                         <PiStudentFill size={20} />
                                         <p>
                                             {getDaysUntilGraduation(
-                                                data.graduation?.graduationDay,
-                                                user?.id
+                                                data.graduation?.graduationDay
                                             )}{' '}
                                         </p>
                                     </div>
@@ -161,8 +155,7 @@ export const Header = () => {
                                     <PiStudentFill size={20} />
                                     <p>
                                         {getDaysUntilGraduation(
-                                            data.graduation?.graduationDay,
-                                            user?.id
+                                            data.graduation?.graduationDay
                                         )}{' '}
                                     </p>
                                 </div>

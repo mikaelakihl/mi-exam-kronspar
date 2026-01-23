@@ -1,6 +1,4 @@
 import type { UserData } from "../mocks/handlers";
-import { getDaysUntilPurchaseHat } from "./getDays";
-
 export const getNextPaymentDate = (lastPaymentDate: string) => {
     if (!lastPaymentDate) return 'Datum saknas';
   

@@ -3,7 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { IoMdSettings } from "react-icons/io";
 import { NavLink } from "react-router";
 import { calculateSumOfSavingsInManualSavingsMode, getNextPaymentDate } from "../utils/payment";
-import { getDaysUntilGraduation, getDaysUntilPurchaseHat } from "../utils/getDays";
+import { useTimeTravel } from "../contexts/TimeTravelContext";
 
 export const Statistics = () => {
     const { user } = useUser();
@@ -20,6 +20,7 @@ export const Statistics = () => {
         },
         enabled: !!user?.id,
     });
+    const { getDaysUntilGraduation, getDaysUntilPurchaseHat } = useTimeTravel();
 
     if (isLoading) return <div>Laddar statistik...</div>;
     if (error) return <div>Kunde inte ladda statistik.</div>;
@@ -90,8 +91,7 @@ export const Statistics = () => {
                     <div className="flex items-baseline gap-2">
                         <p className="text-3xl md:text-4xl lg:text-5xl text-tertiary">
                             {getDaysUntilGraduation(
-                                data.graduation?.graduationDay,
-                                user?.id
+                                data.graduation?.graduationDay
                             )}{' '}
                         </p>
                         <p className="text-gray-500">Dagar</p>
@@ -105,8 +105,7 @@ export const Statistics = () => {
                     <div className="flex items-baseline gap-2">
                         <p className="text-3xl md:text-4xl lg:text-5xl text-tertiary">
                             {getDaysUntilPurchaseHat(
-                                data.graduation?.dateForPurchaseHat,
-                                user?.id
+                                data.graduation?.dateForPurchaseHat
                             )}
                         </p>
                         <p className="text-gray-500">Dagar</p>
