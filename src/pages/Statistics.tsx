@@ -31,7 +31,7 @@ export const Statistics = () => {
     return (
         <section className="tertiary">
             <h2 className="mb-4 text-center">Statistik</h2>
-            <div className="grid gap-4 md:grid md:grid-cols-6">
+            <div className="flex flex-col md:grid gap-4 md:grid md:grid-cols-6">
                 <div className="glass-effect md:col-span-4 flex flex-col  p-8  ">
                     <h3 className="text-left pb-4">Aktiv status</h3>
                     <div>
