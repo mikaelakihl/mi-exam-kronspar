@@ -22,15 +22,21 @@ export const CommentSection = () => {
 
     return (
         <section>
-            <h2>Tidigare Kronsparare</h2>
-            <div className="flex flex-col gap-4">
+            <h2 className="text-center mb-4">Vad säger tidigare Kronsparare?</h2>
+            <ul className="flex flex-col gap-4 md:flex-row">
                 {comments.map((comment) => (
-                    <div key={comment.id}>
-                        <p>{comment.name}</p>
-                        <p>{comment.comment}</p>
-                    </div>
+                    <li key={comment.id} className=" gap-4">
+                        <div className="flex flex-col gap-2 p-8 bg-background-muted/60 glass-effect-input rounded-4xl">
+
+                            <div className="flex"><span>" </span><p className="italic">{comment.comment}<span>"</span></p></div>
+
+                            <p className="text-primary font-bold">{comment.name}</p>
+
+
+                        </div>
+                    </li>
                 ))}
-            </div>
+            </ul>
         </section>
     );
 };
