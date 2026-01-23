@@ -67,16 +67,24 @@ export const Header = () => {
                         alt="Kronspar"
                         className="w-17 h-17 ml-5"
                     />
-                    <div className="absolute top-7 left-3.5 text-center flex flex-col font-bold gap-0 ">
-                        <p className="text-xs">
-                            {data?.savings?.savedAmount === 0
-                                ? '0'
-                                : data?.savings?.savedAmount}
-                        </p>
-                        <h1 className=" font-bold text-background-muted text-stroke ">
+
+                    <SignedIn>
+                        <div className="absolute top-7 left-3.5 text-center flex flex-col font-bold gap-0 ">
+                            <p className="text-xs">
+                                {data?.savings?.savedAmount === 0
+                                    ? '0'
+                                    : data?.savings?.savedAmount}
+                            </p>
+                            <h1 className=" font-bold text-background-muted text-stroke ">
+                                Kronspar
+                            </h1>
+                        </div>
+                    </SignedIn>
+                    <SignedOut>
+                        <h1 className=" font-bold text-background-muted text-stroke absolute top-11 left-3.5   ">
                             Kronspar
                         </h1>
-                    </div>
+                    </SignedOut>
                 </div>
                 <button
                     className="bg-background text-background hover:bg-primary/80 transition-all duration-300 hover:text-primary hover:border-secondary hover:text-white hover:border-2 p-2 rounded uppercase tracking-wider "
