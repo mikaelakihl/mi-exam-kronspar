@@ -11,6 +11,7 @@ import { Statistics } from './pages/Statistics';
 import { Settings } from './pages/Settings';
 
 import { StartPage } from './pages/StartPage';
+import { Home } from './pages/Home';
 
 
 //   const [isOpen, setIsOpen] = useState(false);
@@ -434,7 +435,7 @@ const App = () => {
             index
             element={
               <div>
-                <SignedIn>{/* <Dashboard /> */}</SignedIn>
+                <SignedIn><Home /></SignedIn>
                 <SignedOut>
                   <StartPage />
                 </SignedOut>
