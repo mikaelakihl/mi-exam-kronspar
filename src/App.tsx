@@ -7,9 +7,10 @@ import {
   SignedOut,
 } from '@clerk/clerk-react';
 import { Layout } from './pages/Layout';
-import { Home } from './pages/Home';
 import { Statistics } from './pages/Statistics';
 import { Settings } from './pages/Settings';
+
+import { StartPage } from './pages/StartPage';
 
 
 //   const [isOpen, setIsOpen] = useState(false);
@@ -435,7 +436,7 @@ const App = () => {
               <div>
                 <SignedIn>{/* <Dashboard /> */}</SignedIn>
                 <SignedOut>
-                  <Home />
+                  <StartPage />
                 </SignedOut>
               </div>
             }
