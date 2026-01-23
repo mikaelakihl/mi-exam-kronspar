@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { IoIosSave, IoMdSettings } from "react-icons/io";
 import { withdrawSavings } from "../utils/payment";
 import { PiHandWithdrawFill } from "react-icons/pi";
-import { useTimeTravel } from "../contexts/TimeTravelContext";
+import { useTimeTravel } from "../hooks/useTimeTravel";
 
 export const Settings = () => {
     const { getDaysUntilPurchaseHat } = useTimeTravel();

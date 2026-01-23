@@ -4,7 +4,8 @@ import './index.css';
 import App from './App.tsx';
 import { ClerkProvider } from '@clerk/clerk-react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { TimeTravelProvider } from './contexts/TimeTravelContext.tsx';
+import { TimeTravelProvider } from './contexts/TimeTravelProvider.tsx';
+
 
 // Create a client
 const queryClient = new QueryClient();

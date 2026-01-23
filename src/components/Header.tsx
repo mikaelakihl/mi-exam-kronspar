@@ -7,7 +7,7 @@ import { NavLink } from "react-router";
 import { PiStudentFill } from "react-icons/pi";
 import { AiOutlineClose } from "react-icons/ai";
 import { GiHamburgerMenu } from "react-icons/gi";
-import { useTimeTravel } from "../contexts/TimeTravelContext";
+import { useTimeTravel } from "../hooks/useTimeTravel";
 
 export const Header = () => {
     const [isOpen, setIsOpen] = useState(false);

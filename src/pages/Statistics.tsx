@@ -3,10 +3,12 @@ import { useQuery } from "@tanstack/react-query";
 import { IoMdSettings } from "react-icons/io";
 import { NavLink } from "react-router";
 import { calculateSumOfSavingsInManualSavingsMode, getNextPaymentDate } from "../utils/payment";
-import { useTimeTravel } from "../contexts/TimeTravelContext";
+import { useTimeTravel } from "../hooks/useTimeTravel";
+
 
 export const Statistics = () => {
     const { user } = useUser();
+
 
     const { data, isLoading, error } = useQuery({
         queryKey: ['userData', user?.id],
@@ -54,8 +56,7 @@ export const Statistics = () => {
                                     {calculateSumOfSavingsInManualSavingsMode(
                                         // Make sure to convert to numbers before passing to the function
                                         Number(data.savings?.monthlyAmount),
-                                        data.graduation?.dateForPurchaseHat,
-                                        user?.id
+                                        getDaysUntilPurchaseHat(data.graduation?.dateForPurchaseHat)
                                     )}{' '}
                                     kr lagom till {data.graduation?.dateForPurchaseHat}
                                 </p>

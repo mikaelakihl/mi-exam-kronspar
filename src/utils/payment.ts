@@ -13,17 +13,14 @@ export const getNextPaymentDate = (lastPaymentDate: string) => {
   
   console.log(getNextPaymentDate('2026-01-20'));
 
-  export const calculateSumOfSavingsInManualSavingsMode = (
-    monthlyAmount: number,
-    dateForPurchaseHat: string,
-    userId?: string
-  ) => {
-    const dayLeft = getDaysUntilPurchaseHat(dateForPurchaseHat, userId);
-  
-    const monthsLeft = Math.max(0, Math.ceil(dayLeft / 30));
-  
-    return monthsLeft * monthlyAmount;
-  };
+export const calculateSumOfSavingsInManualSavingsMode = (
+  monthlyAmount: number,
+  dayLeft: number //  tar emot antalet dagar direkt
+) => {
+  const monthsLeft = Math.max(0, Math.ceil(dayLeft / 30));
+
+  return monthsLeft * monthlyAmount;
+};
 
   export const withdrawSavings = (data: UserData, userId: string) => {
     if (!userId || !data?.savings) {

@@ -1,25 +1,9 @@
-import { createContext, useContext, useState, useEffect, type ReactNode, } from 'react';
-import { useQueryClient } from '@tanstack/react-query';
-import { useUser } from '@clerk/clerk-react';
-import type { UserData } from '../mocks/handlers';
+import { useEffect, useState, type ReactNode } from "react";
+import { TimeTravelContext } from "./TimeTravelContext";
+import { useUser } from "@clerk/clerk-react";
+import { useQueryClient } from "@tanstack/react-query";
+import type { UserData } from "../mocks/handlers";
 
-interface TimeTravelContextType {
-    // Datumet vi låtsas att det är just nu (null = nutid/idag)
-    simulatedDate: Date | null;
-
-    getDaysUntilGraduation: (graduationDateString: string) => number;
-    getDaysUntilPurchaseHat: (dateForPurchasingHatString: string) => number;
-    fastForwardToPurchaseHatDay: (data: UserData) => Promise<UserData | null>;
-    fastForwardToGraduationDay: (data: UserData) => Promise<UserData | null>;
-    resetToCurrentTime: (data: UserData) => Promise<UserData | null>;
-}
-
-// Skapar Context-objektet (börjar som tomt/undefined)
-const TimeTravelContext = createContext<TimeTravelContextType | undefined>(undefined);
-
-// PROVIDER-KOMPONENTEN
-//  "håller i" datan och logiken.
-// Allt inuti denna komponent (children) får tillgång till verktygen.
 export const TimeTravelProvider = ({ children }: { children: ReactNode }) => {
     // STATE: Håller koll på det simulerade datumet i minnet för snabb åtkomst
     const [simulatedDate, setSimulatedDate] = useState<Date | null>(null);
@@ -212,12 +196,4 @@ export const TimeTravelProvider = ({ children }: { children: ReactNode }) => {
             {children}
         </TimeTravelContext.Provider>
     );
-};
-
-// HOOK FÖR ATT ANVÄNDA CONTEXTET
-// Gör det enkelt för komponenter att säga "useTimeTravel()"
-export const useTimeTravel = () => {
-    const context = useContext(TimeTravelContext);
-    if (!context) throw new Error('useTimeTravel måste användas inom en TimeTravelProvider');
-    return context;
 };
