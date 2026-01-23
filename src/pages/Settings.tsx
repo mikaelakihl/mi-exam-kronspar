@@ -266,7 +266,7 @@ export const Settings = () => {
     return (
         <section className="lg:h-screen lg:overflow-hidden flex-col flex">
             <h2 className="mb-4 text-center text-tertiary">Inställningar</h2>
-            <div className="grid gap-0 lg:gap-4 lg:grid-cols-3 flex-1 min-h-0">
+            <div className="grid gap-4 md:gap-8 lg:grid-cols-3 flex-1 min-h-0">
                 {(showSuccessMessageForSavedCardDetails ||
                     showErrorMessageForSavedCardDetails) && (
                         <>
@@ -376,7 +376,7 @@ export const Settings = () => {
                     </>
                 )}
                 <div className="lg:col-span-1 lg:overflow-y-auto">
-                    <div className=" bg-background/70 h-fit  m-4  p-8 flex flex-col gap-4 rounded-3xl glass-effect-input  ">
+                    <div className=" bg-background/70 h-fit  p-8 flex flex-col gap-4 rounded-3xl glass-effect-input  ">
                         <div className="flex flex-row gap-2 justify-between items-center">
                             <img src="/assets/pinpin.png" alt="Kronspar" className="w-8 h-8 " />
                             {/* <div className="bg-p-black text-p-white rounded-full h-3 w-3 flex justify-center items-center">
@@ -456,8 +456,8 @@ export const Settings = () => {
                         </details>
                     </div>
                 </div>
-                <div className="lg:flex- flex flex-col gap-0 lg:gap-4 lg:overflow-y-auto lg:col-span-2">
-                    <div className="bg-background-muted glass-effect-input flex flex-col gap-4 lg:gap-0 rounded-3xl p-8 m-4 ">
+                <div className="lg:flex- flex flex-col gap-4 md:gap-8 lg:overflow-y-auto lg:col-span-2">
+                    <div className="bg-background-muted glass-effect-input flex flex-col gap-4 lg:gap-0 rounded-3xl p-8 ">
                         <div className="flex flex-row justify-between items-center pb-4 ">
                             <h3>Betalningsuppgifter</h3>
                             <button
@@ -544,7 +544,7 @@ export const Settings = () => {
                         </form>
                     </div>
 
-                    <div className="bg-background-muted glass-effect-input   rounded-3xl  flex flex-col items-center p-8 m-4">
+                    <div className="bg-background-muted glass-effect-input   rounded-3xl  flex flex-col items-center p-8 ">
                         <div className="flex flex-row justify-between items-center pb-4 w-full ">
                             <h3 className="text-tertiary text-left">Din sparningsplan</h3>
                             <button
