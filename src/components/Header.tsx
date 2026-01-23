@@ -88,12 +88,12 @@ export const Header = () => {
                 <div className="flex hidden md:flex items-center gap-4">
                     <SignedOut>
                         <SignInButton mode="modal">
-                            <button className="bg-accent text-p-white px-4 py-2 rounded">
+                            <button className="bg-accent text-p-white px-4 py-2 rounded-4xl glass-effect-input">
                                 Logga in
                             </button>
                         </SignInButton>
                         <SignUpButton mode="modal">
-                            <button className="bg-accent text-p-white px-4 py-2 rounded">
+                            <button className="bg-accent text-p-white px-4 py-2 rounded-4xl glass-effect-input">
                                 Registrera dig
                             </button>
                         </SignUpButton>
@@ -218,12 +218,12 @@ export const Header = () => {
                 <nav className=" bg-secondary/20 glass-effect-input text-p-black text-center p-4 md:hidden">
                     <SignedOut>
                         <SignInButton mode="modal">
-                            <button className="bg-accent text-p-white px-4 py-2 rounded w-full mb-2">
+                            <button className="bg-accent text-p-white px-4 py-2 rounded w-full mb-2 glass-effect-input rounded-4xl">
                                 Logga in
                             </button>
                         </SignInButton>
                         <SignUpButton mode="modal">
-                            <button className="bg-accent text-p-white px-4 py-2 rounded w-full mb-2">
+                            <button className="bg-accent text-p-white px-4 py-2 rounded w-full mb-2 glass-effect-input rounded-4xl">
                                 Registrera dig
                             </button>
                         </SignUpButton>
