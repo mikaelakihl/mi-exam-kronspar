@@ -23,12 +23,16 @@ export const StartPage = () => {
 
                 </div>
 
-                <div className="bg-p-white/10 backdrop-blur-lg  cols-span-2 md:col-span-1 order-3 md:order-2 md:row-span-2 p-4 md:p-8 w-full rounded-2xl shadow-lg text-p-white">
+                <div className="bg-p-white/10 backdrop-blur-lg  cols-span-2 md:col-span-1 order-3 md:order-2 md:row-span-2 p-4 md:p-8 w-full rounded-2xl shadow-lg text-p-white md:rotate-5">
                     <h2 className="mb-4">Så funkar det</h2>
-                    <ol className="flex flex-col gap-2 list-decimal list-inside">
-                        <li>Registrera dig</li>
-                        <li>Välj pris på din mössa</li>
-                        <li>Spara automatiskt eller manuellt</li>
+                    <ol className="flex flex-col gap-2">
+                        <li className="flex items-center gap-2"><div className="flex items-center justify-center bg-accent text-p-white rounded-full w-8 h-8"><p>
+                            1
+                        </p>
+                        </div><p>Registrera dig</p></li>
+
+                        <li className="flex items-center gap-2"><div className="flex items-center justify-center bg-secondary text-p-white rounded-full w-8 h-8"><p>2</p></div>Fyll i din spar-plan</li>
+                        <li className="flex items-center gap-2"><div className="flex items-center justify-center bg-primary text-p-white rounded-full w-8 h-8"><p>3</p></div>Spara automatiskt</li>
                     </ol>
                 </div>
             </div>
