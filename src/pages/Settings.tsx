@@ -376,7 +376,7 @@ export const Settings = () => {
                     </>
                 )}
                 <div className="lg:col-span-1 lg:overflow-y-auto">
-                    <div className=" bg-background/70 h-fit  p-8 flex flex-col gap-4 rounded-3xl glass-effect-input  ">
+                    <div className=" bg-background-muted md:bg-background/70 h-fit  p-8 flex flex-col gap-4 rounded-3xl glass-effect-input  ">
                         <div className="flex flex-row gap-2 justify-between items-center">
                             <img src="/assets/pinpin.png" alt="Kronspar" className="w-8 h-8 " />
                             {/* <div className="bg-p-black text-p-white rounded-full h-3 w-3 flex justify-center items-center">
