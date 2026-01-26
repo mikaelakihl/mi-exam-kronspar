@@ -7,14 +7,11 @@ import { useTimeTravel } from "../hooks/useTimeTravel";
 import { handleCardNumberChange, handleMonthChange, handleNumericChange } from "../utils/formRegex";
 import { useUserData } from "../hooks/useUserData";
 import { useQueryClient } from "@tanstack/react-query";
+import { PaymentSettings } from "../components/PaymentSettings";
 
 export const Settings = () => {
     const { getDaysUntilPurchaseHat } = useTimeTravel();
-    const [nameOnCard, setNameOnCard] = useState('');
-    const [cardNumber, setCardNumber] = useState('');
-    const [cardMonth, setCardMonth] = useState('');
-    const [cardYear, setCardYear] = useState('');
-    const [cvv, setCvv] = useState('');
+
 
     const [graduationDay, setGraduationDay] = useState('');
     const [dateForPurchaseHat, setDateForPurchaseHat] = useState('');
@@ -22,19 +19,9 @@ export const Settings = () => {
     const [savingsMode, setSavingsMode] = useState('manual');
     const [monthlyAmount, setMonthlyAmount] = useState('');
 
-    const [isCardDetailsEditing, setIsCardDetailsEditing] = useState(false);
     const [isSavingPlanDetailsEditing, setIsSavingPlanDetailsEditing] =
         useState(false);
 
-    const [
-        showSuccessMessageForSavedCardDetails,
-        setShowSuccessMessageForSavedCardDetails,
-    ] = useState(false);
-
-    const [
-        showErrorMessageForSavedCardDetails,
-        setShowErrorMessageForSavedCardDetails,
-    ] = useState(false);
 
     const [
         showSuccessMessageForSavedSavingPlan,
@@ -63,23 +50,7 @@ export const Settings = () => {
 
     // När vi får data, fyll i formuläret
 
-    useEffect(() => {
-        if (userData?.payment?.nameOnCard) {
-            setNameOnCard(userData.payment.nameOnCard);
-        }
-        if (userData?.payment?.cardNumber) {
-            setCardNumber(userData.payment.cardNumber);
-        }
-        if (userData?.payment?.cardCVV) {
-            setCvv(userData.payment.cardCVV);
-        }
-        if (userData?.payment?.cardMonth) {
-            setCardMonth(userData.payment.cardMonth);
-        }
-        if (userData?.payment?.cardYear) {
-            setCardYear(userData.payment.cardYear);
-        }
-    }, [userData]);
+
 
     useEffect(() => {
         if (userData?.graduation?.graduationDay) {
@@ -115,73 +86,7 @@ export const Settings = () => {
     if (isLoading) return <div>Laddar inställningar...</div>;
     if (error) return <div>Kunde inte ladda inställningar.</div>;
     // Spara data
-    const handleSave = async (e: React.FormEvent) => {
-        e.preventDefault();
 
-        setShowErrorMessageForSavedCardDetails(false); // nollställer så det inte blir lagg
-        setShowSuccessMessageForSavedCardDetails(false); // nollställer så det inte blir lagg
-
-        if (!user?.id) return;
-
-        const currentData = userData || {
-            personal: { fname: '', lname: '', email: '' },
-            payment: {
-                nameOnCard: '',
-                cardNumber: '',
-                cardMonth: '',
-                cardYear: '',
-                cardCVV: '',
-            },
-            graduation: { graduationDay: '', dateForPurchaseHat: '', priceOnHat: 0 },
-            savings: { savedAmount: 0, savingsMode: 'manual', monthlyAmount: 0 },
-        };
-
-        const updatedData = {
-            ...currentData,
-            payment: {
-                ...currentData.payment,
-                nameOnCard: nameOnCard,
-                cardNumber: cardNumber,
-                cardCVV: cvv,
-                cardMonth: cardMonth,
-                cardYear: cardYear,
-            },
-            savings: {
-                ...currentData.savings,
-                savingsMode: savingsMode,
-                monthlyAmount: monthlyAmount,
-            },
-        };
-
-        try {
-            const response = await fetch(`/api/data?userId=${user.id}`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ userId: user.id, data: updatedData }), // Ändra för att testa felkod 404;
-            });
-
-            if (!response.ok) {
-                throw new Error('Kunde inte spara data');
-            }
-
-            const data = await response.json();
-
-            console.log('Sparad:', data);
-            setShowSuccessMessageForSavedCardDetails(true);
-
-            queryClient.invalidateQueries({
-                queryKey: ['userData', user?.id],
-            });
-
-            setIsCardDetailsEditing(false);
-        } catch (error) {
-            console.error('Error saving data:', error);
-            setShowSuccessMessageForSavedCardDetails(false);
-            setShowErrorMessageForSavedCardDetails(true);
-        }
-    };
 
     // Spara data
     const handleSaveForSavingPlan = async (e: React.FormEvent) => {
@@ -194,13 +99,7 @@ export const Settings = () => {
 
         const currentSavingPlanData = userData || {
             personal: { fname: '', lname: '', email: '' },
-            payment: {
-                nameOnCard: '',
-                cardNumber: '',
-                cardMonth: '',
-                cardYear: '',
-                cardCVV: '',
-            },
+
             graduation: { graduationDay: '', dateForPurchaseHat: '', priceOnHat: 0 },
             savings: { savedAmount: 0, savingsMode: 'manual', monthlyAmount: 0 },
         };
@@ -252,43 +151,13 @@ export const Settings = () => {
         }
     };
 
-    console.log(cardMonth);
+
 
     return (
         <section className="lg:h-screen lg:overflow-hidden flex-col flex">
             <h2 className="mb-4 text-center text-tertiary">Inställningar</h2>
             <div className="grid gap-4 md:gap-8 lg:grid-cols-3 flex-1 min-h-0">
-                {(showSuccessMessageForSavedCardDetails ||
-                    showErrorMessageForSavedCardDetails) && (
-                        <>
-                            <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/30 text-p-black">
-                                <div className="relative bg-background/60 glass-effect-input   w-[90%] md:w-[50%] p-8 rounded-xl shadow-2xl flex flex-col items-center text-center">
-                                    <button
-                                        className="top-0 right-0 absolute"
-                                        onClick={() => {
-                                            setShowSuccessMessageForSavedCardDetails(false);
-                                            setShowErrorMessageForSavedCardDetails(false);
-                                        }}
-                                    >
-                                        X
-                                    </button>
-                                    {showSuccessMessageForSavedCardDetails && (
-                                        <div className="flex flex-col gap-2 items-center justify-center">
-                                            <h3>Allt gick bra!</h3>
-                                            <p>Dina ändringar har sparats</p>
-                                        </div>
-                                    )}
 
-                                    {showErrorMessageForSavedCardDetails && (
-                                        <div className="flex flex-col gap-2 items-center justify-center">
-                                            <h3>Oops!</h3>
-                                            <p>Det gick inte att spara</p>
-                                        </div>
-                                    )}
-                                </div>
-                            </div>
-                        </>
-                    )}
                 {(showSuccessMessageForSavedSavingPlan ||
                     showErrorMessageForSavedSavingPlan) && (
                         <>
@@ -448,104 +317,7 @@ export const Settings = () => {
                     </div>
                 </div>
                 <div className="lg:flex- flex flex-col gap-4 md:gap-8 lg:overflow-y-auto lg:col-span-2">
-                    <div className="bg-background-muted glass-effect-input flex flex-col gap-4 lg:gap-0 rounded-3xl p-8 ">
-                        <div className="flex flex-row justify-between items-center pb-4 ">
-                            <h3>Betalningsuppgifter</h3>
-                            <button
-                                className="flex items-center gap-1 text-p-black"
-                                onClick={() => setIsCardDetailsEditing(!isCardDetailsEditing)}
-                            >
-                                <IoMdSettings />
-                                {isCardDetailsEditing ? 'Avbryt' : 'Ändra'}
-                            </button>
-                        </div>
-                        <div className="border-b-2 border-background "></div>
-                        <form
-                            onSubmit={handleSave}
-                            className="flex flex-col gap-2 pt-4 uppercase"
-                        >
-                            <label className="flex flex-col gap-2">
-                                Namn på kortet
-                                <input
-                                    value={nameOnCard}
-                                    onChange={(e) => setNameOnCard(e.target.value)}
-                                    disabled={!isCardDetailsEditing}
-                                    className="  disabled:text-p-disabled disabled:cursor-not-allowed "
-                                />
-                            </label>
-                            <label className="flex flex-col gap-2">
-                                Kortnummer
-                                <input
-                                    value={cardNumber}
-                                    onChange={(e) => handleCardNumberChange(e, setCardNumber)}
-                                    className=" disabled:text-p-disabled disabled:cursor-not-allowed "
-                                    disabled={!isCardDetailsEditing}
-                                    type="text"
-                                    maxLength={19}
-                                    placeholder="XXXX XXXX XXXX XXXX"
-                                    inputMode="numeric"
-
-                                />
-                            </label>
-
-                            <div className="flex flex-row gap-2">
-                                <div>
-                                    <p className="text-base  lg:text-lg mb-2">
-                                        Gilftighetstid (MM/YY)
-                                    </p>
-                                    <div className="flex gap-2">
-                                        <input
-                                            aria-label="Månad kortet går ut"
-                                            type="number"
-                                            className=" w-full min-w-0 flex-1  disabled:text-p-disabled disabled:cursor-not-allowed "
-                                            value={cardMonth}
-                                            onChange={(e) => handleMonthChange(e, setCardMonth)}
-                                            disabled={!isCardDetailsEditing}
-                                            placeholder="MM"
-                                            inputMode="numeric"
-                                        />
-                                        <span>/</span>
-                                        <input
-                                            aria-label="År kortet går ut"
-                                            type="number"
-                                            className=" w-full min-w-0 flex-1  disabled:text-p-disabled disabled:cursor-not-allowed "
-                                            value={cardYear}
-                                            onChange={(e) => handleNumericChange(e, setCardYear, 2)}
-                                            disabled={!isCardDetailsEditing}
-                                            placeholder="YY"
-                                            inputMode="numeric"
-                                        />
-                                    </div>
-                                </div>
-                                <div>
-                                    <label className="flex flex-col gap-2">
-                                        CVV
-                                        <input
-                                            value={cvv}
-                                            onChange={(e) => handleNumericChange(e, setCvv, 3)}
-                                            type="number"
-                                            className="disabled:text-p-disabled disabled:cursor-not-allowed text-base"
-                                            placeholder="CVV"
-                                            disabled={!isCardDetailsEditing}
-                                            inputMode="numeric"
-                                        />
-                                    </label>
-                                </div>
-                            </div>
-
-                            {isCardDetailsEditing && (
-                                <button
-                                    onClick={() => setShowSuccessMessageForSavedCardDetails(true)}
-                                    type="submit"
-                                    className="text-p-white bg-primary glass-effect-input rounded-4xl w-1/2 flex justify-center items-center gap-2"
-                                >
-                                    <IoIosSave />
-                                    Spara
-                                </button>
-                            )}
-                        </form>
-                    </div>
-
+                    <PaymentSettings />
                     <div className="bg-background-muted glass-effect-input   rounded-3xl  flex flex-col items-center p-8 ">
                         <div className="flex flex-row justify-between items-center pb-4 w-full ">
                             <h3 className="text-tertiary text-left">Din sparningsplan</h3>
