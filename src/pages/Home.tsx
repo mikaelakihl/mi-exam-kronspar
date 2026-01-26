@@ -31,7 +31,7 @@ export const ProgressBar = ({ saved, goal }: { saved: number, goal: number }) =>
                     {percentage === 0 ? null : <p className="text-white text-sm">{percentage.toString()}%</p>}
                 </div>
             </div>
-            <p>{progressBarStatus()}</p>
+            <p className="italic text-gray-500">{progressBarStatus()}</p>
         </div>
     )
 }
@@ -86,11 +86,11 @@ export const Home = () => {
         },
     ]
     return (
-        <section className="">
+        <section className="flex flex-col gap-4">
             <div>
                 <div className="flex justify-between items-center">
-                    <div className="flex flex-col gap-2">
-                        <h2>Hej {data.personal.fname}</h2>
+                    <div className="flex flex-col gap-2 px-4 mb-2">
+                        <h2 className="font-bold text-primary">Hej {data.personal.fname}! 👋</h2>
                         <p>Nu kör vi mot studenten</p>
                     </div>
                     <div className="bg-accent/20 p-2 px-4 rounded-full border border-accent/40">
@@ -103,8 +103,8 @@ export const Home = () => {
                 </div>
             </div>
             <div>
-                <div className="flex flex-col gap-2 p-4">
-                    <h3 className="text-left">Hitta din drömmössa</h3>
+                <div className="flex flex-col gap-2 px-4 mb-2">
+                    <h3 className="text-left ">Hitta din drömmössa</h3>
                     <p>Här hittar du bland de mest populära mössorna. Jämför och hitta din favorit! </p>
                 </div>
                 <div>
