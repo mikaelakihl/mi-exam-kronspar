@@ -8,9 +8,16 @@ import { handleNumericChange } from "../utils/formRegex";
 import { useUserData } from "../hooks/useUserData";
 import { useQueryClient } from "@tanstack/react-query";
 import { useUser } from "@clerk/clerk-react";
-import { FeedbackMessage } from "./FeedbackMessage";
 
-export const SavingplanSettings = () => {
+
+type SavingplanSettingsProps = {
+    onSuccess: () => void;
+    onError: () => void;
+    onWithdrawSuccess: () => void;
+    onWithdrawError: () => void;
+};
+
+export const SavingplanSettings = ({ onSuccess, onError, onWithdrawSuccess, onWithdrawError }: SavingplanSettingsProps) => {
     const { getDaysUntilPurchaseHat } = useTimeTravel();
 
 
@@ -24,22 +31,6 @@ export const SavingplanSettings = () => {
     const [isSavingPlanDetailsEditing, setIsSavingPlanDetailsEditing] =
         useState(false);
 
-
-    const [
-        showSuccessMessage,
-        setShowSuccessMessage,
-    ] = useState(false);
-
-    const [
-        showErrorMessage,
-        setShowErrorMessage,
-    ] = useState(false);
-
-    const [showWithdrawalSuccessMessage, setShowWithdrawalSuccessMessage] =
-        useState(false);
-
-    const [showWithdrawalErrorMessage, setShowWithdrawalErrorMessage] =
-        useState(false);
 
     const queryClient = useQueryClient();
     const { user } = useUser();
@@ -95,9 +86,6 @@ export const SavingplanSettings = () => {
     const handleSaveForSavingPlan = async (e: React.FormEvent) => {
         e.preventDefault();
 
-        setShowErrorMessage(false); // nollställer så det inte blir lagg
-        setShowSuccessMessage(false);
-
         if (!user?.id || !userData) return;
 
         const updatedSavingPlanData = {
@@ -134,7 +122,7 @@ export const SavingplanSettings = () => {
             const data = await response.json();
 
             console.log(data);
-            setShowSuccessMessage(true);
+            onSuccess();
             queryClient.invalidateQueries({
                 queryKey: ['userData', user?.id],
             });
@@ -142,8 +130,7 @@ export const SavingplanSettings = () => {
             console.log(data);
         } catch (error) {
             console.error('Error saving data:', error);
-            setShowSuccessMessage(false);
-            setShowErrorMessage(true);
+            onError();
         }
     };
 
@@ -152,30 +139,6 @@ export const SavingplanSettings = () => {
     return (
 
         <div className="bg-background-muted glass-effect-input  rounded-3xl  flex flex-col items-center p-8 ">
-            <FeedbackMessage
-                isOpen={showSuccessMessage}
-                onClose={() => setShowSuccessMessage(false)}
-                title="Allt gick bra!"
-                message="Dina ändringar har sparats"
-            />
-            <FeedbackMessage
-                isOpen={showErrorMessage}
-                onClose={() => setShowErrorMessage(false)}
-                title="Oops!"
-                message="Det gick inte att spara dina uppgifter"
-            />
-            <FeedbackMessage
-                isOpen={showWithdrawalSuccessMessage}
-                onClose={() => setShowWithdrawalSuccessMessage(false)}
-                title="Allt gick bra!"
-                message="Ditt uttag lyckades och pengarna är på väg till dig"
-            />
-            <FeedbackMessage
-                isOpen={showWithdrawalErrorMessage}
-                onClose={() => setShowWithdrawalErrorMessage(false)}
-                title="Tyvärr"
-                message="Något gick fel, försök igen senare"
-            />
 
             <div className="flex flex-row justify-between items-center pb-4 w-full ">
                 <h3 className="text-tertiary text-left">Din sparningsplan</h3>
@@ -284,12 +247,12 @@ export const SavingplanSettings = () => {
                                     queryClient.invalidateQueries({
                                         queryKey: ['userData', user.id],
                                     });
-                                    setShowWithdrawalSuccessMessage(true);
+                                    onWithdrawSuccess();
                                 } else {
-                                    setShowWithdrawalErrorMessage(true);
+                                    onWithdrawError();
                                 }
                             } else {
-                                setShowWithdrawalErrorMessage(true);
+                                onWithdrawError();
                             }
                         }}
                     >

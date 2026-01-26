@@ -6,7 +6,12 @@ import { IoIosSave, IoMdSettings } from "react-icons/io";
 import { handleCardNumberChange, handleMonthChange, handleNumericChange } from "../utils/formRegex";
 import { FeedbackMessage } from "./FeedbackMessage";
 
-export const PaymentSettings = () => {
+type PaymentSettingsProps = {
+    onSuccess: () => void;
+    onError: () => void;
+};
+
+export const PaymentSettings = ({ onSuccess, onError }: PaymentSettingsProps) => {
 
     const [nameOnCard, setNameOnCard] = useState('');
     const [cardNumber, setCardNumber] = useState('');
@@ -17,18 +22,6 @@ export const PaymentSettings = () => {
 
 
     const [isCardDetailsEditing, setIsCardDetailsEditing] = useState(false);
-
-
-    const [
-        showSuccessMessage,
-        setShowSuccessMessage,
-    ] = useState(false);
-
-    const [
-        showErrorMessage,
-        setShowErrorMessage,
-    ] = useState(false);
-
 
 
 
@@ -74,9 +67,6 @@ export const PaymentSettings = () => {
     const handleSave = async (e: React.FormEvent) => {
         e.preventDefault();
 
-        setShowErrorMessage(false); // nollställer så det inte blir lagg
-        setShowSuccessMessage(false); // nollställer så det inte blir lagg
-
         if (!user?.id || !userData) return;
 
         const updatedData = {
@@ -108,7 +98,7 @@ export const PaymentSettings = () => {
             const data = await response.json();
 
             console.log('Sparad:', data);
-            setShowSuccessMessage(true);
+            onSuccess();
 
             queryClient.invalidateQueries({
                 queryKey: ['userData', user?.id],
@@ -117,8 +107,7 @@ export const PaymentSettings = () => {
             setIsCardDetailsEditing(false);
         } catch (error) {
             console.error('Error saving data:', error);
-            setShowSuccessMessage(false);
-            setShowErrorMessage(true);
+            onError();
         }
     };
 
@@ -131,18 +120,6 @@ export const PaymentSettings = () => {
 
 
         <div className="bg-background-muted glass-effect-input flex flex-col gap-4 lg:gap-0 rounded-3xl p-8 ">
-            <FeedbackMessage
-                isOpen={showSuccessMessage}
-                onClose={() => setShowSuccessMessage(false)}
-                title="Allt gick bra!"
-                message="Dina ändringar har sparats"
-            />
-            <FeedbackMessage
-                isOpen={showErrorMessage}
-                onClose={() => setShowErrorMessage(false)}
-                title="Oops!"
-                message="Det gick inte att spara kortuppgifterna"
-            />
             <div className="flex flex-row justify-between items-center pb-4 ">
                 <h3>Betalningsuppgifter</h3>
                 <button
@@ -229,7 +206,7 @@ export const PaymentSettings = () => {
 
                 {isCardDetailsEditing && (
                     <button
-                        onClick={() => setShowSuccessMessage(true)}
+                        onClick={() => onSuccess()}
                         type="submit"
                         className="text-p-white bg-primary glass-effect-input rounded-4xl w-1/2 flex justify-center items-center gap-2"
                     >

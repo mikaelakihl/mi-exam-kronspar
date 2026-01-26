@@ -1,14 +1,24 @@
+import { useState } from "react";
+import { FeedbackMessage } from "../components/FeedbackMessage";
 import { PaymentSettings } from "../components/PaymentSettings";
 import { SavingplanSettings } from "../components/SavingplanSettings";
 
 
 export const Settings = () => {
 
+    const [feedback, setFeedback] = useState({
+        isOpen: false,
+        title: '',
+        message: '',
+    });
 
+    const showFeedback = (title: string, message: string) => {
+        setFeedback({ isOpen: true, title, message });
+    };
 
-
-
-
+    const closeFeedback = () => {
+        setFeedback(prev => ({ ...prev, isOpen: false }));
+    };
 
 
     // När vi får data, fyll i formuläret
@@ -17,22 +27,23 @@ export const Settings = () => {
 
     return (
         <section className="lg:h-screen lg:overflow-hidden flex-col flex">
+            <FeedbackMessage
+                isOpen={feedback.isOpen}
+                onClose={closeFeedback}
+                title={feedback.title}
+                message={feedback.message}
+            />
             <h2 className="mb-4 text-center text-tertiary">Inställningar</h2>
             <div className="grid gap-4 md:gap-8 lg:grid-cols-3 flex-1 min-h-0">
 
 
                 <div className="lg:col-span-1 lg:overflow-y-auto">
                     <div className=" bg-background-muted md:bg-background/70 h-fit  p-8 flex flex-col gap-4 rounded-3xl glass-effect-input  ">
-                        <div className="flex flex-row gap-2 justify-between items-center">
+                        {/* <div className="flex flex-row gap-2 justify-between items-center">
                             <img src="/assets/pinpin.png" alt="Kronspar" className="w-8 h-8 " />
-                            {/* <div className="bg-p-black text-p-white rounded-full h-3 w-3 flex justify-center items-center">
-                  <p className="text-[10px]">x</p>
-                </div>
-                <div className="bg-p-black text-p-white rounded-full h-3 w-3 flex justify-center items-center">
-                  <p className="text-[10px] text-p-white/90">x</p>
-                </div> */}
+                          
                             <img src="/assets/pinpin.png" alt="Kronspar" className="w-8 h-8 rotate-90" />
-                        </div>
+                        </div> */}
                         <h3 className="p-4  text-tertiary">Information</h3>
                         <div className="p-2 text-tertiary">
                             <p>Här hittar du information om hur ditt sparande fungerar.</p>
@@ -103,8 +114,17 @@ export const Settings = () => {
                     </div>
                 </div>
                 <div className="lg:flex- flex flex-col gap-4 md:gap-8 lg:overflow-y-auto lg:col-span-2">
-                    <PaymentSettings />
-                    <SavingplanSettings />
+                    <PaymentSettings
+                        onSuccess={() => showFeedback('Allt gick bra!', 'Dina kortuppgifter har sparats')}
+                        onError={() => showFeedback('Oops!', 'Det gick inte att spara kortuppgifterna')}
+                    />
+                    <SavingplanSettings
+                        onSuccess={() => showFeedback('Allt gick bra!', 'Din sparningsplan har sparats')}
+                        onError={() => showFeedback('Oops!', 'Det gick inte att spara sparningsplanen')}
+
+                        onWithdrawSuccess={() => showFeedback('Grattis!', 'Ditt uttag lyckades och pengarna är på väg till dig')}
+                        onWithdrawError={() => showFeedback('Tyvärr!', 'Något gick fel, försök igen senare')}
+                    />
                 </div>
             </div>
         </section>
