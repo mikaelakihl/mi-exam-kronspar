@@ -5,6 +5,7 @@ import { IoIosSave, IoMdSettings } from "react-icons/io";
 import { withdrawSavings } from "../utils/payment";
 import { PiHandWithdrawFill } from "react-icons/pi";
 import { useTimeTravel } from "../hooks/useTimeTravel";
+import { handleCardNumberChange, handleMonthChange, handleNumericChange } from "../utils/formRegex";
 
 export const Settings = () => {
     const { getDaysUntilPurchaseHat } = useTimeTravel();
@@ -486,18 +487,11 @@ export const Settings = () => {
                                 Kortnummer
                                 <input
                                     value={cardNumber}
-                                    // Kollar så det bara är siffror som skrivs in
-                                    onChange={(e) => {
-                                        const value = e.target.value;
-                                        if (value === '' || /^\d*$/.test(value)) {
-                                            setCardNumber(value)
-                                        }
-                                    }}
-
+                                    onChange={(e) => handleCardNumberChange(e, setCardNumber)}
                                     className=" disabled:text-p-disabled disabled:cursor-not-allowed "
                                     disabled={!isCardDetailsEditing}
                                     type="text"
-                                    maxLength={16}
+                                    maxLength={19}
                                     placeholder="XXXX XXXX XXXX XXXX"
                                     inputMode="numeric"
 
@@ -515,8 +509,10 @@ export const Settings = () => {
                                             type="number"
                                             className=" w-full min-w-0 flex-1  disabled:text-p-disabled disabled:cursor-not-allowed "
                                             value={cardMonth}
-                                            onChange={(e) => setCardMonth(e.target.value)}
+                                            onChange={(e) => handleMonthChange(e, setCardMonth)}
                                             disabled={!isCardDetailsEditing}
+                                            placeholder="MM"
+                                            inputMode="numeric"
                                         />
                                         <span>/</span>
                                         <input
@@ -524,8 +520,10 @@ export const Settings = () => {
                                             type="number"
                                             className=" w-full min-w-0 flex-1  disabled:text-p-disabled disabled:cursor-not-allowed "
                                             value={cardYear}
-                                            onChange={(e) => setCardYear(e.target.value)}
+                                            onChange={(e) => handleNumericChange(e, setCardYear, 2)}
                                             disabled={!isCardDetailsEditing}
+                                            placeholder="YY"
+                                            inputMode="numeric"
                                         />
                                     </div>
                                 </div>
@@ -534,10 +532,12 @@ export const Settings = () => {
                                         CVV
                                         <input
                                             value={cvv}
-                                            onChange={(e) => setCvv(e.target.value)}
+                                            onChange={(e) => handleNumericChange(e, setCvv, 3)}
                                             type="number"
                                             className="disabled:text-p-disabled disabled:cursor-not-allowed text-base"
+                                            placeholder="CVV"
                                             disabled={!isCardDetailsEditing}
+                                            inputMode="numeric"
                                         />
                                     </label>
                                 </div>
@@ -599,8 +599,9 @@ export const Settings = () => {
                             <label className="flex flex-col gap-2 text-tertiary">
                                 Pris på studentmössan
                                 <input
+                                    inputMode="numeric"
                                     value={priceOnHat}
-                                    onChange={(e) => setPriceOnHat(e.target.value)}
+                                    onChange={(e) => handleNumericChange(e, setPriceOnHat, 6)}
                                     className="  disabled:text-p-disabled disabled:cursor-not-allowed text-p-black"
                                     disabled={!isSavingPlanDetailsEditing}
                                 />
@@ -630,8 +631,9 @@ export const Settings = () => {
                                 <label className="flex flex-col gap-2">
                                     Summa du vill spara per månad
                                     <input
+                                        inputMode="numeric"
                                         value={monthlyAmount}
-                                        onChange={(e) => setMonthlyAmount(e.target.value)}
+                                        onChange={(e) => handleNumericChange(e, setMonthlyAmount, 4)}
                                         className=" rounded-lg disabled:bg-text-p-white disabled:text-gray-300 disabled:cursor-not-allowed"
                                         disabled={!isSavingPlanDetailsEditing}
                                     />
