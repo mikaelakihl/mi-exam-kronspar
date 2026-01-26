@@ -6,6 +6,7 @@ import { PiHandWithdrawFill } from "react-icons/pi";
 import { useTimeTravel } from "../hooks/useTimeTravel";
 import { handleCardNumberChange, handleMonthChange, handleNumericChange } from "../utils/formRegex";
 import { useUserData } from "../hooks/useUserData";
+import { useQueryClient } from "@tanstack/react-query";
 
 export const Settings = () => {
     const { getDaysUntilPurchaseHat } = useTimeTravel();
