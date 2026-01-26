@@ -86,7 +86,7 @@ export const Home = () => {
         },
     ]
     return (
-        <section className="flex flex-col gap-4">
+        <section className="flex flex-col gap-4 mt-4 lg:mt-0">
             <div>
                 <div className="flex justify-between items-center">
                     <div className="flex flex-col gap-2 px-4 mb-2">
