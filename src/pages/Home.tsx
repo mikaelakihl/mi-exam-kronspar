@@ -1,6 +1,31 @@
+import { useUser } from "@clerk/clerk-react";
+import { useQuery } from "@tanstack/react-query";
 import { FaExternalLinkAlt } from "react-icons/fa";
+import { useTimeTravel } from "../hooks/useTimeTravel";
 
 export const Home = () => {
+
+    const { user } = useUser();
+
+    const { data, isLoading, error } = useQuery({
+        queryKey: ['userData', user?.id],
+        queryFn: async () => {
+            if (!user?.id) return null;
+            const response = await fetch(`/api/data?userId=${user.id}`);
+            if (!response.ok) {
+                throw new Error('Kunde inte hämta data');
+            }
+            return response.json();
+        },
+        enabled: !!user?.id,
+    })
+
+    const { getDaysUntilPurchaseHat } = useTimeTravel();
+
+    if (isLoading) return <div>Laddar data...</div>;
+    if (error) return <div>Kunde inte ladda data.</div>;
+    if (!data) return <div>Ingen data tillgänglig.</div>;
+
     const suppliers = [
         {
             id: 1,
@@ -32,11 +57,11 @@ export const Home = () => {
             <div>
                 <div className="flex justify-between items-center">
                     <div className="flex flex-col gap-2">
-                        <h2>Hej user</h2>
+                        <h2>Hej {data.personal.fname}</h2>
                         <p>Nu kör vi mot studenten</p>
                     </div>
                     <div className="bg-accent/20 p-2 px-4 rounded-full border border-accent/40">
-                        <p className=""><span className="font-bold text-orange-500">antal dagar</span> kvar till mössan</p>
+                        <p className=""><span className="font-bold text-orange-500">{getDaysUntilPurchaseHat(data.graduation.dateForPurchaseHat)} dagar</span> kvar till mössan</p>
                     </div>
                 </div>
                 <div className="bg-background-muted/80 p-4 rounded-4xl glass-effect-input flex flex-col gap-2 text-center">
