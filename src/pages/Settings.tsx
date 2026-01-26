@@ -486,9 +486,21 @@ export const Settings = () => {
                                 Kortnummer
                                 <input
                                     value={cardNumber}
-                                    onChange={(e) => setCardNumber(e.target.value)}
+                                    // Kollar så det bara är siffror som skrivs in
+                                    onChange={(e) => {
+                                        const value = e.target.value;
+                                        if (value === '' || /^\d*$/.test(value)) {
+                                            setCardNumber(value)
+                                        }
+                                    }}
+
                                     className=" disabled:text-p-disabled disabled:cursor-not-allowed "
                                     disabled={!isCardDetailsEditing}
+                                    type="text"
+                                    maxLength={16}
+                                    placeholder="XXXX XXXX XXXX XXXX"
+                                    inputMode="numeric"
+
                                 />
                             </label>
 
