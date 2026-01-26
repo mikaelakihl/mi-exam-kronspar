@@ -1,11 +1,11 @@
-import { useUser } from "@clerk/clerk-react";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+
 import { useEffect, useState } from "react";
 import { IoIosSave, IoMdSettings } from "react-icons/io";
 import { withdrawSavings } from "../utils/payment";
 import { PiHandWithdrawFill } from "react-icons/pi";
 import { useTimeTravel } from "../hooks/useTimeTravel";
 import { handleCardNumberChange, handleMonthChange, handleNumericChange } from "../utils/formRegex";
+import { useUserData } from "../hooks/useUserData";
 
 export const Settings = () => {
     const { getDaysUntilPurchaseHat } = useTimeTravel();
@@ -51,25 +51,14 @@ export const Settings = () => {
     const [showWithdrawalErrorMessage, setShowWithdrawalErrorMessage] =
         useState(false);
 
-    const { user } = useUser();
     const queryClient = useQueryClient();
 
     const {
         data: userData,
         isLoading,
         error,
-    } = useQuery({
-        queryKey: ['userData', user?.id],
-        queryFn: async () => {
-            if (!user?.id) return null;
-            const response = await fetch(`/api/data?userId=${user.id}`);
-            if (!response.ok) {
-                throw new Error('Kunde inte hämta data');
-            }
-            return response.json();
-        },
-        enabled: !!user?.id,
-    });
+    } = useUserData()
+
 
     // När vi får data, fyll i formuläret
 

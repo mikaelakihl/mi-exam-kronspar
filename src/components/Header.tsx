@@ -1,6 +1,4 @@
 
-import { useUser } from "@clerk/clerk-react";
-import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import { SignInButton, SignUpButton, SignedIn, SignedOut, UserButton } from "@clerk/clerk-react";
 import { NavLink } from "react-router";
@@ -8,25 +6,14 @@ import { PiStudentFill } from "react-icons/pi";
 import { AiOutlineClose } from "react-icons/ai";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { useTimeTravel } from "../hooks/useTimeTravel";
+import { useUserData } from "../hooks/useUserData";
 
 export const Header = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [isTimeTravelOpen, setIsTimeTravelOpen] = useState(false);
 
-    const { user } = useUser();
+    const { data } = useUserData();
 
-    const { data } = useQuery({
-        queryKey: ['userData', user?.id],
-        queryFn: async () => {
-            if (!user?.id) return null;
-            const response = await fetch(`/api/data?userId=${user.id}`);
-            if (!response.ok) {
-                throw new Error('Kunde inte hämta data');
-            }
-            return response.json();
-        },
-        enabled: !!user?.id,
-    });
     const { fastForwardToPurchaseHatDay, fastForwardToGraduationDay, resetToCurrentTime, simulatedDate, getDaysUntilGraduation } = useTimeTravel();
 
     const hasTimeBackup =

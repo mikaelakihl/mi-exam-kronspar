@@ -1,27 +1,13 @@
-import { useUser } from "@clerk/clerk-react";
-import { useQuery } from "@tanstack/react-query";
 import { IoMdSettings } from "react-icons/io";
 import { NavLink } from "react-router";
 import { calculateSumOfSavingsInManualSavingsMode, getNextPaymentDate } from "../utils/payment";
 import { useTimeTravel } from "../hooks/useTimeTravel";
+import { useUserData } from "../hooks/useUserData";
 
 
 export const Statistics = () => {
-    const { user } = useUser();
 
-
-    const { data, isLoading, error } = useQuery({
-        queryKey: ['userData', user?.id],
-        queryFn: async () => {
-            if (!user?.id) return null;
-            const response = await fetch(`/api/data?userId=${user.id}`);
-            if (!response.ok) {
-                throw new Error('Kunde inte hämta data');
-            }
-            return response.json();
-        },
-        enabled: !!user?.id,
-    });
+    const { data, isLoading, error } = useUserData();
     const { getDaysUntilGraduation, getDaysUntilPurchaseHat } = useTimeTravel();
 
     if (isLoading) return <div>Laddar statistik...</div>;

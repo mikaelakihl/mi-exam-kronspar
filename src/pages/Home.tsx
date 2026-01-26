@@ -2,6 +2,7 @@ import { useUser } from "@clerk/clerk-react";
 import { useQuery } from "@tanstack/react-query";
 import { FaExternalLinkAlt } from "react-icons/fa";
 import { useTimeTravel } from "../hooks/useTimeTravel";
+import { useUserData } from "../hooks/useUserData";
 
 export const ProgressBar = ({ saved, goal }: { saved: number, goal: number }) => {
 
@@ -38,21 +39,7 @@ export const ProgressBar = ({ saved, goal }: { saved: number, goal: number }) =>
 
 export const Home = () => {
 
-    const { user } = useUser();
-
-    const { data, isLoading, error } = useQuery({
-        queryKey: ['userData', user?.id],
-        queryFn: async () => {
-            if (!user?.id) return null;
-            const response = await fetch(`/api/data?userId=${user.id}`);
-            if (!response.ok) {
-                throw new Error('Kunde inte hämta data');
-            }
-            return response.json();
-        },
-        enabled: !!user?.id,
-    })
-
+    const { data, isLoading, error } = useUserData();
     const { getDaysUntilPurchaseHat } = useTimeTravel();
 
     if (isLoading) return <div>Laddar data...</div>;
