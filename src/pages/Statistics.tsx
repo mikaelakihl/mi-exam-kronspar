@@ -13,7 +13,7 @@ export const Statistics = () => {
     return (
         <section className="tertiary">
             <h2 className="mb-4 text-center">Statistik</h2>
-            <StatisticCards />
+            <StatisticCards data={data} />
 
         </section>
     );

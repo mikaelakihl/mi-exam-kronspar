@@ -1,23 +1,25 @@
 import { IoMdSettings } from "react-icons/io";
 import { useTimeTravel } from "../hooks/useTimeTravel";
-import { useUserData } from "../hooks/useUserData";
 import { calculateSumOfSavingsInManualSavingsMode, getNextPaymentDate } from "../utils/payment"
 import { NavLink } from "react-router";
+import type { UserData } from "../mocks/handlers";
 
-export const StatisticCards = () => {
-    const { data } = useUserData();
+type StatisticCardsProps = {
+    data: UserData;
+}
+
+export const StatisticCards = ({ data }: StatisticCardsProps) => {
+
     const { getDaysUntilGraduation, getDaysUntilPurchaseHat } = useTimeTravel();
-
-    if (!data) return null;
 
     return (
 
         <div className="flex flex-col lg:grid gap-4 lg:grid lg:grid-cols-6">
-            <ActiveStatusStatisticCard />
-            <NextPaymentStatisticCard />
+            <ActiveStatusStatisticCard data={data} />
+            <NextPaymentStatisticCard data={data} />
             <StatisticCard icon="📅" title="Studenten är om" value={getDaysUntilGraduation(data.graduation?.graduationDay)} unit="Dagar" />
             <StatisticCard icon="🎓" title="Köp mössan om" value={getDaysUntilPurchaseHat(data.graduation?.dateForPurchaseHat)} unit="Dagar" />
-            <YouHaveSavedStatisticCard />
+            <YouHaveSavedStatisticCard data={data} />
 
         </div>
 
@@ -25,11 +27,8 @@ export const StatisticCards = () => {
     )
 }
 
-export const ActiveStatusStatisticCard = () => {
-    const { data } = useUserData();
+export const ActiveStatusStatisticCard = ({ data }: StatisticCardsProps) => {
     const { getDaysUntilPurchaseHat } = useTimeTravel();
-
-    if (!data) return null;
 
     return (
         <div className="glass-effect md:col-span-4 flex flex-col  p-8  ">
@@ -74,11 +73,7 @@ export const ActiveStatusStatisticCard = () => {
     )
 }
 
-export const NextPaymentStatisticCard = () => {
-    const { data } = useUserData();
-
-    if (!data) return null;
-
+export const NextPaymentStatisticCard = ({ data }: StatisticCardsProps) => {
     return (
         <div className="glass-effect bg-background-muted md:col-span-2 flex flex-col gap-2 justify-between items-center p-8">
             <div className="flex justify-center items-center rounded-full bg-yellow-100 w-17 h-17 backdrop-blur-lg border border-white shadow-lg">
@@ -88,18 +83,14 @@ export const NextPaymentStatisticCard = () => {
                 Nästa inbetalning sker datum
             </p>
             <p className="text-3xl md:text-4xl lg:text-5xl text-tertiary">
-                {getNextPaymentDate(data.savings?.lastTransactionDate).toString()}
+                {getNextPaymentDate(data.savings?.lastTransactionDate ?? '').toString()}
             </p>
         </div>
     )
 
 }
 
-export const YouHaveSavedStatisticCard = () => {
-    const { data } = useUserData();
-
-    if (!data) return null;
-
+export const YouHaveSavedStatisticCard = ({ data }: StatisticCardsProps) => {
     return (
         <div className=" glass-effect md:col-span-2  flex justify-center flex-col  items-center p-8">
             <p className="uppercase font-bold text-gray-500">Du har sparat</p>
