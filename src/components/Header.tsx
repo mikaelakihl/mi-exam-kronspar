@@ -1,12 +1,10 @@
 
 import { useState } from "react";
-import { SignInButton, SignUpButton, SignedIn, SignedOut, UserButton } from "@clerk/clerk-react";
-import { NavLink } from "react-router";
-import { PiStudentFill } from "react-icons/pi";
-import { AiOutlineClose } from "react-icons/ai";
-import { GiHamburgerMenu } from "react-icons/gi";
+import { SignedIn, SignedOut, } from "@clerk/clerk-react";
 import { useTimeTravel } from "../hooks/useTimeTravel";
 import { useUserData } from "../hooks/useUserData";
+import { HamburgerIcon, HamburgerMenu } from "./menu/Hamburger";
+import { DesktopMenu } from "./menu/Desktop";
 
 export const Header = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -14,7 +12,7 @@ export const Header = () => {
 
     const { data } = useUserData();
 
-    const { fastForwardToPurchaseHatDay, fastForwardToGraduationDay, resetToCurrentTime, simulatedDate, getDaysUntilGraduation } = useTimeTravel();
+    const { fastForwardToPurchaseHatDay, fastForwardToGraduationDay, resetToCurrentTime, simulatedDate } = useTimeTravel();
 
     const hasTimeBackup =
         !!simulatedDate
@@ -80,94 +78,9 @@ export const Header = () => {
                     Time-travel
                 </button>
 
-                <div className="flex hidden md:flex items-center gap-4">
-                    <SignedOut>
-                        <SignInButton mode="modal">
-                            <button className="bg-accent text-p-white px-4 py-2 rounded-4xl glass-effect-input">
-                                Logga in
-                            </button>
-                        </SignInButton>
-                        <SignUpButton mode="modal">
-                            <button className="bg-accent text-p-white px-4 py-2 rounded-4xl glass-effect-input">
-                                Registrera dig
-                            </button>
-                        </SignUpButton>
-                    </SignedOut>
-                    <SignedIn>
-                        <nav className="flex gap-6 text-p-black bg-secondary/20 glass-effect-input rounded-4xl px-4 py-2">
-                            <NavLink
-                                className={({ isActive }) =>
-                                    isActive ? 'border-b-2 border-accent' : 'text-p-black'
-                                }
-                                to="/"
-                            >
-                                Hem
-                            </NavLink>
-                            <NavLink
-                                className={({ isActive }) =>
-                                    isActive ? 'border-b-2 border-accent' : 'text-p-black'
-                                }
-                                to="/settings"
-                            >
-                                Inställningar
-                            </NavLink>
-                            <NavLink
-                                className={({ isActive }) =>
-                                    isActive ? 'border-b-2 border-accent' : 'text-p-black'
-                                }
-                                to="/statistics"
-                            >
-                                Statistik
-                            </NavLink>
-                        </nav>
-                        <div className="flex items-center gap-2">
-                            <div className="text-primary bg-secondary/20 glass-effect-input rounded-full  p-2  ">
-                                {data?.graduation ? (
-                                    <div className="flex items-center gap-2">
-                                        <PiStudentFill size={20} />
-                                        <p>
-                                            {getDaysUntilGraduation(
-                                                data.graduation?.graduationDay
-                                            )}{' '}
-                                        </p>
-                                    </div>
-                                ) : null}
-                            </div>
-                            <div className="flex items-center bg-secondary/20 glass-effect-input rounded-4xl  p-2 [h-60px]  ">
-                                <UserButton />
-                            </div>
-                        </div>
-                    </SignedIn>
-                </div>
+                <DesktopMenu data={data} />
 
-                {/* Mobile menu*/}
-                <div className="md:hidden flex">
-                    {' '}
-                    <SignedIn>
-                        <div className="text-primary bg-secondary/20 glass-effect-input rounded-full  p-2  ">
-                            {data?.graduation ? (
-                                <div className="flex items-center gap-2">
-                                    <PiStudentFill size={20} />
-                                    <p>
-                                        {getDaysUntilGraduation(
-                                            data.graduation?.graduationDay
-                                        )}{' '}
-                                    </p>
-                                </div>
-                            ) : null}
-                        </div>
-                        <div className="flex items-center bg-secondary/20 glass-effect-input rounded-4xl  p-2 [h-60px]  ">
-                            <UserButton userProfileMode="modal" />
-                        </div>
-                    </SignedIn>
-                    <button onClick={() => setIsOpen(!isOpen)} className="p-2">
-                        {isOpen ? (
-                            <AiOutlineClose size={30} className="text-accent" />
-                        ) : (
-                            <GiHamburgerMenu size={30} className="text-accent" />
-                        )}
-                    </button>
-                </div>
+                <HamburgerIcon data={data} isOpen={isOpen} setIsOpen={setIsOpen} />
             </header>
             {isTimeTravelOpen && (
                 <div className=" z-20 fixed  w-full h-full flex justify-center items-center">
@@ -210,48 +123,7 @@ export const Header = () => {
                 </div>
             )}
             {isOpen && (
-                <nav className=" bg-secondary/20 glass-effect-input text-p-black text-center p-4 md:hidden">
-                    <SignedOut>
-                        <SignInButton mode="modal">
-                            <button className="bg-accent text-p-white px-4 py-2 rounded w-full mb-2 glass-effect-input rounded-4xl">
-                                Logga in
-                            </button>
-                        </SignInButton>
-                        <SignUpButton mode="modal">
-                            <button className="bg-accent text-p-white px-4 py-2 rounded w-full mb-2 glass-effect-input rounded-4xl">
-                                Registrera dig
-                            </button>
-                        </SignUpButton>
-                    </SignedOut>
-                    <SignedIn>
-                        <div className="flex flex-col gap-4">
-                            <NavLink
-                                className={({ isActive }) =>
-                                    isActive ? 'text-accent' : 'text-p-black'
-                                }
-                                to="/"
-                            >
-                                Hem
-                            </NavLink>
-                            <NavLink
-                                className={({ isActive }) =>
-                                    isActive ? 'text-accent ' : 'text-p-black'
-                                }
-                                to="/settings"
-                            >
-                                Inställningar
-                            </NavLink>
-                            <NavLink
-                                className={({ isActive }) =>
-                                    isActive ? 'text-accent' : 'text-p-black'
-                                }
-                                to="/statistics"
-                            >
-                                Statistik
-                            </NavLink>
-                        </div>
-                    </SignedIn>
-                </nav>
+                <HamburgerMenu />
             )}
         </>
     );
