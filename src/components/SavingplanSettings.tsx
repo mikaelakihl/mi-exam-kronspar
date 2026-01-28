@@ -143,7 +143,7 @@ export const SavingplanSettings = ({ onSuccess, onError, onWithdrawSuccess, onWi
             <div className="flex flex-row justify-between items-center pb-4 w-full ">
                 <h3 className="text-left">Din sparningsplan</h3>
                 <button
-                    className="flex items-center gap-1 text-tertiary"
+                    className="flex items-center gap-1"
                     onSubmit={handleSaveForSavingPlan}
                     onClick={() =>
                         setIsSavingPlanDetailsEditing(!isSavingPlanDetailsEditing)
@@ -159,7 +159,7 @@ export const SavingplanSettings = ({ onSuccess, onError, onWithdrawSuccess, onWi
                 className="flex flex-col gap-2 pt-4 uppercase w-full"
             >
                 <div className="flex flex-col md:flex-row gap-2">
-                    <label className="flex flex-col gap-2 text-tertiary">
+                    <label className="flex flex-col gap-2">
                         {' '}
                         Examensdag
                         <input
@@ -169,7 +169,7 @@ export const SavingplanSettings = ({ onSuccess, onError, onWithdrawSuccess, onWi
                             disabled={!isSavingPlanDetailsEditing}
                         />
                     </label>
-                    <label className="flex flex-col gap-2 text-tertiary">
+                    <label className="flex flex-col gap-2 ">
                         Vilket datum planeras inköpet av mössan?
                         <input
                             value={dateForPurchaseHat}
@@ -179,7 +179,7 @@ export const SavingplanSettings = ({ onSuccess, onError, onWithdrawSuccess, onWi
                         />
                     </label>
                 </div>
-                <label className="flex flex-col gap-2 text-tertiary">
+                <label className="flex flex-col gap-2 ">
                     Pris på studentmössan
                     <input
                         inputMode="numeric"
@@ -189,7 +189,7 @@ export const SavingplanSettings = ({ onSuccess, onError, onWithdrawSuccess, onWi
                         disabled={!isSavingPlanDetailsEditing}
                     />
                 </label>
-                <label className="flex flex-col gap-2 text-tertiary">
+                <label className="flex flex-col gap-2 ">
                     Hur vill du spara?
                     <div className="flex gap-2 mb-2">
                         <button
@@ -223,7 +223,7 @@ export const SavingplanSettings = ({ onSuccess, onError, onWithdrawSuccess, onWi
                     </label>
                 )}
                 {savingsMode === 'auto' && (
-                    <p className="text-tertiary">
+                    <p className="">
                         Vi drar {monthlyAmount} kr / månad
                     </p>
                 )}

@@ -8,7 +8,7 @@ export const Layout = () => {
             <main className="flex-1 bg-gradient px-4 md:px-10 lg:px-30 overflow-hidden flex-col flex">
                 <Outlet />
             </main>
-            <footer className="bg-secondary/60 text-primary p-4 text-center">
+            <footer className="bg-secondary/60  p-4 text-center">
                 <p>Copyright 2026 Kronspar</p>
             </footer>
         </div>

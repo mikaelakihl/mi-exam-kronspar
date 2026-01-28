@@ -63,7 +63,7 @@ export const ActiveStatusStatisticCard = ({ data }: StatisticCardsProps) => {
                 </div>
             </div>
             <div className="border-b-2 border-p-disabled my-4"></div>
-            <div className="flex items-center gap-1 text-tertiary">
+            <div className="flex items-center gap-1">
                 <IoMdSettings />{' '}
                 <NavLink to="/settings">
                     Klicka här om du vill ändra din spar-plan
@@ -82,7 +82,7 @@ export const NextPaymentStatisticCard = ({ data }: StatisticCardsProps) => {
             <p className="uppercase font-bold text-gray-500 font-bold text-center">
                 Nästa inbetalning sker datum
             </p>
-            <p className="text-3xl md:text-4xl lg:text-5xl text-tertiary">
+            <p className="text-3xl md:text-4xl lg:text-5xl">
                 {getNextPaymentDate(data.savings?.lastTransactionDate ?? '').toString()}
             </p>
         </div>
@@ -134,7 +134,7 @@ export const StatisticCard = ({ icon, title, value, unit }: StatisticCardProps) 
                 {title}
             </p>{' '}
             <div className="flex items-baseline gap-2">
-                <p className="text-3xl md:text-4xl lg:text-5xl text-tertiary">
+                <p className="text-3xl md:text-4xl lg:text-5xl">
                     {value}{' '}
                 </p>
                 <p className="text-gray-500">{unit}</p>

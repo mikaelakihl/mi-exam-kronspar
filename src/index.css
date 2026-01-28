@@ -2,10 +2,10 @@
 
 @theme {
   /* colors */
-  --color-primary: #70508f; /* deep purple */
+  --color-primary:  #412F5B; /* deep purple */
   --color-accent: #f67f77; /* coral */
   --color-secondary: #A29EF1; /* lavender */
-  --color-tertiary: #190330; /* dark purple */
+ 
 
   /* backgrounds*/
   --color-background-muted: #fefeff; /* almost white*/
