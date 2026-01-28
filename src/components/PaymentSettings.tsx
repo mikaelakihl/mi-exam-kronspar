@@ -199,7 +199,6 @@ export const PaymentSettings = ({ onSuccess, onError }: PaymentSettingsProps) =>
 
                 {isCardDetailsEditing && (
                     <button
-                        onClick={() => onSuccess()}
                         type="submit"
                         className="text-p-white bg-primary glass-effect-input rounded-4xl w-1/2 flex justify-center items-center gap-2"
                     >

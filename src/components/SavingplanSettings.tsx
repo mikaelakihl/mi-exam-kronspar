@@ -144,7 +144,6 @@ export const SavingplanSettings = ({ onSuccess, onError, onWithdrawSuccess, onWi
                 <h3 className="text-left">Din sparningsplan</h3>
                 <button
                     className="flex items-center gap-1"
-                    onSubmit={handleSaveForSavingPlan}
                     onClick={() =>
                         setIsSavingPlanDetailsEditing(!isSavingPlanDetailsEditing)
                     }
