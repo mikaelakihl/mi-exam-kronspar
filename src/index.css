@@ -15,7 +15,7 @@
   --color-p-black: #000000;
   --color-p-white: #ffffff;
   --color-p-disabled: #bbabca;
-  ;
+  
 
   --color-stroke: #28114a;
 }
@@ -59,15 +59,11 @@
 }
 
 @layer utilities {
-  .glass-effect {
-    @apply bg-background-muted/60 rounded-xl backdrop-blur-lg border border-white shadow-lg;
-  }
-  .glass-effect-info {
-    @apply bg-secondary/20 rounded-xl backdrop-blur-xl border border-white shadow-lg;
-  }
+ 
+ 
 
   .glass-effect-input {
-    @apply  backdrop-blur-lg border border-white shadow-lg;
+    @apply  backdrop-blur-lg border border-white shadow-lg ;
   }
 
   .uppercase {
@@ -85,3 +81,5 @@
   -webkit-text-stroke: 1px var(--color-stroke);
   -webkit-text-fill-color: #f5e298;
 }
+
+

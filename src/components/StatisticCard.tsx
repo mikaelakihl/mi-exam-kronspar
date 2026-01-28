@@ -31,7 +31,7 @@ export const ActiveStatusStatisticCard = ({ data }: StatisticCardsProps) => {
     const { getDaysUntilPurchaseHat } = useTimeTravel();
 
     return (
-        <div className="glass-effect md:col-span-4 flex flex-col  p-8  ">
+        <div className="glass-effect-input bg-background-muted/80 rounded-4xl md:col-span-4 flex flex-col  p-8  ">
             <h3 className="text-left pb-4">Aktiv status</h3>
             <div>
                 <div className="flex flex-col gap-2">
@@ -75,7 +75,7 @@ export const ActiveStatusStatisticCard = ({ data }: StatisticCardsProps) => {
 
 export const NextPaymentStatisticCard = ({ data }: StatisticCardsProps) => {
     return (
-        <div className="glass-effect bg-background-muted md:col-span-2 flex flex-col gap-2 justify-between items-center p-8">
+        <div className="glass-effect-input bg-background-muted/80 rounded-4xl md:col-span-2 flex flex-col gap-2 justify-between items-center p-8">
             <div className="flex justify-center items-center rounded-full bg-yellow-100 w-17 h-17 backdrop-blur-lg border border-white shadow-lg">
                 <p className="text-3xl">💸</p>
             </div>
@@ -92,7 +92,7 @@ export const NextPaymentStatisticCard = ({ data }: StatisticCardsProps) => {
 
 export const YouHaveSavedStatisticCard = ({ data }: StatisticCardsProps) => {
     return (
-        <div className=" glass-effect md:col-span-2  flex justify-center flex-col  items-center p-8">
+        <div className=" glass-effect-input md:col-span-2  flex justify-center flex-col  items-center p-8 bg-background-muted/80 rounded-4xl">
             <p className="uppercase font-bold text-gray-500">Du har sparat</p>
             <div className='relative w-fit'>
                 <img
@@ -126,7 +126,7 @@ type StatisticCardProps = {
 export const StatisticCard = ({ icon, title, value, unit }: StatisticCardProps) => {
 
     return (
-        <div className="glass-effect md:col-span-2 flex-col flex gap-2 justify-between items-center p-8">
+        <div className="glass-effect-input md:col-span-2 flex-col flex gap-2 justify-between items-center p-8 bg-background-muted/80 rounded-4xl">
             <div className="flex justify-center items-center rounded-full bg-yellow-100 w-17 h-17 backdrop-blur-lg border border-white shadow-lg">
                 <p className="text-3xl">{icon}</p>
             </div>
