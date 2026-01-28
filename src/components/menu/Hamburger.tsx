@@ -6,7 +6,7 @@ import { PiStudentFill } from "react-icons/pi"
 import { NavLink } from "react-router"
 import type { UserData } from "../../mocks/handlers"
 import { useTimeTravel } from "../../hooks/useTimeTravel"
-import { IoLogIn, IoPersonAdd } from "react-icons/io5"
+import { IoLogIn, IoPersonAdd, IoHome, IoSettings, IoStatsChart } from "react-icons/io5"
 
 export type DataProps = {
     data: UserData
@@ -23,20 +23,25 @@ export const HamburgerIcon = ({ data, isOpen, setIsOpen }: HamburgerIconProps) =
         <div className="md:hidden flex">
             {' '}
             <SignedIn>
-                <div className="text-primary bg-secondary/20 glass-effect-input rounded-full  p-2  ">
-                    {data?.graduation ? (
-                        <div className="flex items-center gap-2">
-                            <PiStudentFill size={20} />
+                <div className="flex items-center gap-2 bg-secondary/20 glass-effect-input rounded-4xl px-3 py-1 mr-2">
+                    {data?.graduation && (
+                        <div className="flex items-center gap-2 text-primary font-bold pr-2 border-r border-primary/10">
+                            <PiStudentFill size={18} />
                             <p>
-                                {getDaysUntilGraduation(
-                                    data.graduation?.graduationDay
-                                )}{' '}
+                                {getDaysUntilGraduation(data.graduation.graduationDay)}
                             </p>
                         </div>
-                    ) : null}
-                </div>
-                <div className="flex items-center bg-secondary/20 glass-effect-input rounded-4xl  p-2 [h-60px]  ">
-                    <UserButton userProfileMode="modal" />
+                    )}
+                    <div className="flex items-center">
+                        <UserButton
+                            userProfileMode="modal"
+                            appearance={{
+                                elements: {
+                                    avatarBox: "w-7 h-7"
+                                }
+                            }}
+                        />
+                    </div>
                 </div>
             </SignedIn>
             <button onClick={() => setIsOpen(!isOpen)} className="p-2" aria-label="Meny">
@@ -68,30 +73,42 @@ export const HamburgerMenu = () => {
                 </SignUpButton>
             </SignedOut>
             <SignedIn>
-                <div className="flex flex-col gap-4">
+                <div className="flex flex-col gap-2">
                     <NavLink
                         className={({ isActive }) =>
-                            isActive ? 'text-accent' : 'text-p-black'
+                            `flex items-center justify-center gap-3 p-3 rounded-2xl transition-all ${isActive
+                                ? 'bg-primary text-p-white shadow-md'
+                                : 'text-p-black hover:bg-secondary/10'
+                            }`
                         }
                         to="/"
                     >
+                        <IoHome size={20} />
                         Hem
                     </NavLink>
                     <NavLink
                         className={({ isActive }) =>
-                            isActive ? 'text-accent ' : 'text-p-black'
-                        }
-                        to="/settings"
-                    >
-                        Inställningar
-                    </NavLink>
-                    <NavLink
-                        className={({ isActive }) =>
-                            isActive ? 'text-accent' : 'text-p-black'
+                            `flex items-center justify-center gap-3 p-3 rounded-2xl transition-all ${isActive
+                                ? 'bg-primary text-p-white shadow-md'
+                                : 'text-p-black hover:bg-secondary/10'
+                            }`
                         }
                         to="/statistics"
                     >
+                        <IoStatsChart size={20} />
                         Statistik
+                    </NavLink>
+                    <NavLink
+                        className={({ isActive }) =>
+                            `flex items-center justify-center gap-3 p-3 rounded-2xl transition-all ${isActive
+                                ? 'bg-primary text-p-white shadow-md'
+                                : 'text-p-black hover:bg-secondary/10'
+                            }`
+                        }
+                        to="/settings"
+                    >
+                        <IoSettings size={20} />
+                        Inställningar
                     </NavLink>
                 </div>
             </SignedIn>

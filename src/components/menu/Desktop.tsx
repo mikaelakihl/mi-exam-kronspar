@@ -6,14 +6,14 @@ import { useTimeTravel } from "../../hooks/useTimeTravel";
 import type { DataProps } from "./Hamburger";
 import { NavLink } from "react-router";
 import { PiStudentFill } from "react-icons/pi";
-import { IoLogIn, IoPersonAdd } from "react-icons/io5";
+import { IoLogIn, IoPersonAdd, IoHome, IoSettings, IoStatsChart } from "react-icons/io5";
 
 
 
 export const DesktopMenu = ({ data }: DataProps) => {
     const { getDaysUntilGraduation } = useTimeTravel();
     return (
-        <div className="flex hidden md:flex items-center gap-4">
+        <div className="hidden md:flex items-center gap-6">
             <SignedOut>
                 <SignInButton mode="modal">
                     <button className="text-primary hover:bg-secondary/20 border-2 border-transparent hover:border-secondary/30 transition-all px-4 py-2 rounded-4xl flex items-center gap-2 font-bold focus-visible-primary">
@@ -29,47 +29,63 @@ export const DesktopMenu = ({ data }: DataProps) => {
                 </SignUpButton>
             </SignedOut>
             <SignedIn>
-                <nav className="flex gap-6 text-p-black bg-secondary/20 glass-effect-input rounded-4xl px-4 py-2">
+                <nav className="flex items-center gap-1 text-p-black bg-secondary/20 glass-effect-input rounded-4xl p-1">
                     <NavLink
                         className={({ isActive }) =>
-                            isActive ? 'border-b-2 border-accent' : 'text-p-black'
+                            `flex items-center gap-2 px-3 py-1.5 rounded-3xl transition-all ${isActive
+                                ? 'bg-primary text-p-white shadow-sm'
+                                : 'text-p-black hover:text-primary hover:bg-white/40'
+                            }`
                         }
                         to="/"
                     >
+                        <IoHome size={16} />
                         Hem
                     </NavLink>
                     <NavLink
                         className={({ isActive }) =>
-                            isActive ? 'border-b-2 border-accent' : 'text-p-black'
-                        }
-                        to="/settings"
-                    >
-                        Inställningar
-                    </NavLink>
-                    <NavLink
-                        className={({ isActive }) =>
-                            isActive ? 'border-b-2 border-accent' : 'text-p-black'
+                            `flex items-center gap-2 px-3 py-1.5 rounded-3xl transition-all ${isActive
+                                ? 'bg-primary text-p-white shadow-sm'
+                                : 'text-p-black hover:text-primary hover:bg-white/40'
+                            }`
                         }
                         to="/statistics"
                     >
+                        <IoStatsChart size={16} />
                         Statistik
                     </NavLink>
+                    <NavLink
+                        className={({ isActive }) =>
+                            `flex items-center gap-2 px-3 py-1.5 rounded-3xl transition-all ${isActive
+                                ? 'bg-primary text-p-white shadow-sm'
+                                : 'text-p-black hover:text-primary hover:bg-white/40'
+                            }`
+                        }
+                        to="/settings"
+                    >
+                        <IoSettings size={16} />
+                        Inställningar
+                    </NavLink>
                 </nav>
-                <div className="flex items-center gap-2">
-                    <div className="text-primary bg-secondary/20 glass-effect-input rounded-full  p-2  ">
-                        {data?.graduation ? (
-                            <div className="flex items-center gap-2">
-                                <PiStudentFill size={20} />
-                                <p>
-                                    {getDaysUntilGraduation(
-                                        data.graduation?.graduationDay
-                                    )}{' '}
-                                </p>
-                            </div>
-                        ) : null}
-                    </div>
-                    <div className="flex items-center bg-secondary/20 glass-effect-input rounded-4xl  p-2 [h-60px]  ">
-                        <UserButton />
+
+                <div className="flex items-center gap-4 bg-secondary/20 glass-effect-input rounded-4xl px-4 py-2">
+                    {data?.graduation && (
+                        <div className="flex items-center gap-2 text-primary font-bold" title="Dagar till studenten">
+                            <PiStudentFill size={20} />
+                            <span>
+                                {getDaysUntilGraduation(data.graduation.graduationDay)}
+                            </span>
+                        </div>
+                    )}
+
+                    <div className="flex items-center">
+                        <UserButton
+                            appearance={{
+                                elements: {
+                                    avatarBox: "w-8 h-8"
+                                }
+                            }}
+                        />
                     </div>
                 </div>
             </SignedIn>
