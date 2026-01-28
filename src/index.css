@@ -75,6 +75,14 @@
   .bg-gradient {
     @apply bg-gradient-to-b from-background to-secondary/60;
   }
+
+  .focus-visible-primary {
+    @apply focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none focus-visible:ring-offset-2;
+  }
+
+  .focus-visible-white {
+    @apply focus-visible:ring-2 focus-visible:ring-p-white focus-visible:outline-none focus-visible:ring-offset-2 focus-visible:ring-offset-primary;
+  }
 }
 
 .text-stroke {
