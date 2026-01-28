@@ -22,7 +22,7 @@ export const ProgressBar = ({ saved, goal }: { saved: number, goal: number }) =>
             </div>
             <div className="h-5 border border-gray-200 rounded-full ">
                 <div className="h-full bg-accent rounded-full flex items-center justify-end p-2" style={{ width: `${percentage}%` }}
-                    role="progressbar" aria-valuenow={percentage} aria-valuemin={0} aria-valuemax={goal}>
+                    role="progressbar" aria-valuenow={saved} aria-valuemin={0} aria-valuemax={goal}>
                     {percentage === 0 ? null : <p className="text-white text-sm">{percentage.toString()}%</p>}
                 </div>
             </div>

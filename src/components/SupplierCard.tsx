@@ -4,10 +4,10 @@ type SupplierCardProps = {
     title: string;
     img: string;
     link: string;
-
+    alt: string;
 }
 
-export const SupplierCard = ({ title, img, link }: SupplierCardProps) => {
+export const SupplierCard = ({ title, img, link, alt }: SupplierCardProps) => {
     return (
 
         <a href={link} >
@@ -20,10 +20,10 @@ export const SupplierCard = ({ title, img, link }: SupplierCardProps) => {
                 </div>
 
                 <div className="rounded-full overflow-hidden w-24 h-24  border-2 border-secondary/20">
-                    <img src={img} className="w-24 h-24 object-cover" />
+                    <img src={img} alt={alt} className="w-24 h-24 object-cover" />
                 </div>
                 <h4 className="text-primary">{title}</h4>
-                <p className="text-sm text-gray-500 uppercase font-bold">Besök Hemsida </p>
+                <p className="text-sm text-gray-500 uppercase font-bold" aria-label={`Besök ${title} hemsida`}>Besök Hemsida </p>
             </div>
         </a>
 
