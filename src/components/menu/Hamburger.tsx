@@ -65,7 +65,7 @@ export const HamburgerMenu = () => {
                         Logga in
                     </button>
                 </SignInButton>
-                <SignUpButton mode="modal">
+                <SignUpButton forceRedirectUrl="/settings" mode="modal">
                     <button className="bg-primary w-full hover:bg-primary/90 text-p-white px-4 py-3 rounded-4xl glass-effect-input flex items-center justify-center gap-2 shadow-md mb-2 focus-visible-primary">
                         <IoPersonAdd size={20} />
                         Registrera dig
