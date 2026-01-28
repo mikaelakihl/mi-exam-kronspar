@@ -228,6 +228,30 @@ export const SavingplanSettings = ({ onSuccess, onError, onWithdrawSuccess, onWi
                     </p>
                 )}
                 <div className="grid grid-cols-2 gap-2">
+                    {isSavingPlanDetailsEditing ? null : (
+                        <button
+                            type="button"
+                            className="text-p-black bg-accent glass-effect-input rounded-4xl flex justify-center items-center gap-2"
+                            onClick={() => {
+                                if (userData && user?.id) {
+                                    const updatedData = withdrawSavings(userData, user.id);
+                                    if (updatedData) {
+                                        queryClient.invalidateQueries({
+                                            queryKey: ['userData', user.id],
+                                        });
+                                        onWithdrawSuccess();
+                                    } else {
+                                        onWithdrawError();
+                                    }
+                                } else {
+                                    onWithdrawError();
+                                }
+                            }}
+                        >
+                            <PiHandWithdrawFill />
+                            Ta ut sparande
+                        </button>
+                    )}
                     {isSavingPlanDetailsEditing && (
                         <button
                             className="text-p-white bg-primary glass-effect-input rounded-4xl flex justify-center items-center gap-2"
@@ -237,28 +261,6 @@ export const SavingplanSettings = ({ onSuccess, onError, onWithdrawSuccess, onWi
                             Spara
                         </button>
                     )}
-                    <button
-                        type="button"
-                        className="text-p-black bg-accent glass-effect-input rounded-4xl flex justify-center items-center gap-2"
-                        onClick={() => {
-                            if (userData && user?.id) {
-                                const updatedData = withdrawSavings(userData, user.id);
-                                if (updatedData) {
-                                    queryClient.invalidateQueries({
-                                        queryKey: ['userData', user.id],
-                                    });
-                                    onWithdrawSuccess();
-                                } else {
-                                    onWithdrawError();
-                                }
-                            } else {
-                                onWithdrawError();
-                            }
-                        }}
-                    >
-                        <PiHandWithdrawFill />
-                        Ta ut sparande
-                    </button>
                 </div>
             </form>
         </div>
