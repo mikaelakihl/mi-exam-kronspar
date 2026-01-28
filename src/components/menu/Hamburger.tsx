@@ -6,6 +6,8 @@ import { PiStudentFill } from "react-icons/pi"
 import { NavLink } from "react-router"
 import type { UserData } from "../../mocks/handlers"
 import { useTimeTravel } from "../../hooks/useTimeTravel"
+import { IoLogIn } from "react-icons/io5"
+import { FaUserPlus } from "react-icons/fa"
 
 export type DataProps = {
     data: UserData
@@ -54,12 +56,14 @@ export const HamburgerMenu = () => {
         <nav className=" bg-secondary/20 glass-effect-input text-p-black text-center p-4 md:hidden">
             <SignedOut>
                 <SignInButton mode="modal">
-                    <button className="bg-accent text-p-white px-4 py-2 rounded w-full mb-2 glass-effect-input rounded-4xl">
+                    <button className="bg-accent px-4 py-2 rounded w-full mb-2 glass-effect-input rounded-4xl flex items-center justify-center gap-2">
+                        <IoLogIn />
                         Logga in
                     </button>
                 </SignInButton>
                 <SignUpButton mode="modal">
-                    <button className="bg-accent text-p-white px-4 py-2 rounded w-full mb-2 glass-effect-input rounded-4xl">
+                    <button className="bg-accent  px-4 py-2 rounded w-full mb-2 glass-effect-input rounded-4xl flex items-center justify-center gap-2">
+                        <FaUserPlus />
                         Registrera dig
                     </button>
                 </SignUpButton>

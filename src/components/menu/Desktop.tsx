@@ -6,6 +6,8 @@ import { useTimeTravel } from "../../hooks/useTimeTravel";
 import type { DataProps } from "./Hamburger";
 import { NavLink } from "react-router";
 import { PiStudentFill } from "react-icons/pi";
+import { IoLogIn } from "react-icons/io5";
+import { FaUserPlus } from "react-icons/fa";
 
 
 
@@ -15,12 +17,15 @@ export const DesktopMenu = ({ data }: DataProps) => {
         <div className="flex hidden md:flex items-center gap-4">
             <SignedOut>
                 <SignInButton mode="modal">
-                    <button className="bg-accent text-p-white px-4 py-2 rounded-4xl glass-effect-input">
+                    <button className="bg-accent  px-4 py-2 rounded-4xl glass-effect-input flex items-center gap-2">
+                        <IoLogIn />
                         Logga in
                     </button>
                 </SignInButton>
                 <SignUpButton mode="modal">
-                    <button className="bg-accent text-p-white px-4 py-2 rounded-4xl glass-effect-input">
+                    <button className="bg-accent  px-4 py-2 rounded-4xl glass-effect-input flex items-center gap-2">
+                        <FaUserPlus />
+
                         Registrera dig
                     </button>
                 </SignUpButton>
