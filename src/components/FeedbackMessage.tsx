@@ -1,3 +1,5 @@
+import { IoIosCloseCircleOutline } from "react-icons/io";
+
 type FeedbackMessageProps = {
     isOpen: boolean;
     onClose: () => void;
@@ -15,7 +17,7 @@ export const FeedbackMessage = ({ isOpen, onClose, title, message }: FeedbackMes
                     className="top-0 right-0 absolute"
                     onClick={onClose}
                 >
-                    X
+                    <IoIosCloseCircleOutline className=" text-2xl" />
                 </button>
 
                 <div className="flex flex-col gap-2 items-center justify-center">
