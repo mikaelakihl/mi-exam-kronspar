@@ -112,7 +112,7 @@ export const PaymentSettings = ({ onSuccess, onError }: PaymentSettingsProps) =>
 
 
 
-        <div className="bg-background-muted glass-effect-input flex flex-col gap-4 lg:gap-0 rounded-3xl p-8 ">
+        <div className="bg-background-muted glass-effect-input flex flex-col gap-4 lg:gap-0 rounded-3xl p-4 py-8 lg:p-8 ">
             <div className="flex flex-row justify-between items-center pb-4 ">
                 <h3>Betalningsuppgifter</h3>
                 <button
@@ -142,7 +142,7 @@ export const PaymentSettings = ({ onSuccess, onError }: PaymentSettingsProps) =>
                     <input
                         value={cardNumber}
                         onChange={(e) => handleCardNumberChange(e, setCardNumber)}
-                        className=" disabled:text-p-disabled disabled:cursor-not-allowed "
+                        className="disabled:text-p-disabled disabled:cursor-not-allowed "
                         disabled={!isCardDetailsEditing}
                         type="text"
                         maxLength={19}

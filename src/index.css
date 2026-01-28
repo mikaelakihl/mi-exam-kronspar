@@ -52,7 +52,7 @@
   }
 
   input {
-    @apply p-3 lg:p-2;
+    @apply p-3 lg:p-2 w-full;
   }
 
   button {

@@ -138,7 +138,7 @@ export const SavingplanSettings = ({ onSuccess, onError, onWithdrawSuccess, onWi
 
     return (
 
-        <div className="bg-background-muted glass-effect-input  rounded-3xl  flex flex-col items-center p-8 ">
+        <div className="bg-background-muted glass-effect-input  rounded-3xl  flex flex-col items-center p-4 py-8 lg:p-8 ">
 
             <div className="flex flex-row justify-between items-center pb-4 w-full ">
                 <h3 className="text-tertiary text-left">Din sparningsplan</h3>
