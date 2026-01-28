@@ -17,10 +17,10 @@ export const Home = () => {
     return (
         <section className="flex flex-col gap-4 mt-4 lg:mt-0">
             <div>
-                <div className="flex justify-between items-center">
+                <div className="flex flex-col md:flex-row pb-4 md:pb-0 justify-between items-center">
                     <div className="flex flex-col gap-2 px-4 mb-2">
-                        <h2 className="font-bold text-primary">Hej {data.personal.fname}! 👋</h2>
-                        <p>Nu kör vi mot studenten</p>
+                        <h2 className="font-bold text-center md:text-left text-primary">Hej {data.personal.fname} 👋</h2>
+                        <p className=" ">Nu kör vi mot studenten!</p>
                     </div>
                     <div className="bg-accent/20 p-2 px-4 rounded-full border border-accent/40">
                         <p className=""><span className="font-bold text-orange-500">{getDaysUntilPurchaseHat(data.graduation.dateForPurchaseHat)} dagar</span> kvar till mössan</p>
