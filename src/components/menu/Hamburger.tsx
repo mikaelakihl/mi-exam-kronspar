@@ -6,8 +6,7 @@ import { PiStudentFill } from "react-icons/pi"
 import { NavLink } from "react-router"
 import type { UserData } from "../../mocks/handlers"
 import { useTimeTravel } from "../../hooks/useTimeTravel"
-import { IoLogIn } from "react-icons/io5"
-import { FaUserPlus } from "react-icons/fa"
+import { IoLogIn, IoPersonAdd } from "react-icons/io5"
 
 export type DataProps = {
     data: UserData
@@ -56,14 +55,14 @@ export const HamburgerMenu = () => {
         <nav className=" bg-secondary/20 glass-effect-input text-p-black text-center p-4 md:hidden">
             <SignedOut>
                 <SignInButton mode="modal">
-                    <button className="bg-accent px-4 py-2 rounded w-full mb-2 glass-effect-input rounded-4xl flex items-center justify-center gap-2">
-                        <IoLogIn />
+                    <button className="text-primary w-full border-2 border-primary/20 hover:bg-secondary/10 hover:border-primary/40 transition-all px-4 py-3 rounded-4xl flex items-center justify-center gap-2 font-bold mb-3 focus-visible-primary">
+                        <IoLogIn size={22} />
                         Logga in
                     </button>
                 </SignInButton>
                 <SignUpButton mode="modal">
-                    <button className="bg-accent  px-4 py-2 rounded w-full mb-2 glass-effect-input rounded-4xl flex items-center justify-center gap-2">
-                        <FaUserPlus />
+                    <button className="bg-primary w-full hover:bg-primary/90 text-p-white px-4 py-3 rounded-4xl glass-effect-input flex items-center justify-center gap-2 shadow-md mb-2 focus-visible-primary">
+                        <IoPersonAdd size={20} />
                         Registrera dig
                     </button>
                 </SignUpButton>

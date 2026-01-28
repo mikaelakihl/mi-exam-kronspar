@@ -1,4 +1,5 @@
 import { SignUpButton } from "@clerk/clerk-react";
+import { FaArrowRight } from "react-icons/fa";
 
 export const Hero = () => {
     return (
@@ -13,8 +14,9 @@ export const Hero = () => {
             </div>
             <div className="flex flex-col gap-4 p-4  col-span-2 lg:col-span-1 order-4 lg:order-3 ">
                 <SignUpButton mode="modal">
-                    <button className="bg-accent text-p-white px-4 py-2 rounded-4xl mb-2 lg:w-1/2 ">
+                    <button className="bg-accent text-primary px-6 py-3 rounded-4xl mb-2 lg:w-3/4 flex items-center justify-center gap-3 font-bold text-lg hover:scale-105 transition-transform shadow-lg focus-visible-white">
                         Börja spara nu
+                        <FaArrowRight />
                     </button>
                 </SignUpButton>
 
