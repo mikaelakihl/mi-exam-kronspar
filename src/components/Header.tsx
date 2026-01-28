@@ -20,7 +20,7 @@ export const Header = () => {
 
     return (
         <>
-            <header className="bg-background flex justify-between items-center ">
+            <header className="bg-background flex justify-between items-center md:px-4 ">
                 <KronsparLogo data={data} />
                 <TimeTravelButton data={data} />
                 <DesktopMenu data={data} />
