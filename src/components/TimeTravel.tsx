@@ -39,7 +39,7 @@ const TimeTravelModal = ({ data, setIsTimeTravelOpen }: TimeTravelModalProps) =>
                     <IoIosCloseCircleOutline className="text-p-white text-2xl" />
                 </button>
                 {!hasTimeBackup ? (
-                    <div className="flex flex-col lg:flex-row gap-4">
+                    <div className="flex flex-col lg:flex-row gap-4 mt-5 lg:mt-0">
                         <button
                             className="bg-secondary text-p-white rounded py-2 px-4 rounded-full border border-background-muted"
                             onClick={handleFastForwardToPurchaseHatDay}
