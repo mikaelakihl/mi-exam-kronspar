@@ -1,9 +1,9 @@
 export const Information = () => {
     return (
         <div className="lg:col-span-1 lg:overflow-y-auto">
-            <div className=" bg-background-muted md:bg-background/70 h-fit p-4 py-8 lg:p-8 flex flex-col gap-4 rounded-3xl glass-effect-input  ">
-                <h3 className="p-4  text-tertiary">Information</h3>
-                <div className="p-2 text-tertiary">
+            <div className=" bg-background-muted lg:bg-background/70 h-fit p-4 py-8 lg:p-8 flex flex-col gap-4 rounded-3xl glass-effect-input  ">
+                <h3 className="p-4 text-left lg:text-center">Information</h3>
+                <div className="p-2 ">
                     <p>Här hittar du information om hur ditt sparande fungerar.</p>
                     <p>
                         Klicka på rubrikerna nedan för att läsa mer om betalningar,
