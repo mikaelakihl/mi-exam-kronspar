@@ -1,6 +1,5 @@
 
 import { useState } from "react";
-import { SignedIn, SignedOut, } from "@clerk/clerk-react";
 import { useUserData } from "../hooks/useUserData";
 import { HamburgerIcon, HamburgerMenu } from "./menu/Hamburger";
 import { DesktopMenu } from "./menu/Desktop";

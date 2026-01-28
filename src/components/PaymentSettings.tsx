@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import { useUser } from "@clerk/clerk-react";
 import { IoIosSave, IoMdSettings } from "react-icons/io";
 import { handleCardNumberChange, handleMonthChange, handleNumericChange } from "../utils/formRegex";
-import { FeedbackMessage } from "./FeedbackMessage";
 
 type PaymentSettingsProps = {
     onSuccess: () => void;
@@ -19,13 +18,7 @@ export const PaymentSettings = ({ onSuccess, onError }: PaymentSettingsProps) =>
     const [cardYear, setCardYear] = useState('');
     const [cvv, setCvv] = useState('');
 
-
-
     const [isCardDetailsEditing, setIsCardDetailsEditing] = useState(false);
-
-
-
-
 
     const queryClient = useQueryClient();
     const { user } = useUser();
