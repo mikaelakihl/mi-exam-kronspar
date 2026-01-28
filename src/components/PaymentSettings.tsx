@@ -112,7 +112,7 @@ export const PaymentSettings = ({ onSuccess, onError }: PaymentSettingsProps) =>
 
 
 
-        <div className="bg-background-muted glass-effect-input flex flex-col gap-4 lg:gap-0 rounded-3xl p-4 py-8 lg:p-8 ">
+        <div className="bg-background-muted glass-effect-input flex flex-col  rounded-3xl p-4 py-8 lg:p-8 ">
             <div className="flex flex-row justify-between items-center pb-4 ">
                 <h3>Betalningsuppgifter</h3>
                 <button

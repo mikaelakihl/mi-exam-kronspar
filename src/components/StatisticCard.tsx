@@ -79,7 +79,7 @@ export const NextPaymentStatisticCard = ({ data }: StatisticCardsProps) => {
             <div className="flex justify-center items-center rounded-full bg-yellow-100 w-17 h-17 backdrop-blur-lg border border-white shadow-lg">
                 <p className="text-3xl">💸</p>
             </div>
-            <p className="uppercase font-bold text-gray-500 font-bold">
+            <p className="uppercase font-bold text-gray-500 font-bold text-center">
                 Nästa inbetalning sker datum
             </p>
             <p className="text-3xl md:text-4xl lg:text-5xl text-tertiary">
@@ -93,7 +93,7 @@ export const NextPaymentStatisticCard = ({ data }: StatisticCardsProps) => {
 export const YouHaveSavedStatisticCard = ({ data }: StatisticCardsProps) => {
     return (
         <div className=" glass-effect-input md:col-span-2  flex justify-center flex-col  items-center p-8 bg-background-muted/80 rounded-4xl">
-            <p className="uppercase font-bold text-gray-500">Du har sparat</p>
+            <p className="uppercase font-bold text-gray-500 text-center">Du har sparat</p>
             <div className='relative w-fit'>
                 <img
                     src="/assets/kronspar-pig.png"
@@ -130,7 +130,7 @@ export const StatisticCard = ({ icon, title, value, unit }: StatisticCardProps) 
             <div className="flex justify-center items-center rounded-full bg-yellow-100 w-17 h-17 backdrop-blur-lg border border-white shadow-lg">
                 <p className="text-3xl">{icon}</p>
             </div>
-            <p className="uppercase font-bold text-gray-500 font-bold">
+            <p className="uppercase font-bold text-gray-500 font-bold text-center">
                 {title}
             </p>{' '}
             <div className="flex items-baseline gap-2">
