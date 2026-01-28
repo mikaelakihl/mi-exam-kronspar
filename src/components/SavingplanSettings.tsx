@@ -86,18 +86,26 @@ export const SavingplanSettings = ({ onSuccess, onError, onWithdrawSuccess, onWi
     const handleSaveForSavingPlan = async (e: React.FormEvent) => {
         e.preventDefault();
 
-        if (!user?.id || !userData) return;
+        if (!user?.id) return;
+
+        const currentData = userData || {
+            userId: user.id,
+            personal: { fname: '', lname: '', email: '' },
+            payment: {},
+            graduation: {},
+            savings: { savedAmount: 0, savingsMode: 'manual', monthlyAmount: 0 }
+        };
 
         const updatedSavingPlanData = {
-            ...userData,
+            ...currentData,
             graduation: {
-                ...userData.graduation,
+                ...(currentData.graduation || {}),
                 graduationDay: graduationDay,
                 dateForPurchaseHat: dateForPurchaseHat,
                 priceOnHat: priceOnHat,
             },
             savings: {
-                ...userData.savings,
+                ...(currentData.savings || {}),
                 savingsMode: savingsMode,
                 monthlyAmount: monthlyAmount,
             },
