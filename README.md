@@ -49,15 +49,15 @@ The Time Travel feature allows the user to jump between three distinct temporal 
 - 🔴 Graduation Day: Simulates the final date of the savings period, showing the total accumulated sum.
 
 ## 🧰 Tech Stack
-React 19
-TypeScript
-Tailwind CSS v4
-Vite
-TanStack Query
-Clerk (Authentication)
-React Router v7
-React Icons
-ESLint & Prettier
+- **React 19**
+- **TypeScript** 
+- **Tailwind CSS v4**
+- **Vite**
+- **TanStack Query**
+- **Clerk (Authentication)**
+- **React Router v7**
+- **React Icons**
+- **ESLint & Prettier**
 
 ## 🚀 Installation
 
