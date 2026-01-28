@@ -91,13 +91,14 @@ export const PaymentSettings = ({ onSuccess, onError }: PaymentSettingsProps) =>
             const data = await response.json();
 
             console.log('Sparad:', data);
-            onSuccess();
+            setIsCardDetailsEditing(false);
+            setTimeout(() => {
+                onSuccess();
+            }, 100);
 
             queryClient.invalidateQueries({
                 queryKey: ['userData', user?.id],
             });
-
-            setIsCardDetailsEditing(false);
         } catch (error) {
             console.error('Error saving data:', error);
             onError();

@@ -122,12 +122,13 @@ export const SavingplanSettings = ({ onSuccess, onError, onWithdrawSuccess, onWi
             const data = await response.json();
 
             console.log(data);
-            onSuccess();
+            setIsSavingPlanDetailsEditing(false);
+            setTimeout(() => {
+                onSuccess();
+            }, 100);
             queryClient.invalidateQueries({
                 queryKey: ['userData', user?.id],
             });
-            setIsSavingPlanDetailsEditing(false);
-            console.log(data);
         } catch (error) {
             console.error('Error saving data:', error);
             onError();
