@@ -60,12 +60,20 @@ export const PaymentSettings = ({ onSuccess, onError }: PaymentSettingsProps) =>
     const handleSave = async (e: React.FormEvent) => {
         e.preventDefault();
 
-        if (!user?.id || !userData) return;
+        if (!user?.id) return;
+
+        const currentData = userData || {
+            userId: user.id,
+            personal: { fname: '', lname: '', email: '' },
+            payment: {},
+            graduation: {},
+            savings: { savedAmount: 0, savingsMode: 'manual', monthlyAmount: 0 }
+        };
 
         const updatedData = {
-            ...userData,
+            ...currentData,
             payment: {
-                ...userData.payment,
+                ...(currentData.payment || {}),
                 nameOnCard: nameOnCard,
                 cardNumber: cardNumber,
                 cardCVV: cvv,
