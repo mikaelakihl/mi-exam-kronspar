@@ -2,11 +2,6 @@ export const Information = () => {
     return (
         <div className="lg:col-span-1 lg:overflow-y-auto">
             <div className=" bg-background-muted md:bg-background/70 h-fit  p-8 flex flex-col gap-4 rounded-3xl glass-effect-input  ">
-                {/* <div className="flex flex-row gap-2 justify-between items-center">
-                <img src="/assets/pinpin.png" alt="Kronspar" className="w-8 h-8 " />
-              
-                <img src="/assets/pinpin.png" alt="Kronspar" className="w-8 h-8 rotate-90" />
-            </div> */}
                 <h3 className="p-4  text-tertiary">Information</h3>
                 <div className="p-2 text-tertiary">
                     <p>Här hittar du information om hur ditt sparande fungerar.</p>
@@ -17,7 +12,7 @@ export const Information = () => {
                 </div>
                 <div>
                     <details>
-                        <summary className="bg-primary text-p-white rounded-lg p-3 ">
+                        <summary className="bg-primary text-p-white rounded-xl p-3 ">
                             Betalning
                         </summary>
                         <div className="flex flex-col gap-2 bg-background rounded-lg  p-3">
@@ -47,7 +42,7 @@ export const Information = () => {
                     </details>
                 </div>
                 <details>
-                    <summary className="bg-primary text-p-white rounded-lg p-3">
+                    <summary className="bg-primary text-p-white rounded-xl p-3">
                         Uttag
                     </summary>
                     <div className="flex flex-col gap-2 bg-background rounded-lg  p-3">
@@ -63,7 +58,7 @@ export const Information = () => {
                     </div>
                 </details>
                 <details>
-                    <summary className="bg-primary text-p-white rounded-lg p-3">
+                    <summary className="bg-primary text-p-white rounded-xl p-3">
                         Hantera dina uppgifter
                     </summary>
                     <div className="flex flex-col gap-2 bg-background rounded-lg  p-3">
