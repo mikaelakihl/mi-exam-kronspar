@@ -2,7 +2,7 @@ import { useState } from "react";
 import { createPortal } from "react-dom";
 import { useTimeTravel } from "../hooks/useTimeTravel";
 import type { UserData } from "../mocks/handlers";
-import { IoIosCloseCircle, IoIosCloseCircleOutline } from "react-icons/io";
+import { IoIosCloseCircleOutline } from "react-icons/io";
 
 type TimeTravelModalProps = {
     data: UserData
