@@ -38,7 +38,7 @@ export const HamburgerIcon = ({ data, isOpen, setIsOpen }: HamburgerIconProps) =
                     <UserButton userProfileMode="modal" />
                 </div>
             </SignedIn>
-            <button onClick={() => setIsOpen(!isOpen)} className="p-2">
+            <button onClick={() => setIsOpen(!isOpen)} className="p-2" aria-label="Meny">
                 {isOpen ? (
                     <AiOutlineClose size={30} className="text-accent" />
                 ) : (
