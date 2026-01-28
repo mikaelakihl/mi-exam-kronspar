@@ -38,10 +38,10 @@ export const Home = () => {
                 </div>
                 <div>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 ">
-                        <SupplierCard title="Crownstudent" img="/assets/crownstudent-logo.jpg" link="https://www.crownstudent.com" />
-                        <SupplierCard title="ABC-gruppen" img="/assets/abcgruppen-logo.jpg" link="https://www.abcgruppen.se" />
-                        <SupplierCard title="Wigens" img="/assets/wigens-logo.jpg" link="https://www.wigens.se" />
-                        <SupplierCard title="C.L Seifert" img="/assets/clseifert-logo.png" link="https://www.clseifert.se" />
+                        <SupplierCard title="Crownstudent" img="/assets/crownstudent-logo.jpg" alt="Crownstudent logo" link="https://www.crownstudent.com" />
+                        <SupplierCard title="ABC-gruppen" img="/assets/abcgruppen-logo.jpg" alt="ABC-gruppen logo" link="https://www.abcgruppen.se" />
+                        <SupplierCard title="Wigens" img="/assets/wigens-logo.jpg" alt="Wigens logo" link="https://www.wigens.se" />
+                        <SupplierCard title="C.L Seifert" img="/assets/clseifert-logo.png" alt="C.L Seifert logo" link="https://www.clseifert.se" />
                     </div>
                 </div>
             </div>

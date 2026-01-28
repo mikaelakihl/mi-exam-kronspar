@@ -10,7 +10,7 @@ export const KronsparLogo = ({ data }: KronsparLogoProps) => {
         <div>
             <img
                 src="/assets/kronspar-pig.png"
-                alt="Kronspar"
+                alt="Spargris med kronspar loggan"
                 className="w-17 h-17 ml-4 md:ml-0"
             />
 
