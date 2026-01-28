@@ -34,7 +34,7 @@ export const Settings = () => {
                 title={feedback.title}
                 message={feedback.message}
             />
-            <h2 className="mb-4 text-center text-tertiary">Inställningar</h2>
+            <h2 className="mb-4 text-center ">Inställningar</h2>
 
             <div className="grid gap-4 md:gap-8 lg:grid-cols-3 flex-1 min-h-0">
                 <Information />

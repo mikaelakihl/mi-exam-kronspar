@@ -31,7 +31,9 @@
 
   h2 {
     @apply text-2xl lg:text-3xl;
+
     font-family: 'Manrope', serif;
+
   }
 
   h3 {
@@ -60,8 +62,6 @@
 
 @layer utilities {
  
- 
-
   .glass-effect-input {
     @apply  backdrop-blur-lg border border-white shadow-lg ;
   }

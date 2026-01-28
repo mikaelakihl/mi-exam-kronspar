@@ -11,7 +11,7 @@ export const Statistics = () => {
     if (!data) return <div>Ingen data tillgänglig.</div>;
 
     return (
-        <section className="tertiary">
+        <section>
             <h2 className="mb-4 text-center">Statistik</h2>
             <StatisticCards data={data} />
 
