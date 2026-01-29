@@ -7,6 +7,7 @@ import type { DataProps } from "./Hamburger";
 import { NavLink } from "react-router";
 import { PiStudentFill } from "react-icons/pi";
 import { IoLogIn, IoPersonAdd, IoHome, IoSettings, IoStatsChart } from "react-icons/io5";
+import { Button } from "../Button";
 
 
 
@@ -16,16 +17,16 @@ export const DesktopMenu = ({ data }: DataProps) => {
         <div className="hidden md:flex items-center gap-6">
             <SignedOut>
                 <SignInButton mode="modal">
-                    <button className="text-primary hover:bg-secondary/20 border-2 border-transparent hover:border-secondary/30 transition-all px-4 py-2 rounded-4xl flex items-center gap-2 font-bold focus-visible-primary">
+                    <Button variant="ghost">
                         <IoLogIn size={20} />
                         Logga in
-                    </button>
+                    </Button>
                 </SignInButton>
-                <SignUpButton mode="modal">
-                    <button className="bg-primary hover:bg-primary/90 text-p-white px-5 py-2 rounded-4xl glass-effect-input flex items-center gap-2 shadow-md hover:shadow-lg transition-all focus-visible-primary">
+                <SignUpButton mode="modal" forceRedirectUrl="/settings">
+                    <Button variant="primary">
                         <IoPersonAdd size={18} />
                         Registrera dig
-                    </button>
+                    </Button>
                 </SignUpButton>
             </SignedOut>
             <SignedIn>

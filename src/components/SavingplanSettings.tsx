@@ -8,6 +8,7 @@ import { handleNumericChange } from "../utils/formRegex";
 import { useUserData } from "../hooks/useUserData";
 import { useQueryClient } from "@tanstack/react-query";
 import { useUser } from "@clerk/clerk-react";
+import { Button } from "./Button";
 
 
 type SavingplanSettingsProps = {
@@ -241,9 +242,9 @@ export const SavingplanSettings = ({ onSuccess, onError, onWithdrawSuccess, onWi
                 )}
                 <div className="grid grid-cols-2 gap-2">
                     {isSavingPlanDetailsEditing ? null : (
-                        <button
-                            type="button"
-                            className="text-p-black bg-accent glass-effect-input rounded-4xl flex justify-center items-center gap-2 mt-4"
+                        <Button
+                            variant="accent"
+                            className="flex justify-center items-center gap-2 mt-4"
                             onClick={() => {
                                 if (userData && user?.id) {
                                     const updatedData = withdrawSavings(userData, user.id);
@@ -262,16 +263,17 @@ export const SavingplanSettings = ({ onSuccess, onError, onWithdrawSuccess, onWi
                         >
                             <PiHandWithdrawFill />
                             Ta ut sparande
-                        </button>
+                        </Button>
                     )}
                     {isSavingPlanDetailsEditing && (
-                        <button
-                            className="text-p-white bg-primary glass-effect-input rounded-4xl col-start-2  flex justify-center items-center gap-2 mt-4"
+                        <Button
+                            variant="primary"
+                            className="col-start-2 flex justify-center items-center gap-2 mt-4"
                             type="submit"
                         >
                             <IoIosSave />
                             Spara
-                        </button>
+                        </Button>
                     )}
                 </div>
             </form>

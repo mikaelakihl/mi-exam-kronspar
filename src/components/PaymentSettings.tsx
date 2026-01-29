@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useUser } from "@clerk/clerk-react";
 import { IoIosSave, IoMdSettings } from "react-icons/io";
 import { handleCardNumberChange, handleMonthChange, handleNumericChange } from "../utils/formRegex";
+import { Button } from "./Button";
 
 type PaymentSettingsProps = {
     onSuccess: () => void;
@@ -208,13 +209,13 @@ export const PaymentSettings = ({ onSuccess, onError }: PaymentSettingsProps) =>
                 </div>
 
                 {isCardDetailsEditing && (
-                    <button
-                        type="submit"
-                        className="text-p-white bg-primary glass-effect-input rounded-4xl w-1/2 flex self-end col-start-2 justify-center items-center gap-2 mt-4"
+                    <Button
+                        variant="primary"
+                        className="w-1/2 flex self-end col-start-2 justify-center items-center gap-2 mt-4"
                     >
                         <IoIosSave />
                         Spara
-                    </button>
+                    </Button>
                 )}
             </form>
         </div>

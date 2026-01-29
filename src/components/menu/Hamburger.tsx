@@ -55,21 +55,23 @@ export const HamburgerIcon = ({ data, isOpen, setIsOpen }: HamburgerIconProps) =
     )
 }
 
+import { Button } from "../Button"
+
 export const HamburgerMenu = () => {
     return (
         <nav className=" bg-secondary/20 glass-effect-input text-p-black text-center p-4 md:hidden">
             <SignedOut>
                 <SignInButton mode="modal">
-                    <button className="text-primary w-full border-2 border-primary/20 hover:bg-secondary/10 hover:border-primary/40 transition-all px-4 py-3 rounded-4xl flex items-center justify-center gap-2 font-bold mb-3 focus-visible-primary">
+                    <Button variant="outline" fullWidth className="mb-3">
                         <IoLogIn size={22} />
                         Logga in
-                    </button>
+                    </Button>
                 </SignInButton>
                 <SignUpButton forceRedirectUrl="/settings" mode="modal">
-                    <button className="bg-primary w-full hover:bg-primary/90 text-p-white px-4 py-3 rounded-4xl glass-effect-input flex items-center justify-center gap-2 shadow-md mb-2 focus-visible-primary">
+                    <Button variant="primary" fullWidth className="mb-2">
                         <IoPersonAdd size={20} />
                         Registrera dig
-                    </button>
+                    </Button>
                 </SignUpButton>
             </SignedOut>
             <SignedIn>
