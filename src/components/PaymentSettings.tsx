@@ -210,7 +210,7 @@ export const PaymentSettings = ({ onSuccess, onError }: PaymentSettingsProps) =>
                 {isCardDetailsEditing && (
                     <button
                         type="submit"
-                        className="text-p-white bg-primary glass-effect-input rounded-4xl w-1/2 flex justify-center items-center gap-2"
+                        className="text-p-white bg-primary glass-effect-input rounded-4xl w-1/2 flex self-end col-start-2 justify-center items-center gap-2 mt-4"
                     >
                         <IoIosSave />
                         Spara

@@ -243,7 +243,7 @@ export const SavingplanSettings = ({ onSuccess, onError, onWithdrawSuccess, onWi
                     {isSavingPlanDetailsEditing ? null : (
                         <button
                             type="button"
-                            className="text-p-black bg-accent glass-effect-input rounded-4xl flex justify-center items-center gap-2"
+                            className="text-p-black bg-accent glass-effect-input rounded-4xl flex justify-center items-center gap-2 mt-4"
                             onClick={() => {
                                 if (userData && user?.id) {
                                     const updatedData = withdrawSavings(userData, user.id);
@@ -266,7 +266,7 @@ export const SavingplanSettings = ({ onSuccess, onError, onWithdrawSuccess, onWi
                     )}
                     {isSavingPlanDetailsEditing && (
                         <button
-                            className="text-p-white bg-primary glass-effect-input rounded-4xl flex justify-center items-center gap-2"
+                            className="text-p-white bg-primary glass-effect-input rounded-4xl col-start-2  flex justify-center items-center gap-2 mt-4"
                             type="submit"
                         >
                             <IoIosSave />
