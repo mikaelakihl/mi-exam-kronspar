@@ -44,7 +44,7 @@ export const ActiveStatusStatisticCard = ({ data }: StatisticCardsProps) => {
                     {data.savings?.savingsMode === 'auto' && (
                         <p>
                             Du beräknas ha <span className="font-bold">{data.graduation?.priceOnHat} kr</span> lagom till{' '}
-                            <p className="font-bold">{data.graduation?.dateForPurchaseHat}</p>
+                            <span className="font-bold">{data.graduation?.dateForPurchaseHat}</span>
                         </p>
                     )}
                 </div>
@@ -52,12 +52,11 @@ export const ActiveStatusStatisticCard = ({ data }: StatisticCardsProps) => {
                     {data.savings?.savingsMode === 'manual' && (
                         <p>
                             Du beräknas ha{' '}
-                            {calculateSumOfSavingsInManualSavingsMode(
+                            <span className="font-bold">{calculateSumOfSavingsInManualSavingsMode(
                                 // Make sure to convert to numbers before passing to the function
                                 Number(data.savings?.monthlyAmount),
                                 getDaysUntilPurchaseHat(data.graduation?.dateForPurchaseHat)
-                            )}{' '}
-                            kr lagom till {data.graduation?.dateForPurchaseHat}
+                            )} kr</span>  lagom till <span className="font-bold">{data.graduation?.dateForPurchaseHat}</span>
                         </p>
                     )}
                 </div>
