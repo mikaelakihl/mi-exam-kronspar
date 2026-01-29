@@ -15,19 +15,19 @@ export const KronsparLogo = ({ data }: KronsparLogoProps) => {
             />
 
             <SignedIn>
-                <div className="absolute top-7 left-3.5 text-center flex flex-col font-bold gap-0 ">
+                <div className="absolute top-7.5 left-3 text-center flex flex-col font-bold gap-0 ">
                     <p className="text-xs">
                         {data?.savings?.savedAmount === 0
                             ? '0'
                             : data?.savings?.savedAmount}
                     </p>
-                    <h1 className=" font-bold text-background-muted text-stroke ">
+                    <h1 className=" font-bold text-primary text-stroke ">
                         Kronspar
                     </h1>
                 </div>
             </SignedIn>
             <SignedOut>
-                <h1 className=" font-bold text-background-muted text-stroke absolute top-11 left-3.5   ">
+                <h1 className=" font-bold text-primary text-stroke absolute top-11 left-3.5   ">
                     Kronspar
                 </h1>
 
