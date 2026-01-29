@@ -143,7 +143,8 @@ export const PaymentSettings = ({ onSuccess, onError }: PaymentSettingsProps) =>
                         value={nameOnCard}
                         onChange={(e) => setNameOnCard(e.target.value)}
                         disabled={!isCardDetailsEditing}
-                        className="  disabled:text-p-disabled disabled:cursor-not-allowed "
+                        className="  disabled:text-p-disabled disabled:cursor-not-allowed  border-2 border-secondary/30 rounded-xl disabled:border-0"
+                        placeholder="Förnamn Efternamn"
                     />
                 </label>
                 <label className="flex flex-col gap-2">
@@ -151,7 +152,7 @@ export const PaymentSettings = ({ onSuccess, onError }: PaymentSettingsProps) =>
                     <input
                         value={cardNumber}
                         onChange={(e) => handleCardNumberChange(e, setCardNumber)}
-                        className="disabled:text-p-disabled disabled:cursor-not-allowed "
+                        className="disabled:text-p-disabled disabled:cursor-not-allowed  border-2 border-secondary/30 rounded-xl disabled:border-0"
                         disabled={!isCardDetailsEditing}
                         type="text"
                         maxLength={19}
@@ -170,7 +171,7 @@ export const PaymentSettings = ({ onSuccess, onError }: PaymentSettingsProps) =>
                             <input
                                 aria-label="Månad kortet går ut"
                                 type="number"
-                                className=" w-full min-w-0 flex-1  disabled:text-p-disabled disabled:cursor-not-allowed "
+                                className=" w-full min-w-0 flex-1  disabled:text-p-disabled disabled:cursor-not-allowed  border-2 border-secondary/30 rounded-xl disabled:border-0"
                                 value={cardMonth}
                                 onChange={(e) => handleMonthChange(e, setCardMonth)}
                                 disabled={!isCardDetailsEditing}
@@ -181,7 +182,7 @@ export const PaymentSettings = ({ onSuccess, onError }: PaymentSettingsProps) =>
                             <input
                                 aria-label="År kortet går ut"
                                 type="number"
-                                className=" w-full min-w-0 flex-1  disabled:text-p-disabled disabled:cursor-not-allowed "
+                                className=" w-full min-w-0 flex-1  disabled:text-p-disabled disabled:cursor-not-allowed  border-2 border-secondary/30 rounded-xl disabled:border-0 "
                                 value={cardYear}
                                 onChange={(e) => handleNumericChange(e, setCardYear, 2)}
                                 disabled={!isCardDetailsEditing}
@@ -197,7 +198,7 @@ export const PaymentSettings = ({ onSuccess, onError }: PaymentSettingsProps) =>
                                 value={cvv}
                                 onChange={(e) => handleNumericChange(e, setCvv, 3)}
                                 type="number"
-                                className="disabled:text-p-disabled disabled:cursor-not-allowed text-base"
+                                className="disabled:text-p-disabled disabled:cursor-not-allowed text-base  border-2 border-secondary/30 rounded-xl disabled:border-0"
                                 placeholder="CVV"
                                 disabled={!isCardDetailsEditing}
                                 inputMode="numeric"

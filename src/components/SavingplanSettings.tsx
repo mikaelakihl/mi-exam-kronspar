@@ -173,8 +173,9 @@ export const SavingplanSettings = ({ onSuccess, onError, onWithdrawSuccess, onWi
                         <input
                             value={graduationDay}
                             onChange={(e) => setGraduationDay(e.target.value)}
-                            className=" disabled:text-p-disabled disabled:cursor-not-allowed text-p-black"
+                            className=" disabled:text-p-disabled disabled:cursor-not-allowed text-p-black  border-2 border-secondary/30 rounded-xl disabled:border-0"
                             disabled={!isSavingPlanDetailsEditing}
+                            type="date"
                         />
                     </label>
                     <label className="flex flex-col gap-2 ">
@@ -182,8 +183,9 @@ export const SavingplanSettings = ({ onSuccess, onError, onWithdrawSuccess, onWi
                         <input
                             value={dateForPurchaseHat}
                             onChange={(e) => setDateForPurchaseHat(e.target.value)}
-                            className="  disabled:text-p-disabled disabled:cursor-not-allowed text-p-black"
+                            className="  disabled:text-p-disabled disabled:cursor-not-allowed text-p-black  border-2 border-secondary/30 rounded-xl disabled:border-0"
                             disabled={!isSavingPlanDetailsEditing}
+                            type="date"
                         />
                     </label>
                 </div>
@@ -193,8 +195,9 @@ export const SavingplanSettings = ({ onSuccess, onError, onWithdrawSuccess, onWi
                         inputMode="numeric"
                         value={priceOnHat}
                         onChange={(e) => handleNumericChange(e, setPriceOnHat, 6)}
-                        className="  disabled:text-p-disabled disabled:cursor-not-allowed text-p-black"
+                        className="  disabled:text-p-disabled disabled:cursor-not-allowed text-p-black border-2 border-secondary/30 rounded-xl disabled:border-0"
                         disabled={!isSavingPlanDetailsEditing}
+                        placeholder="t.ex 1000"
                     />
                 </label>
                 <label className="flex flex-col gap-2 ">
@@ -225,7 +228,7 @@ export const SavingplanSettings = ({ onSuccess, onError, onWithdrawSuccess, onWi
                             inputMode="numeric"
                             value={monthlyAmount}
                             onChange={(e) => handleNumericChange(e, setMonthlyAmount, 4)}
-                            className=" rounded-lg disabled:bg-text-p-white disabled:text-gray-300 disabled:cursor-not-allowed"
+                            className=" rounded-lg disabled:bg-text-p-white disabled:text-gray-300 disabled:cursor-not-allowed  border-2 border-secondary/30 rounded-xl disabled:border-0"
                             disabled={!isSavingPlanDetailsEditing}
                         />
                     </label>
