@@ -58,6 +58,16 @@
   button {
     @apply p-3 lg:p-2;
   }
+
+  button, a, summary{
+     @apply focus-visible:ring-2 focus-visible:ring-p-white focus-visible:outline-none focus-visible:ring-offset-2 focus-visible:ring-offset-primary cursor-pointer transition-opacity duration-200;
+  }
+
+  button:not([class*="hover:"]):hover, a:not([class*="hover:"]):hover {
+    @apply opacity-50;
+  }
+
+  
 }
 
 @layer utilities {
