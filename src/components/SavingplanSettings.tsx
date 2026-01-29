@@ -173,7 +173,7 @@ export const SavingplanSettings = ({ onSuccess, onError, onWithdrawSuccess, onWi
                         <input
                             value={graduationDay}
                             onChange={(e) => setGraduationDay(e.target.value)}
-                            className=" disabled:text-p-disabled disabled:cursor-not-allowed text-p-black  border-2 border-secondary/30 rounded-xl disabled:border-0"
+                            className=" disabled:text-p-disabled disabled:cursor-not-allowed text-p-black  border-2 border-secondary/30 rounded-xl disabled:border-0 "
                             disabled={!isSavingPlanDetailsEditing}
                             type="date"
                         />
@@ -228,8 +228,9 @@ export const SavingplanSettings = ({ onSuccess, onError, onWithdrawSuccess, onWi
                             inputMode="numeric"
                             value={monthlyAmount}
                             onChange={(e) => handleNumericChange(e, setMonthlyAmount, 4)}
-                            className=" rounded-lg disabled:bg-text-p-white disabled:text-gray-300 disabled:cursor-not-allowed  border-2 border-secondary/30 rounded-xl disabled:border-0"
+                            className=" rounded-lg disabled:bg-text-p-white disabled:text-p-disabled disabled:cursor-not-allowed  border-2 border-secondary/30 rounded-xl disabled:border-0"
                             disabled={!isSavingPlanDetailsEditing}
+                            placeholder="t.ex 1000"
                         />
                     </label>
                 )}
