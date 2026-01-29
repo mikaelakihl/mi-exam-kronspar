@@ -44,7 +44,7 @@ export const ActiveStatusStatisticCard = ({ data }: StatisticCardsProps) => {
                     {data.savings?.savingsMode === 'auto' && (
                         <p>
                             Du beräknas ha <span className="font-bold">{data.graduation?.priceOnHat} kr</span> lagom till{' '}
-                            {data.graduation?.dateForPurchaseHat}
+                            <p className="font-bold">{data.graduation?.dateForPurchaseHat}</p>
                         </p>
                     )}
                 </div>
