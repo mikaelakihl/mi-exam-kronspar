@@ -37,7 +37,7 @@ export const Home = () => {
                     <p>Här hittar du bland de mest populära mössorna. Jämför och hitta din favorit! </p>
                 </div>
                 <div>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 ">
+                    <div className="grid grid-cols-1  lg:grid-cols-4 gap-4 ">
                         <SupplierCard title="Crownstudent" img="/assets/crownstudent-logo.jpg" alt="Crownstudent logo" link="https://www.crownstudent.com" />
                         <SupplierCard title="ABC-gruppen" img="/assets/abcgruppen-logo.jpg" alt="ABC-gruppen logo" link="https://www.abcgruppen.se" />
                         <SupplierCard title="Wigens" img="/assets/wigens-logo.jpg" alt="Wigens logo" link="https://www.wigens.se" />
